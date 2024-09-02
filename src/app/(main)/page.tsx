@@ -1,14 +1,12 @@
-import SignIn from "@/app/(main)/sign-in"
+import { SignIn } from "./sign-in";
 
 export default function Home() {
-    return (
-      <div>
-        <main>
-            <SignIn/>
-        </main>
-        <footer>
-        </footer>
-      </div>
-    );
-  }
-  
+  return (
+    <div>
+      <main>
+        <SignIn />
+      </main>
+      <footer></footer>
+    </div>
+  );
+}

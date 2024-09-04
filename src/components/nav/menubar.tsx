@@ -16,11 +16,11 @@ export default function MenuBar({ className }: { className: string }) {
   const user = session?.user;
   return (
     <div className={className}>
-      <div className="flex w-full flex-col justify-between border sm:w-fit lg:w-full">
+      <div className="flex w-full flex-col justify-between sm:w-fit sm:border-x-2 lg:w-full">
         <div className="flex w-full flex-row justify-between sm:flex-col">
           <Button
             variant={"ghost"}
-            className="flex h-fit w-fit items-center border lg:w-full"
+            className="flex h-fit w-fit items-center border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
           >
             <a href="/home" className="flex size-full flex-row text-lg">
               <HomeIcon className="flex-shrink-0" />
@@ -29,7 +29,7 @@ export default function MenuBar({ className }: { className: string }) {
           </Button>
           <Button
             variant={"ghost"}
-            className="flex h-fit w-fit items-center border lg:w-full"
+            className="flex h-fit w-fit items-center border-x-2 sm:hidden sm:border-x-0 sm:border-b-2 lg:w-full"
           >
             <a href="/search" className="flex size-full flex-row text-lg">
               <SearchIcon className="flex-shrink-0" />
@@ -38,7 +38,7 @@ export default function MenuBar({ className }: { className: string }) {
           </Button>
           <Button
             variant={"ghost"}
-            className="flex h-fit w-fit items-center overflow-hidden border lg:w-full"
+            className="flex h-fit w-fit items-center overflow-hidden border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
           >
             <a
               href="/notifications"
@@ -50,7 +50,7 @@ export default function MenuBar({ className }: { className: string }) {
           </Button>
           <Button
             variant={"ghost"}
-            className="flex h-fit w-fit items-center border lg:w-full"
+            className="flex h-fit w-fit items-center border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
           >
             <a href="/bookmarks" className="flex size-full flex-row text-lg">
               <BookmarkIcon className="flex-shrink-0" />
@@ -59,7 +59,7 @@ export default function MenuBar({ className }: { className: string }) {
           </Button>
           <Button
             variant={"ghost"}
-            className="flex h-fit w-fit items-center border lg:w-full"
+            className="flex h-fit w-fit items-center border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
           >
             <a
               href={`/${user?.name}`}

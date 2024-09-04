@@ -38,7 +38,7 @@ export default function ProfileButton() {
           <Button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             variant={"ghost"}
-            className="h-fit w-full justify-start overflow-hidden border"
+            className="h-fit w-full justify-start overflow-hidden border sm:border-x-0 sm:border-y-2"
           >
             {user?.image ? (
               <Image

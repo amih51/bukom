@@ -58,6 +58,10 @@
     --chart-5: 340 75% 55%;
   }
 
+  * {
+    border-color: var(--foreground);
+  }
+
   body {
     color: var(--foreground);
     background: var(--background);

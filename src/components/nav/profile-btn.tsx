@@ -9,12 +9,25 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSubTrigger,
+  DropdownMenuSub,
+  DropdownMenuPortal,
+  DropdownMenuSubContent,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { LogOut } from "lucide-react";
+import { Check, LogOut, Monitor } from "lucide-react";
+import { useTheme } from "next-themes";
+import {
+  AvatarIcon,
+  Half2Icon,
+  MoonIcon,
+  SunIcon,
+} from "@radix-ui/react-icons";
 
 export default function ProfileButton() {
   const { data: session } = useSession();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   if (session) {
     const user = session.user;
@@ -25,27 +38,60 @@ export default function ProfileButton() {
           <DropdownMenuTrigger asChild>
             <Button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              variant={"link"}
+              variant={"ghost"}
             >
-              <Image
-                src={user?.image || ""}
-                alt={user?.name || "warga biasa"}
-                width={32}
-                height={32}
-                className="w-8 h-8 rounded-full"
-              />
+              {user?.image ? (
+                <Image
+                  src={user?.image || ""}
+                  alt={user?.name || "warga biasa"}
+                  width={32}
+                  height={32}
+                  className="size-8 rounded-full"
+                />
+              ) : (
+                <AvatarIcon className="size-8" />
+              )}
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            {/* <DropdownMenuItem onClick={toggleTheme} className="pl-5 group cursor-pointer text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-            {isDarkMode ? <Sun /> : <Moon />}
-            <span className="ml-2">{isDarkMode ? "Light Mode" : "Dark Mode"}</span>
-          </DropdownMenuItem> */}
+            <DropdownMenuSub>
+              <DropdownMenuSubTrigger className="cursor-pointer">
+                <Half2Icon className="mr-2 size-4" />
+                Theme
+              </DropdownMenuSubTrigger>
+              <DropdownMenuPortal>
+                <DropdownMenuSubContent>
+                  <DropdownMenuItem
+                    onClick={() => setTheme("system")}
+                    className="cursor-pointer"
+                  >
+                    <Monitor className="mr-2 size-4" />
+                    System default
+                    {theme === "system" && <Check className="ms-2 size-4" />}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setTheme("light")}
+                    className="cursor-pointer"
+                  >
+                    <SunIcon className="mr-2 size-4" />
+                    Light
+                    {theme === "light" && <Check className="ms-2 size-4" />}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setTheme("dark")}
+                    className="cursor-pointer"
+                  >
+                    <MoonIcon className="mr-2 size-4" />
+                    Dark
+                    {theme === "dark" && <Check className="ms-2 size-4" />}
+                  </DropdownMenuItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuPortal>
+            </DropdownMenuSub>
+            <DropdownMenuSeparator />
             <DropdownMenuItem className="group cursor-pointer">
-              <LogOut className="ml-4 -mr-2" />
-              <button onClick={() => signOut()} className="ml-4">
-                Sign Out
-              </button>
+              <LogOut className="mr-2 size-4" />
+              <button onClick={() => signOut()}>Sign Out</button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

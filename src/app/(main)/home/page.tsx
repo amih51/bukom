@@ -13,7 +13,14 @@ export default async function Home() {
 
   return (
     <main className="flex w-full flex-col">
-      <div className="flex flex-auto border-2 h-full items-center">post</div>
+      <div className="flex flex-auto border h-full items-center">post</div>
+      <div className="flex flex-auto border h-full items-center">post</div>
+      <div className="flex flex-auto border h-full items-center">post</div>
+      <div className="flex flex-auto border h-full items-center">post</div>
+      <div className="flex flex-auto border h-full items-center">post</div>
+      <div className="flex flex-auto border h-full items-center">post</div>
+      <div className="flex flex-auto border h-full items-center">post</div>
+      <div className="flex flex-auto border h-full items-center">post</div>
     </main>
   );
 }

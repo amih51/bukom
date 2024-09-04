@@ -1,24 +1,15 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "@/components/ui/toaster";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-});
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   title: {
     template: "%s | bukom",
     default: "bukom",
   },
-  description: "buku komunikasi???",
+  description: "BUKOM REBORN!!!",
 };
 
 export default function RootLayout({
@@ -28,9 +19,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
         <SessionProvider>
-          {children}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
           <Toaster />
         </SessionProvider>
       </body>

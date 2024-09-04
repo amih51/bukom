@@ -1,11 +1,13 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 
 export default function SignIn() {
   return (
     <div className="flex h-2/3 flex-auto items-center justify-center border-2 md:h-full">
-      <button
+      <Button
+        variant={"ghost"}
         onClick={() => signIn("google")}
         className="flex flex-row items-center border p-2"
       >
@@ -16,7 +18,7 @@ export default function SignIn() {
           ></path>
         </svg>
         Sign In
-      </button>
+      </Button>
     </div>
   );
 }

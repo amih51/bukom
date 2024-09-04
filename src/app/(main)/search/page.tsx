@@ -3,7 +3,7 @@ import getSession from "@/lib/get-session";
 import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Explore",
+  title: "Search",
 };
 
 export default async function Home() {
@@ -11,5 +11,5 @@ export default async function Home() {
 
   if (!session?.user) redirect("/");
 
-  return <main className="flex items-center justify-center">Explore</main>;
+  return <main className="flex items-center justify-center">Search</main>;
 }

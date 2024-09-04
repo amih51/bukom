@@ -38,20 +38,20 @@ export default function ProfileButton() {
           <Button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             variant={"ghost"}
-            className="h-fit w-full border"
+            className="h-fit w-full justify-start overflow-hidden border"
           >
             {user?.image ? (
               <Image
                 src={user?.image || ""}
                 alt={user?.name || "warga biasa"}
-                width={32}
-                height={32}
-                className="mx-2 size-8 rounded-full"
+                width={24}
+                height={24}
+                className="size-6 rounded-full lg:size-8"
               />
             ) : (
-              <AvatarIcon className="mx-2 size-8" />
+              <AvatarIcon className="size-8" />
             )}
-            <div className="flex flex-col text-left">
+            <div className="ml-2 hidden flex-col overflow-hidden text-left lg:flex">
               <p className="truncate text-lg">{user?.name}</p>
               <p className="truncate text-sm opacity-50">{user?.email}</p>
             </div>

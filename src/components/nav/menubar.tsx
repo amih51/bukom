@@ -3,56 +3,74 @@
 import { useSession } from "next-auth/react";
 import ProfileButton from "./profile-btn";
 import { Button } from "../ui/button";
+import {
+  BellIcon,
+  BookmarkIcon,
+  HomeIcon,
+  PersonStandingIcon,
+  SearchIcon,
+} from "lucide-react";
 
-export default function MenuBar() {
+export default function MenuBar({ className }: { className: string }) {
   const { data: session } = useSession();
   const user = session?.user;
   return (
-    <div className="max-w-1/5 sticky left-0 top-12 flex max-h-[calc(100vh-3rem)] flex-grow border px-6">
-      <div className="flex flex-grow flex-col justify-between border">
-        <div>
+    <div className={className}>
+      <div className="flex w-full flex-col justify-between border sm:w-fit lg:w-full">
+        <div className="flex w-full flex-row justify-between sm:flex-col">
           <Button
             variant={"ghost"}
-            className="flex h-fit w-full items-center border"
+            className="flex h-fit w-fit items-center border lg:w-full"
           >
-            <a href="/home" className="size-full text-lg">
-              Home
+            <a href="/home" className="flex size-full flex-row text-lg">
+              <HomeIcon className="flex-shrink-0" />
+              <p className="ml-2 hidden truncate lg:inline">Home</p>
             </a>
           </Button>
           <Button
             variant={"ghost"}
-            className="flex h-fit w-full items-center border"
+            className="flex h-fit w-fit items-center border lg:w-full"
           >
-            <a href="/explore" className="size-full text-lg">
-              Explore
+            <a href="/search" className="flex size-full flex-row text-lg">
+              <SearchIcon className="flex-shrink-0" />
+              <p className="ml-2 hidden truncate lg:inline">Search</p>
             </a>
           </Button>
           <Button
             variant={"ghost"}
-            className="flex h-fit w-full items-center border"
+            className="flex h-fit w-fit items-center overflow-hidden border lg:w-full"
           >
-            <a href="/notifications" className="size-full text-lg">
-              Notifications
+            <a
+              href="/notifications"
+              className="flex size-full flex-row text-lg"
+            >
+              <BellIcon className="flex-shrink-0" />
+              <p className="ml-2 hidden truncate lg:inline">Notifications</p>
             </a>
           </Button>
           <Button
             variant={"ghost"}
-            className="flex h-fit w-full items-center border"
+            className="flex h-fit w-fit items-center border lg:w-full"
           >
-            <a href="/bookmarks" className="size-full text-lg">
-              Bookmarks
+            <a href="/bookmarks" className="flex size-full flex-row text-lg">
+              <BookmarkIcon className="flex-shrink-0" />
+              <p className="ml-2 hidden truncate lg:inline">Bookmarks</p>
             </a>
           </Button>
           <Button
             variant={"ghost"}
-            className="flex h-fit w-full items-center border"
+            className="flex h-fit w-fit items-center border lg:w-full"
           >
-            <a href={`/${user?.name}`} className="size-full text-lg">
-              Profile
+            <a
+              href={`/${user?.name}`}
+              className="flex size-full flex-row text-lg"
+            >
+              <PersonStandingIcon className="flex-shrink-0" />
+              <p className="ml-2 hidden truncate lg:inline">Profile</p>
             </a>
           </Button>
         </div>
-        <div className="mb-4">
+        <div className="mb-4 hidden sm:flex">
           <ProfileButton />
         </div>
       </div>

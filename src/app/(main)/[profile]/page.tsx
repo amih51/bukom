@@ -8,8 +8,9 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const session = await getSession();
-
   if (!session?.user) redirect("/");
 
-  return <main className="flex justify-center items-center">Profile</main>;
+  const user = session.user;
+
+  return <main className="flex items-center justify-center">{user.name}</main>;
 }

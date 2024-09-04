@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="flex justify-center items-center border-2 h-1/6">
+    <footer className="flex h-1/6 items-center justify-center border-2">
       footer
     </footer>
   );

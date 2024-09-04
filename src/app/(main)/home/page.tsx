@@ -13,14 +13,54 @@ export default async function Home() {
 
   return (
     <main className="flex w-full flex-col">
-      <div className="flex flex-auto border h-full items-center">post</div>
-      <div className="flex flex-auto border h-full items-center">post</div>
-      <div className="flex flex-auto border h-full items-center">post</div>
-      <div className="flex flex-auto border h-full items-center">post</div>
-      <div className="flex flex-auto border h-full items-center">post</div>
-      <div className="flex flex-auto border h-full items-center">post</div>
-      <div className="flex flex-auto border h-full items-center">post</div>
-      <div className="flex flex-auto border h-full items-center">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
+      <div className="flex h-full flex-auto items-center border">post</div>
     </main>
   );
 }

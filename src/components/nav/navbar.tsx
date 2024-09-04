@@ -1,14 +1,12 @@
 import Link from "next/link";
-import ProfileButton from "./profile-btn";
 
 export default function Navbar() {
   return (
-    <header className="sticky top-0 border-2">
-      <div className="flex flex-wrap justify-between items-center mx-6">
-        <Link href="/" className="font-bold text-2xl">
+    <header className="sticky top-0 z-30 h-12 items-center border-2 bg-background">
+      <div className="mx-6 flex h-full flex-wrap items-center justify-between">
+        <Link href="/" className="text-2xl font-bold">
           BUKOM
         </Link>
-        <ProfileButton />
       </div>
     </header>
   );

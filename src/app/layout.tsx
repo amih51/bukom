@@ -6,8 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | bukom",
-    default: "bukom",
+    template: "%s | BUKOM",
+    default: "BUKOM",
   },
   description: "BUKOM REBORN!!!",
 };

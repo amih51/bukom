@@ -11,5 +11,5 @@ export default async function Home() {
 
   if (!session?.user) redirect("/");
 
-  return <main className="flex justify-center items-center">Explore</main>;
+  return <main className="flex items-center justify-center">Explore</main>;
 }

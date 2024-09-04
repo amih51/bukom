@@ -4,7 +4,7 @@ import { signIn } from "next-auth/react";
 
 export default function SignIn() {
   return (
-    <div className="flex flex-auto justify-center items-center border-2 h-2/3 md:h-full">
+    <div className="flex h-2/3 flex-auto items-center justify-center border-2 md:h-full">
       <button
         onClick={() => signIn("google")}
         className="flex flex-row items-center border p-2"

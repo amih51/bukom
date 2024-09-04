@@ -34,6 +34,10 @@ export default function ProfileButton() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
+            {/* <DropdownMenuItem onClick={toggleTheme} className="pl-5 group cursor-pointer text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+            {isDarkMode ? <Sun /> : <Moon />}
+            <span className="ml-2">{isDarkMode ? "Light Mode" : "Dark Mode"}</span>
+          </DropdownMenuItem> */}
             <DropdownMenuItem className="group cursor-pointer">
               <LogOut className="ml-4 -mr-2" />
               <button onClick={() => signOut()} className="ml-4">

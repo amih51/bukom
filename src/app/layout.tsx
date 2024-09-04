@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "@/components/ui/toaster";
-import Navbar from "./(nav)/navbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,7 +30,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SessionProvider>
-          <Navbar />
           {children}
           <Toaster />
         </SessionProvider>

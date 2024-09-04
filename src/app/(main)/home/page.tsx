@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Navbar from "../(nav)/navbar";
+import Navbar from "../../../components/nav/navbar";
 
 export const metadata: Metadata = {
   title: "Home",

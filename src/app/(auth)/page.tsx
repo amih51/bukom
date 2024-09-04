@@ -1,3 +1,8 @@
+"use client";
+
+import Footer from "./footer";
+import SignIn from "./signin";
+
 export default function Page() {
   return (
     <div className="h-screen">
@@ -5,11 +10,9 @@ export default function Page() {
         <div className="flex flex-auto justify-center items-center border-2 h-full">
           logo
         </div>
-        <div className="flex flex-auto justify-center items-center border-2 h-full">
-          login
-        </div>
+        <SignIn />
       </main>
-      <footer className="flex-auto border-2">footer</footer>
+      <Footer />
     </div>
   );
 }

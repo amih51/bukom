@@ -1,8 +1,10 @@
+"use client";
+
 import { signIn } from "next-auth/react";
 
 export default function SignIn() {
   return (
-    <div className="flex flex-auto justify-center items-center border-2 h-full">
+    <div className="flex flex-auto justify-center items-center border-2 h-2/3 md:h-full">
       <button
         onClick={() => signIn("google")}
         className="flex flex-row items-center border p-2"

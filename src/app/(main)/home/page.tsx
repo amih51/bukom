@@ -1,16 +1,19 @@
 import { Metadata } from "next";
-import Navbar from "../../../components/nav/navbar";
+import getSession from "@/lib/get-session";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Home",
 };
 
-export default function Home() {
+export default async function Home() {
+  const session = await getSession();
+
+  if (!session?.user) redirect("/");
+
   return (
-    <main className="flex w-full">
-      <Navbar />
-      <div className="flex flex-auto border-2 h-full">a</div>
-      <div className="flex flex-auto border-2 h-full">a</div>
+    <main className="flex w-full flex-col">
+      <div className="flex flex-auto border-2 h-full items-center">post</div>
     </main>
   );
 }

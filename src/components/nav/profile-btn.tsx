@@ -23,7 +23,10 @@ export default function ProfileButton() {
       <div>
         <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
           <DropdownMenuTrigger asChild>
-            <Button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+            <Button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              variant={"link"}
+            >
               <Image
                 src={user?.image || ""}
                 alt={user?.name || "warga biasa"}

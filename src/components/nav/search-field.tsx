@@ -19,7 +19,7 @@ export default function SearchField() {
     <form onSubmit={handleSubmit} method="GET" action="/search">
       <div className="flex flex-row items-center">
         <SearchIcon className="mr-2" />
-        <Input name="q" placeholder="Search" className="border-0 pe-10" />
+        <Input name="q" placeholder="Search" className="pe-10" />
       </div>
     </form>
   );

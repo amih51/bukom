@@ -15,14 +15,8 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Check, LogOut, Monitor } from "lucide-react";
 import { useTheme } from "next-themes";
-import {
-  AvatarIcon,
-  Half2Icon,
-  MoonIcon,
-  SunIcon,
-} from "@radix-ui/react-icons";
+import { RiUser4Fill } from "react-icons/ri";
 
 export default function ProfileButton() {
   const { data: session } = useSession();
@@ -49,7 +43,7 @@ export default function ProfileButton() {
                 className="size-6 rounded-full lg:size-8"
               />
             ) : (
-              <AvatarIcon className="size-8" />
+              <RiUser4Fill className="size-6 lg:size-8" />
             )}
             <div className="ml-2 hidden flex-col overflow-hidden text-left lg:flex">
               <p className="truncate text-lg">{user?.name}</p>
@@ -60,7 +54,7 @@ export default function ProfileButton() {
         <DropdownMenuContent>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger className="cursor-pointer">
-              <Half2Icon className="mr-2 size-4" />
+              {/* <Half2Icon className="mr-2 size-4" /> */}
               Theme
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
@@ -69,32 +63,32 @@ export default function ProfileButton() {
                   onClick={() => setTheme("system")}
                   className="cursor-pointer"
                 >
-                  <Monitor className="mr-2 size-4" />
+                  {/* <Monitor className="mr-2 size-4" /> */}
                   System default
-                  {theme === "system" && <Check className="ms-2 size-4" />}
+                  {/* {theme === "system" && <Check className="ms-2 size-4" />} */}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => setTheme("light")}
                   className="cursor-pointer"
                 >
-                  <SunIcon className="mr-2 size-4" />
+                  {/* <SunIcon className="mr-2 size-4" /> */}
                   Light
-                  {theme === "light" && <Check className="ms-2 size-4" />}
+                  {/* {theme === "light" && <Check className="ms-2 size-4" />} */}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => setTheme("dark")}
                   className="cursor-pointer"
                 >
-                  <MoonIcon className="mr-2 size-4" />
+                  {/* <MoonIcon className="mr-2 size-4" /> */}
                   Dark
-                  {theme === "dark" && <Check className="ms-2 size-4" />}
+                  {/* {theme === "dark" && <Check className="ms-2 size-4" />} */}
                 </DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="group cursor-pointer">
-            <LogOut className="mr-2 size-4" />
+            {/* <LogOut className="mr-2 size-4" /> */}
             <button onClick={() => signOut()}>Sign Out</button>
           </DropdownMenuItem>
         </DropdownMenuContent>

@@ -5,12 +5,12 @@ import { useSession } from "next-auth/react";
 import ProfileButton from "./profile-btn";
 import { Button } from "../ui/button";
 import {
-  BellIcon,
-  BookmarkIcon,
-  HomeIcon,
-  PersonStandingIcon,
-  SearchIcon,
-} from "lucide-react";
+  RiBookmarkLine,
+  RiHomeLine,
+  RiNotificationLine,
+  RiSearchLine,
+  RiUserLine,
+} from "react-icons/ri";
 
 const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
   ({ className }, ref) => {
@@ -26,7 +26,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               className="flex h-fit w-fit items-center border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
             >
               <a href="/home" className="flex size-full flex-row text-lg">
-                <HomeIcon className="flex-shrink-0" />
+                <RiHomeLine className="size-6 flex-shrink-0" />
                 <p className="ml-2 hidden truncate lg:inline">Home</p>
               </a>
             </Button>
@@ -35,7 +35,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               className="flex h-fit w-fit items-center border-x-2 sm:hidden sm:border-x-0 sm:border-b-2 lg:w-full"
             >
               <a href="/search" className="flex size-full flex-row text-lg">
-                <SearchIcon className="flex-shrink-0" />
+                <RiSearchLine className="size-6 flex-shrink-0" />
                 <p className="ml-2 hidden truncate lg:inline">Search</p>
               </a>
             </Button>
@@ -47,7 +47,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
                 href="/notifications"
                 className="flex size-full flex-row text-lg"
               >
-                <BellIcon className="flex-shrink-0" />
+                <RiNotificationLine className="size-6 flex-shrink-0" />
                 <p className="ml-2 hidden truncate lg:inline">Notifications</p>
               </a>
             </Button>
@@ -56,7 +56,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               className="flex h-fit w-fit items-center border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
             >
               <a href="/bookmarks" className="flex size-full flex-row text-lg">
-                <BookmarkIcon className="flex-shrink-0" />
+                <RiBookmarkLine className="size-6 flex-shrink-0" />
                 <p className="ml-2 hidden truncate lg:inline">Bookmarks</p>
               </a>
             </Button>
@@ -68,7 +68,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
                 href={`/${user?.name}`}
                 className="flex size-full flex-row text-lg"
               >
-                <PersonStandingIcon className="flex-shrink-0" />
+                <RiUserLine className="size-6 flex-shrink-0" />
                 <p className="ml-2 hidden truncate lg:inline">Profile</p>
               </a>
             </Button>

@@ -1,8 +1,8 @@
 "use client";
 
-import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Input } from "../ui/input";
+import { RiSearchLine } from "react-icons/ri";
 
 export default function SearchField() {
   const router = useRouter();
@@ -18,7 +18,7 @@ export default function SearchField() {
   return (
     <form onSubmit={handleSubmit} method="GET" action="/search">
       <div className="flex flex-row items-center">
-        <SearchIcon className="mr-2" />
+        <RiSearchLine className="mr-2 size-6" />
         <Input name="q" placeholder="Search" className="pe-10" />
       </div>
     </form>

@@ -5,17 +5,26 @@ import { useSession } from "next-auth/react";
 import ProfileButton from "./profile-btn";
 import { Button } from "../ui/button";
 import {
+  RiBookmarkFill,
   RiBookmarkLine,
+  RiHomeFill,
   RiHomeLine,
+  RiNotificationFill,
   RiNotificationLine,
+  RiSearchFill,
   RiSearchLine,
+  RiUserFill,
   RiUserLine,
 } from "react-icons/ri";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
   ({ className }, ref) => {
     const { data: session } = useSession();
     const user = session?.user;
+
+    const pathName = usePathname();
 
     return (
       <div ref={ref} className={className}>
@@ -25,52 +34,80 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               variant={"ghost"}
               className="flex h-fit w-fit items-center border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
             >
-              <a href="/home" className="flex size-full flex-row text-lg">
-                <RiHomeLine className="size-6 flex-shrink-0" />
+              <Link href="/home" className="flex size-full flex-row text-lg">
+                {pathName === "/home" ? (
+                  <RiHomeFill className="size-6 flex-shrink-0" />
+                ) : (
+                  <RiHomeLine className="size-6 flex-shrink-0" />
+                )}
+
                 <p className="ml-2 hidden truncate lg:inline">Home</p>
-              </a>
+              </Link>
             </Button>
             <Button
               variant={"ghost"}
               className="flex h-fit w-fit items-center border-x-2 sm:hidden sm:border-x-0 sm:border-b-2 lg:w-full"
             >
-              <a href="/search" className="flex size-full flex-row text-lg">
-                <RiSearchLine className="size-6 flex-shrink-0" />
+              <Link href="/search" className="flex size-full flex-row text-lg">
+                {pathName === "/" ? (
+                  <RiSearchFill className="size-6 flex-shrink-0" />
+                ) : (
+                  <RiSearchLine className="size-6 flex-shrink-0" />
+                )}
+
                 <p className="ml-2 hidden truncate lg:inline">Search</p>
-              </a>
+              </Link>
             </Button>
             <Button
               variant={"ghost"}
               className="flex h-fit w-fit items-center overflow-hidden border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
             >
-              <a
+              <Link
                 href="/notifications"
                 className="flex size-full flex-row text-lg"
               >
-                <RiNotificationLine className="size-6 flex-shrink-0" />
+                {pathName === "/notifications" ? (
+                  <RiNotificationFill className="size-6 flex-shrink-0" />
+                ) : (
+                  <RiNotificationLine className="size-6 flex-shrink-0" />
+                )}
+
                 <p className="ml-2 hidden truncate lg:inline">Notifications</p>
-              </a>
+              </Link>
             </Button>
             <Button
               variant={"ghost"}
               className="flex h-fit w-fit items-center border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
             >
-              <a href="/bookmarks" className="flex size-full flex-row text-lg">
-                <RiBookmarkLine className="size-6 flex-shrink-0" />
+              <Link
+                href="/bookmarks"
+                className="flex size-full flex-row text-lg"
+              >
+                {pathName === "/bookmarks" ? (
+                  <RiBookmarkFill className="size-6 flex-shrink-0" />
+                ) : (
+                  <RiBookmarkLine className="size-6 flex-shrink-0" />
+                )}
+
                 <p className="ml-2 hidden truncate lg:inline">Bookmarks</p>
-              </a>
+              </Link>
             </Button>
             <Button
               variant={"ghost"}
               className="flex h-fit w-fit items-center border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
             >
-              <a
+              <Link
                 href={`/${user?.name}`}
                 className="flex size-full flex-row text-lg"
               >
-                <RiUserLine className="size-6 flex-shrink-0" />
+                {pathName === `/${user?.name}` ? (
+                  <RiUserFill className="size-6 flex-shrink-0" />
+                ) : (
+                  <RiUserLine className="size-6 flex-shrink-0" />
+                )}
+
                 <p className="ml-2 hidden truncate lg:inline">Profile</p>
-              </a>
+              </Link>
             </Button>
           </div>
           <div className="mb-4 hidden sm:flex">

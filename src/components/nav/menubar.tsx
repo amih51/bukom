@@ -29,7 +29,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
     return (
       <div ref={ref} className={className}>
         <div className="flex w-full flex-col justify-between sm:w-fit sm:border-x-2 lg:w-full">
-          <div className="flex w-full flex-row justify-between sm:flex-col">
+          <div className="flex w-full flex-row justify-between px-6 sm:flex-col sm:px-0">
             <Button
               variant={"ghost"}
               className="flex h-fit w-fit items-center border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"

@@ -22,10 +22,8 @@ export default function PostEditor() {
     immediatelyRender: false,
   });
 
-  const input = editor?.getText({ blockSeparator: "\n" }) || "";
-
   async function onSubmit() {
-    await SubmitPost(input);
+    await SubmitPost(editor?.getHTML() || "");
     editor?.commands.clearContent();
   }
 
@@ -45,10 +43,26 @@ export default function PostEditor() {
         )}
       </div>
       <div className="flex w-full flex-col">
-        <EditorContent editor={editor} className="border-b-2 p-2" />
-        <Button onClick={onSubmit} disabled={!input.trim()} variant={"ghost"}>
-          Submit
-        </Button>
+        <EditorContent editor={editor} className="min-h-16 border-b-2 p-2" />
+        <div className="flex w-full flex-row">
+          <Button
+            onClick={() => {
+              editor?.chain().focus().toggleBold().run();
+            }}
+            variant={"ghost"}
+            className="border-r-2"
+          >
+            B
+          </Button>
+          <Button
+            onClick={onSubmit}
+            disabled={!editor?.getHTML().trim()}
+            variant={"ghost"}
+            className="w-full"
+          >
+            Submit
+          </Button>
+        </div>
       </div>
     </div>
   );

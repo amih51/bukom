@@ -50,7 +50,7 @@ export default function ProfileButton() {
                 alt={user?.name || "warga biasa"}
                 width={24}
                 height={24}
-                className="size-6 rounded-full lg:size-8"
+                className="size-6 flex-shrink-0 rounded-full lg:size-8"
               />
             ) : (
               <RiUser4Fill className="size-6 lg:size-8" />

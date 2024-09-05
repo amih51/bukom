@@ -49,7 +49,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               className="flex h-fit w-fit items-center border-x-2 sm:hidden sm:border-x-0 sm:border-b-2 lg:w-full"
             >
               <Link href="/search" className="flex size-full flex-row text-lg">
-                {pathName === "/" ? (
+                {pathName === "/search" ? (
                   <RiSearchFill className="size-6 flex-shrink-0" />
                 ) : (
                   <RiSearchLine className="size-6 flex-shrink-0" />

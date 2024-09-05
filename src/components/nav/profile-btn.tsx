@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,6 +17,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
 import { RiUser4Fill } from "react-icons/ri";
+import {
+  PiCircleHalfFill,
+  PiMonitor,
+  PiMonitorFill,
+  PiMoon,
+  PiMoonFill,
+  PiSignOut,
+  PiSun,
+  PiSunFill,
+} from "react-icons/pi";
 
 export default function ProfileButton() {
   const { data: session } = useSession();
@@ -54,7 +64,7 @@ export default function ProfileButton() {
         <DropdownMenuContent>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger className="cursor-pointer">
-              {/* <Half2Icon className="mr-2 size-4" /> */}
+              <PiCircleHalfFill className="mr-2 size-4" />
               Theme
             </DropdownMenuSubTrigger>
             <DropdownMenuPortal>
@@ -63,32 +73,41 @@ export default function ProfileButton() {
                   onClick={() => setTheme("system")}
                   className="cursor-pointer"
                 >
-                  {/* <Monitor className="mr-2 size-4" /> */}
+                  {theme === "system" ? (
+                    <PiMonitorFill className="mr-2 size-4" />
+                  ) : (
+                    <PiMonitor className="mr-2 size-4" />
+                  )}
                   System default
-                  {/* {theme === "system" && <Check className="ms-2 size-4" />} */}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => setTheme("light")}
                   className="cursor-pointer"
                 >
-                  {/* <SunIcon className="mr-2 size-4" /> */}
+                  {theme === "light" ? (
+                    <PiSunFill className="mr-2 size-4" />
+                  ) : (
+                    <PiSun className="mr-2 size-4" />
+                  )}
                   Light
-                  {/* {theme === "light" && <Check className="ms-2 size-4" />} */}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => setTheme("dark")}
                   className="cursor-pointer"
                 >
-                  {/* <MoonIcon className="mr-2 size-4" /> */}
+                  {theme === "dark" ? (
+                    <PiMoonFill className="mr-2 size-4" />
+                  ) : (
+                    <PiMoon className="mr-2 size-4" />
+                  )}
                   Dark
-                  {/* {theme === "dark" && <Check className="ms-2 size-4" />} */}
                 </DropdownMenuItem>
               </DropdownMenuSubContent>
             </DropdownMenuPortal>
           </DropdownMenuSub>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="group cursor-pointer">
-            {/* <LogOut className="mr-2 size-4" /> */}
+            <PiSignOut className="mr-2 size-4" />
             <button onClick={() => signOut()}>Sign Out</button>
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -96,9 +115,5 @@ export default function ProfileButton() {
     );
   }
 
-  return (
-    <>
-      <button onClick={() => signIn("google")}>Sign in</button>
-    </>
-  );
+  return null;
 }

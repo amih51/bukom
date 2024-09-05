@@ -12,5 +12,7 @@ export default async function Home() {
 
   const user = session.user;
 
-  return <main className="flex items-center justify-center">{user.name}</main>;
+  return (
+    <main className="flex items-center justify-center">{user.username}</main>
+  );
 }

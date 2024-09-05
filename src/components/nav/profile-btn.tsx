@@ -57,7 +57,7 @@ export default function ProfileButton() {
             )}
             <div className="ml-2 hidden flex-col overflow-hidden text-left lg:flex">
               <p className="truncate text-lg">{user?.name}</p>
-              <p className="truncate text-sm opacity-50">{user?.email}</p>
+              <p className="truncate text-sm opacity-50">@{user?.username}</p>
             </div>
           </Button>
         </DropdownMenuTrigger>

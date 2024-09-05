@@ -4,9 +4,12 @@ import { prisma } from "@/lib/prisma";
 import Google from "next-auth/providers/google";
 
 declare module "next-auth" {
+  interface User {
+    username?: string;
+  }
   interface Session extends DefaultSession {
     user: {
-      userName: string;
+      username?: string;
     } & DefaultSession["user"];
   }
 }
@@ -20,61 +23,26 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [Google],
   callbacks: {
     async signIn({ user }) {
-      const existingUser = await prisma.user.findUnique({
-        where: { id: user.id },
-      });
+      if (!user.username) {
+        let baseUsername = user.name
+          ? user.name.toLowerCase().replace(/\s/g, "_")
+          : user.email?.split("@")[0] || "user";
 
-      if (existingUser && !existingUser.userName) {
-        const generateUserName = (name: string): string[] => {
-          const sanitized = name.toLowerCase().replace(/\s+/g, "");
-          const possibleUserNames = [
-            sanitized,
-            sanitized.replace(" ", "_"),
-            `${sanitized}${Math.floor(Math.random() * 1000000)}`,
-          ];
-          return possibleUserNames;
-        };
+        let username = baseUsername;
+        let count = 1;
 
-        let newUserName = generateUserName(user.name || "")[0];
-        let isUnique = false;
-        let attempt = 0;
-
-        while (!isUnique) {
-          const checkUser = await prisma.user.findUnique({
-            where: { userName: newUserName },
-          });
-
-          if (!checkUser) {
-            isUnique = true;
-          } else {
-            attempt++;
-            const possibleUserNames = generateUserName(user.name || "");
-            newUserName = possibleUserNames[attempt % possibleUserNames.length];
-          }
+        while (await prisma.user.findUnique({ where: { username } })) {
+          username = `${baseUsername}${count}`;
+          count++;
         }
 
-        await prisma.user.update({
-          where: { id: user.id },
-          data: { userName: newUserName },
-        });
+        user.username = username;
       }
-
       return true;
     },
     async session({ session, user }) {
-      const userData = await prisma.user.findUnique({
-        where: { id: user.id },
-        select: { userName: true },
-      });
-
-      return {
-        ...session,
-        user: {
-          ...session.user,
-          id: user.id,
-          userName: userData?.userName,
-        },
-      };
+      session.user.username = user.username;
+      return session;
     },
   },
 });

@@ -97,10 +97,10 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               className="flex h-fit w-fit items-center border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
             >
               <Link
-                href={`/${user?.name}`}
+                href={`/${user?.username}`}
                 className="flex size-full flex-row text-lg"
               >
-                {pathName === `/${user?.name}` ? (
+                {pathName === `/${user?.username}` ? (
                   <RiUserFill className="size-6 flex-shrink-0" />
                 ) : (
                   <RiUserLine className="size-6 flex-shrink-0" />

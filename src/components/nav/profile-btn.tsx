@@ -41,7 +41,8 @@ export default function ProfileButton() {
           <Button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             variant={"ghost"}
-            className="h-fit w-full justify-start overflow-hidden"
+            className="h-fit w-full justify-start overflow-hidden p-2 lg:px-4"
+            size={"icon"}
           >
             <Avatar>
               <AvatarImage src={user?.image || ""} />

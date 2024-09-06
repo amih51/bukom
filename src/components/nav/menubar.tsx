@@ -110,7 +110,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               </Link>
             </Button>
           </div>
-          <div className="mb-4 hidden border-y-2 sm:flex">
+          <div className="mb-4 hidden w-14 border-y-2 sm:flex lg:w-full">
             <ProfileButton />
           </div>
         </div>

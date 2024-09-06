@@ -55,7 +55,7 @@ export default function PostEditor() {
           </Button>
           <Button
             onClick={onSubmit}
-            disabled={!editor?.getHTML().trim()}
+            disabled={!editor?.getText().trim()}
             variant={"ghost"}
             className="w-full"
           >

@@ -3,37 +3,29 @@
 import { PostData } from "@/lib/types";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import Image from "next/image";
-import { RiUser4Fill } from "react-icons/ri";
 import { Button } from "../ui/button";
 import { PiArrowFatDown, PiArrowFatUp, PiSmiley } from "react-icons/pi";
-import { FormField } from "../ui/form";
 import { Input } from "../ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 export default function DisplayPost({ post }: { post: PostData }) {
   const editor = useEditor({
     extensions: [StarterKit],
     content: post.content,
     editable: false,
+    immediatelyRender: false,
   });
 
   const user = post.user;
 
   return (
-    <div className="flex flex-col border-b-2 border-r-2">
+    <div className="my-2 flex flex-col border-2 sm:border-l-0">
       <div className="flex flex-row border-b-2">
         <div className="flex items-center border-r-2 p-2">
-          {user?.image ? (
-            <Image
-              src={user?.image || ""}
-              alt={user?.name || "warga biasa"}
-              width={24}
-              height={24}
-              className="size-9 rounded-full lg:size-8"
-            />
-          ) : (
-            <RiUser4Fill className="size-9 lg:size-8" />
-          )}
+          <Avatar>
+            <AvatarImage src={user?.image || ""} />
+            <AvatarFallback>{user.username}</AvatarFallback>
+          </Avatar>
         </div>
         <div className="flex w-full flex-col pl-2">
           <div className="flex flex-row items-center">

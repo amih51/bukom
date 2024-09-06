@@ -10,10 +10,10 @@ export default function Navbar() {
           BUKOM
         </Link>
       </div>
-      <div className="hidden w-full sm:inline">
+      <div className="hidden h-full w-full items-center border-x-2 px-2 sm:flex">
         <SearchField />
       </div>
-      <div className="sm:hidden">
+      <div className="flex h-full items-center border-x-2 sm:hidden">
         <ProfileButton />
       </div>
     </header>

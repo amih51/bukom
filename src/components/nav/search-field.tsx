@@ -18,8 +18,8 @@ export default function SearchField() {
   return (
     <form onSubmit={handleSubmit} method="GET" action="/search">
       <div className="flex flex-row items-center">
-        <RiSearchLine className="mr-2 size-6" />
-        <Input name="q" placeholder="Search" className="pe-10" />
+        <RiSearchLine className="size-6" />
+        <Input name="q" placeholder="Search" className="border-0 pe-10" />
       </div>
     </form>
   );

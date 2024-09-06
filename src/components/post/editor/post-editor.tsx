@@ -5,10 +5,9 @@ import Placeholder from "@tiptap/extension-placeholder";
 import StarterKit from "@tiptap/starter-kit";
 import "./styles.css";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
-import { RiUser4Fill } from "react-icons/ri";
 import { Button } from "@/components/ui/button";
 import { SubmitPost } from "@/app/api/post/submit-post";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function PostEditor() {
   const { data: session } = useSession();
@@ -30,17 +29,10 @@ export default function PostEditor() {
   return (
     <div className="flex w-full flex-row border-b-2 border-l-2 border-r-2 sm:border-l-0">
       <div className="flex items-center border-r-2 p-2">
-        {user?.image ? (
-          <Image
-            src={user?.image || ""}
-            alt={user?.name || "warga biasa"}
-            width={24}
-            height={24}
-            className="size-6 rounded-full lg:size-8"
-          />
-        ) : (
-          <RiUser4Fill className="size-6 lg:size-8" />
-        )}
+        <Avatar className="size-8">
+          <AvatarImage src={user?.image || ""} />
+          <AvatarFallback>{user?.username}</AvatarFallback>
+        </Avatar>
       </div>
       <div className="flex w-full flex-col">
         <EditorContent editor={editor} className="min-h-16 border-b-2 p-2" />

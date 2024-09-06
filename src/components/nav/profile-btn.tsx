@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { signOut, useSession } from "next-auth/react";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -16,7 +15,6 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
-import { RiUser4Fill } from "react-icons/ri";
 import {
   PiCircleHalfFill,
   PiMonitor,
@@ -27,6 +25,7 @@ import {
   PiSun,
   PiSunFill,
 } from "react-icons/pi";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 export default function ProfileButton() {
   const { data: session } = useSession();
@@ -42,20 +41,13 @@ export default function ProfileButton() {
           <Button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             variant={"ghost"}
-            className="h-fit w-full justify-start overflow-hidden border sm:border-x-0 sm:border-y-2"
+            className="h-fit w-full justify-start overflow-hidden"
           >
-            {user?.image ? (
-              <Image
-                src={user?.image || ""}
-                alt={user?.name || "warga biasa"}
-                width={24}
-                height={24}
-                className="size-6 flex-shrink-0 rounded-full lg:size-8"
-              />
-            ) : (
-              <RiUser4Fill className="size-6 lg:size-8" />
-            )}
-            <div className="ml-2 hidden flex-col overflow-hidden text-left lg:flex">
+            <Avatar>
+              <AvatarImage src={user?.image || ""} />
+              <AvatarFallback>{user?.username}</AvatarFallback>
+            </Avatar>
+            <div className="ml-4 hidden flex-col overflow-hidden text-left lg:flex">
               <p className="truncate text-lg">{user?.name}</p>
               <p className="truncate text-sm opacity-50">@{user?.username}</p>
             </div>

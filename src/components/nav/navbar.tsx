@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ProfileButton from "./profile-btn";
-import SearchField from "./search-field";
+import SearchField from "../search-field";
 
 export default function Navbar() {
   return (
@@ -10,8 +10,10 @@ export default function Navbar() {
           BUKOM
         </Link>
       </div>
-      <div className="hidden h-full w-full items-center border-x-2 px-2 sm:flex">
-        <SearchField />
+      <div className="hidden size-full items-center border-x-2 sm:flex">
+        <div className="w-full border-y-2 px-2">
+          <SearchField />
+        </div>
       </div>
       <div className="flex h-full items-center border-x-2 sm:hidden">
         <ProfileButton />

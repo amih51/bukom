@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { Input } from "../ui/input";
+import { Input } from "./ui/input";
 import { RiSearchLine } from "react-icons/ri";
 
 export default function SearchField() {
@@ -19,7 +19,7 @@ export default function SearchField() {
     <form onSubmit={handleSubmit} method="GET" action="/search">
       <div className="flex flex-row items-center">
         <RiSearchLine className="size-6" />
-        <Input name="q" placeholder="Search" className="border-0 pe-10" />
+        <Input name="q" placeholder="Search" className="pl-2" />
       </div>
     </form>
   );

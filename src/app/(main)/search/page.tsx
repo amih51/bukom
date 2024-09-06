@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import getSession from "@/lib/get-session";
 import { redirect } from "next/navigation";
-import SearchField from "@/components/nav/search-field";
+import SearchField from "@/components/search-field";
 
 export const metadata: Metadata = {
   title: "Search",

@@ -6,6 +6,8 @@ import { prisma } from "@/lib/prisma";
 export async function SubmitPost(input: string) {
   const user = await currentUser();
 
+  if (!input.trim()) throw Error("Empty input");
+
   if (!user?.id) throw Error("Unauthorized");
 
   await prisma.post.create({

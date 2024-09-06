@@ -24,6 +24,41 @@
     font-size: 1.17rem;
   }
 
+  ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 18px;
+    margin-inline-end: 0px;
+    padding-inline-start: 18px;
+  }
+  ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 18px;
+    margin-inline-end: 0px;
+    padding-inline-start: 18px;
+  }
+  ul ul,
+  ol ul {
+    list-style-type: circle;
+    margin-left: 15px;
+  }
+  ol ol,
+  ul ol {
+    list-style-type: lower-latin;
+    margin-left: 15px;
+  }
+  blockquote {
+    margin: 1em 12px;
+    padding: 0 18px;
+    border-left: 4px solid;
+    font-style: italic;
+  }
+
   :first-child {
     margin-top: 0;
   }

@@ -3,8 +3,12 @@
 import "./styles.css";
 
 import { useEditor, EditorContent } from "@tiptap/react";
-import Placeholder from "@tiptap/extension-placeholder";
 import StarterKit from "@tiptap/starter-kit";
+import Placeholder from "@tiptap/extension-placeholder";
+import Underline from "@tiptap/extension-underline";
+import Highlight from "@tiptap/extension-highlight";
+import Subscript from "@tiptap/extension-subscript";
+import Superscript from "@tiptap/extension-superscript";
 import { Button } from "@/components/ui/button";
 import MathExtension from "@aarkue/tiptap-math-extension";
 import "katex/dist/katex.min.css";
@@ -19,6 +23,10 @@ export default function ReplyEditor({ parentId }: { parentId: string }) {
     extensions: [
       StarterKit,
       Placeholder.configure({ placeholder: "Reply..." }),
+      Underline,
+      Subscript,
+      Superscript,
+      Highlight.configure({ multicolor: true }),
       MathExtension.configure({
         evaluation: false,
         katexOptions: { macros: { "\\B": "\\mathbb{B}" } },

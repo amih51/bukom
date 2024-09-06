@@ -26,7 +26,9 @@ export default async function Home() {
 
   return (
     <main className="flex w-full flex-col">
-      <PostEditor />
+      <div className="mt-2 w-full border-2 sm:border-l-0">
+        <PostEditor />
+      </div>
 
       {posts.map((post) => (
         <DisplayPost key={post.id} post={post} />

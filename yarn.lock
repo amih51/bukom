@@ -985,6 +985,11 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-heading/-/extension-heading-2.6.6.tgz#d68964d1b935457fe3168faf7ee690b1e5384e67"
   integrity sha512-bgx9vptVFi5yFkIw1OI53J7+xJ71Or3SOe/Q8eSpZv53DlaKpL/TzKw8Z54t1PrI2rJ6H9vrLtkvixJvBZH1Ug==
 
+"@tiptap/extension-highlight@^2.6.6":
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-highlight/-/extension-highlight-2.6.6.tgz#0cdc390b13280620160785021ad689491a11ad61"
+  integrity sha512-Z02AYWm1AJAfhmfT4fGCI3YitijF4uNu+eiuq7OxhCiVf9IYaq8xlH2YMxa09QvMUo70ovklxk97+vQUUHeqfQ==
+
 "@tiptap/extension-history@^2.6.6":
   version "2.6.6"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-history/-/extension-history-2.6.6.tgz#8067d7f50ef529c84179eeb946e6f81af8853b90"
@@ -999,6 +1004,13 @@
   version "2.6.6"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-italic/-/extension-italic-2.6.6.tgz#18f1ec4461efca92ebe1bc6dfd79ec533d6bd68f"
   integrity sha512-t7ZPsXqa8nJZZ/6D0rQyZ/KsvzLaSihC6hBTjUQ77CeDGV9PhDWjIcBW4OrvwraJDBd12ETBeQ2CkULJOgH+lQ==
+
+"@tiptap/extension-link@^2.6.6":
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-link/-/extension-link-2.6.6.tgz#292b7e477a5c7abf685647986ca9639b8ce62e1c"
+  integrity sha512-NJSR5Yf/dI3do0+Mr6e6nkbxRQcqbL7NOPxo5Xw8VaKs2Oe8PX+c7hyqN3GZgn6uEbZdbVi1xjAniUokouwpFg==
+  dependencies:
+    linkifyjs "^4.1.0"
 
 "@tiptap/extension-list-item@^2.6.6":
   version "2.6.6"
@@ -1025,10 +1037,25 @@
   resolved "https://registry.yarnpkg.com/@tiptap/extension-strike/-/extension-strike-2.6.6.tgz#a5de296ed110ad64117979e2b339247a28e362e6"
   integrity sha512-Ze8KhGk+wzSJSJRl5fbhTI6AvPu2LmcHYeO3pMEH8u4gV5WTXfmKJVStEIAzkoqvwEQVWzXvy8nDgsFQHiojPg==
 
+"@tiptap/extension-subscript@^2.6.6":
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-subscript/-/extension-subscript-2.6.6.tgz#27789bfe844ed398ca12e7b3934d06ef4b283a5b"
+  integrity sha512-EiVnVN89siMdYNNVcyPe5kuQhiSlDMKpnO3aRNYKf6EcHdUiRJH+Np8E8ojQc5M/gOq4qWqeUZXk/107AYayQA==
+
+"@tiptap/extension-superscript@^2.6.6":
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-superscript/-/extension-superscript-2.6.6.tgz#d99fcf75e0b02bbdd1337fc3d39074510fda0d97"
+  integrity sha512-e8RqTRIUnXJNSVfKJV6C2nPGtVRPqYSa9k3m4TN6jsFrNJ+NvOjp8sMUcLM4UzwLloQaKn/UcDHidNQaRc7dTA==
+
 "@tiptap/extension-text@^2.6.6":
   version "2.6.6"
   resolved "https://registry.yarnpkg.com/@tiptap/extension-text/-/extension-text-2.6.6.tgz#8851aa57e4fcd2194968dc64f5f5599ad858dbfa"
   integrity sha512-e84uILnRzNzcwK1DVQNpXVmBG1Cq3BJipTOIDl1LHifOok7MBjhI/X+/NR0bd3N2t6gmDTWi63+4GuJ5EeDmsg==
+
+"@tiptap/extension-underline@^2.6.6":
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/@tiptap/extension-underline/-/extension-underline-2.6.6.tgz#14a3d0f33654dd5b2489914ec448c095186cefea"
+  integrity sha512-3A4HqsDM/AFb2VaeWACpGexjgI257kz0yU4jNV8uyydDR2KhqeinuEnoSoOmx9T3pL006TWfPg4vaQYPO3qvrQ==
 
 "@tiptap/pm@^2.6.6":
   version "2.6.6"
@@ -3079,6 +3106,11 @@ linkify-it@^5.0.0:
   dependencies:
     uc.micro "^2.0.0"
 
+linkifyjs@^4.1.0:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/linkifyjs/-/linkifyjs-4.1.3.tgz#0edbc346428a7390a23ea2e5939f76112c9ae07f"
+  integrity sha512-auMesunaJ8yfkHvK4gfg1K0SaKX/6Wn9g2Aac/NwX+l5VdmFZzo/hdPGxEOETj+ryRa4/fiOPjeeKURSAJx1sg==
+
 locate-path@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-6.0.0.tgz#55321eb309febbc59c4801d931a72452a681d286"
@@ -4323,6 +4355,11 @@ tailwind-merge@^2.2.1, tailwind-merge@^2.5.2:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-2.5.2.tgz#000f05a703058f9f9f3829c644235f81d4c08a1f"
   integrity sha512-kjEBm+pvD+6eAwzJL2Bi+02/9LFLal1Gs61+QB7HvTfQQ0aXwC5LGT8PEt1gS0CWKktKe6ysPTAy3cBC5MeiIg==
+
+tailwind-scrollbar@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/tailwind-scrollbar/-/tailwind-scrollbar-3.1.0.tgz#ff7596407b6da5209261d8ff03860ab9206a59e3"
+  integrity sha512-pmrtDIZeHyu2idTejfV59SbaJyvp1VRjYxAjZBH0jnyrPRo6HL1kD5Glz8VPagasqr6oAx6M05+Tuw429Z8jxg==
 
 tailwindcss-animate@^1.0.7:
   version "1.0.7"

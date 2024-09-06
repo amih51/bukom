@@ -1,13 +1,18 @@
 "use client";
 
+import { useSession } from "next-auth/react";
+import { SubmitPost } from "@/app/api/post/submit-post";
+
 import "./styles.css";
 
 import { useEditor, EditorContent } from "@tiptap/react";
-import Placeholder from "@tiptap/extension-placeholder";
 import StarterKit from "@tiptap/starter-kit";
-import { useSession } from "next-auth/react";
+import Placeholder from "@tiptap/extension-placeholder";
+import Underline from "@tiptap/extension-underline";
+import Highlight from "@tiptap/extension-highlight";
+import Subscript from "@tiptap/extension-subscript";
+import Superscript from "@tiptap/extension-superscript";
 import { Button } from "@/components/ui/button";
-import { SubmitPost } from "@/app/api/post/submit-post";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import MathExtension from "@aarkue/tiptap-math-extension";
 import "katex/dist/katex.min.css";
@@ -24,7 +29,11 @@ export default function PostEditor() {
   const editor = useEditor({
     extensions: [
       StarterKit,
-      Placeholder.configure({ placeholder: "Hey what's happening?" }),
+      Placeholder.configure({ placeholder: "Hey, what's happening?" }),
+      Underline,
+      Subscript,
+      Superscript,
+      Highlight.configure({ multicolor: true }),
       MathExtension.configure({
         evaluation: false,
         katexOptions: { macros: { "\\B": "\\mathbb{B}" } },
@@ -43,7 +52,7 @@ export default function PostEditor() {
   }
 
   return (
-    <div className="flex w-full flex-row border-b-2 border-l-2 border-r-2 sm:border-l-0">
+    <div className="flex w-full flex-row">
       <div className="flex items-center border-r-2 p-2">
         <Avatar className="size-8">
           <AvatarImage src={user?.image || ""} />

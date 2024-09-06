@@ -5,6 +5,10 @@ import "./editor/styles.css";
 import { PostData } from "@/lib/types";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import Underline from "@tiptap/extension-underline";
+import Highlight from "@tiptap/extension-highlight";
+import Subscript from "@tiptap/extension-subscript";
+import Superscript from "@tiptap/extension-superscript";
 import { Button } from "../ui/button";
 import {
   PiArrowFatDown,
@@ -28,6 +32,10 @@ export default function DisplayPost({ post }: { post: PostData }) {
     extensions: [
       StarterKit,
       MathExtension,
+      Underline,
+      Subscript,
+      Superscript,
+      Highlight.configure({ multicolor: true }),
       CodeBlockLowlight.configure({
         lowlight,
       }),
@@ -40,9 +48,9 @@ export default function DisplayPost({ post }: { post: PostData }) {
   const user = post.user;
 
   return (
-    <div className="my-2 flex flex-col border-l-2 border-t-2 sm:border-l-0">
-      <div className="flex flex-row border-b-2 border-r-2">
-        <div className="flex w-full flex-row">
+    <div className="my-2 flex flex-col sm:border-l-0">
+      <div className="flex flex-row border-x-2 border-y-2 sm:border-l-0">
+        <div className="flex w-full flex-row overflow-hidden">
           <Link
             href={`/${user.username}`}
             className="flex items-center border-r-2 p-2"
@@ -52,10 +60,10 @@ export default function DisplayPost({ post }: { post: PostData }) {
               <AvatarFallback>{user.username}</AvatarFallback>
             </Avatar>
           </Link>
-          <div className="flex w-full flex-col pl-2">
+          <div className="flex w-full flex-col overflow-hidden pl-2">
             <Link
               href={`/${user.username}`}
-              className="flex w-fit flex-row items-center"
+              className="flex w-fit flex-row items-center overflow-hidden"
             >
               <p className="truncate text-lg">{user?.name}</p>
               <p className="truncate pl-2 text-sm opacity-50">
@@ -63,7 +71,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
               </p>
             </Link>
             {post.parentId && (
-              <div className="flex flex-row">
+              <div className="flex flex-row overflow-hidden">
                 <span className="mr-2 opacity-50">replying to</span>
                 <Link
                   href={`/${post.parent?.user.username}/post/${post.parent?.id}`}
@@ -94,12 +102,12 @@ export default function DisplayPost({ post }: { post: PostData }) {
       </div>
       <EditorContent
         editor={editor}
-        className="min-h-16 border-b-2 border-r-2 p-2"
+        className="min-h-16 border-x-2 border-b-2 p-2 sm:border-l-0"
       ></EditorContent>
-      <div className="flex flex-row">
+      <div className="flex flex-row overflow-hidden">
         <Button
           variant={"ghost"}
-          className="size-9 flex-shrink-0 border-b-2 border-r p-1"
+          className="size-9 flex-shrink-0 border-b-2 border-l-2 border-r p-1 sm:border-l-0"
         >
           <PiArrowFatUp className="size-5" />
         </Button>

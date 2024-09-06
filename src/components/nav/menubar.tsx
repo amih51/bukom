@@ -18,6 +18,7 @@ import {
 } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { CreatePostDialog } from "./create-post-dialog";
 
 const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
   ({ className }, ref) => {
@@ -109,6 +110,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
                 <p className="ml-2 hidden truncate lg:inline">Profile</p>
               </Link>
             </Button>
+            <CreatePostDialog />
           </div>
           <div className="mb-4 hidden w-14 border-y-2 sm:flex lg:w-full">
             <ProfileButton />

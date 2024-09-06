@@ -1,5 +1,7 @@
 "use client";
 
+import "./editor/styles.css";
+
 import { PostData } from "@/lib/types";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -17,9 +19,19 @@ import MathExtension from "@aarkue/tiptap-math-extension";
 import Link from "next/link";
 import ReplyEditor from "./editor/reply-editor";
 
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import { all, createLowlight } from "lowlight";
+const lowlight = createLowlight(all);
+
 export default function DisplayPost({ post }: { post: PostData }) {
   const editor = useEditor({
-    extensions: [StarterKit, MathExtension],
+    extensions: [
+      StarterKit,
+      MathExtension,
+      CodeBlockLowlight.configure({
+        lowlight,
+      }),
+    ],
     content: post.content,
     editable: false,
     immediatelyRender: false,
@@ -80,12 +92,10 @@ export default function DisplayPost({ post }: { post: PostData }) {
           </Button>
         </div>
       </div>
-      <Link
-        href={`/${user.username}/post/${post.id}`}
+      <EditorContent
+        editor={editor}
         className="min-h-16 border-b-2 border-r-2 p-2"
-      >
-        <EditorContent editor={editor}></EditorContent>
-      </Link>
+      ></EditorContent>
       <div className="flex flex-row">
         <Button
           variant={"ghost"}
@@ -114,7 +124,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
         >
           <PiChat className="size-5" />
         </Button>
-        <div className="h-full w-full border-l-2">
+        <div className="h-full w-full">
           <ReplyEditor parentId={post.id} />
         </div>
       </div>

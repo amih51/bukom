@@ -1,15 +1,21 @@
 "use client";
 
+import "./styles.css";
+
 import { useEditor, EditorContent } from "@tiptap/react";
 import Placeholder from "@tiptap/extension-placeholder";
 import StarterKit from "@tiptap/starter-kit";
-import "./styles.css";
 import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { SubmitPost } from "@/app/api/post/submit-post";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import MathExtension from "@aarkue/tiptap-math-extension";
 import "katex/dist/katex.min.css";
+
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import { all, createLowlight } from "lowlight";
+const lowlight = createLowlight(all);
+import { PiCodeSimple } from "react-icons/pi";
 
 export default function PostEditor() {
   const { data: session } = useSession();
@@ -23,6 +29,9 @@ export default function PostEditor() {
         evaluation: false,
         katexOptions: { macros: { "\\B": "\\mathbb{B}" } },
         delimiters: "dollar",
+      }),
+      CodeBlockLowlight.configure({
+        lowlight,
       }),
     ],
     immediatelyRender: false,
@@ -45,13 +54,11 @@ export default function PostEditor() {
         <EditorContent editor={editor} className="min-h-16 border-b-2 p-2" />
         <div className="flex w-full flex-row">
           <Button
-            onClick={() => {
-              editor?.chain().focus().toggleBold().run();
-            }}
+            onClick={() => editor?.chain().focus().toggleCodeBlock().run()}
             variant={"ghost"}
             className="border-r-2"
           >
-            B
+            <PiCodeSimple />
           </Button>
           <Button
             onClick={onSubmit}

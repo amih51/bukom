@@ -89,7 +89,7 @@ export function CreatePostDialog() {
           <p className="ml-2 hidden truncate lg:inline">Create Post</p>
         </Button>
       </DialogTrigger>
-      <DialogContent className="m-6 max-w-[80%] -translate-x-[59%] p-0 lg:max-w-4xl">
+      <DialogContent className="w-[90%] p-0 lg:max-w-4xl">
         <div className="my-12 overflow-auto border-y-2">
           <div className="sm:mx-12 sm:border-x-2">
             <div className="flex w-full flex-row">
@@ -100,7 +100,7 @@ export function CreatePostDialog() {
                 </Avatar>
               </div>
               <div className="flex w-full flex-col overflow-auto">
-                <div className="scrollbar scrollbar-none flex h-12 flex-row overflow-auto">
+                <div className="flex h-12 flex-row overflow-auto scrollbar scrollbar-none">
                   <Button
                     className="h-full border-r-2"
                     onClick={() => {
@@ -264,7 +264,7 @@ export function CreatePostDialog() {
                 </div>
                 <EditorContent
                   editor={editor}
-                  className="scrollbar scrollbar-thumb-current scrollbar-w-1 hover:scrollbar-thumb-foreground/50 max-h-[60vh] min-h-52 overflow-auto border-y-2 p-2"
+                  className="max-h-[75vh] min-h-52 overflow-auto border-y-2 p-2 scrollbar scrollbar-thumb-current scrollbar-w-1 hover:scrollbar-thumb-foreground/50"
                 />
                 <div className="flex flex-row">
                   <DialogClose className="w-full">

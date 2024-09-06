@@ -122,7 +122,9 @@ export default function DisplayPost({ post }: { post: PostData }) {
           variant={"ghost"}
           className="size-9 flex-shrink-0 border-b-2 p-1"
         >
-          <PiChat className="size-5" />
+          <Link href={`/${post.user.username}/post/${post.id}`}>
+            <PiChat className="size-5" />
+          </Link>
         </Button>
         <div className="h-full w-full">
           <ReplyEditor parentId={post.id} />

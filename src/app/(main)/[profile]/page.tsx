@@ -28,6 +28,7 @@ export default async function Page({
       userId: user?.id,
     },
     include: PostDataInclude,
+    orderBy: { createdAt: "desc" },
   });
 
   return (

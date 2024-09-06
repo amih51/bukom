@@ -20,6 +20,7 @@ export default async function Page({
 }) {
   const posts = await prisma.post.findMany({
     include: PostDataInclude,
+    orderBy: { createdAt: "desc" },
   });
 
   const filteredPosts = posts.filter((post) =>

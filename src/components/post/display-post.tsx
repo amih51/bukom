@@ -7,10 +7,11 @@ import { Button } from "../ui/button";
 import { PiArrowFatDown, PiArrowFatUp, PiSmiley } from "react-icons/pi";
 import { Input } from "../ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import MathExtension from "@aarkue/tiptap-math-extension";
 
 export default function DisplayPost({ post }: { post: PostData }) {
   const editor = useEditor({
-    extensions: [StarterKit],
+    extensions: [StarterKit, MathExtension],
     content: post.content,
     editable: false,
     immediatelyRender: false,

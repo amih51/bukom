@@ -2,6 +2,14 @@
 # yarn lockfile v1
 
 
+"@aarkue/tiptap-math-extension@^1.3.3":
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/@aarkue/tiptap-math-extension/-/tiptap-math-extension-1.3.3.tgz#bb689eaca8eac4074dfe75964507ab56e78241df"
+  integrity sha512-hwNyoHv7xB0r/bFlt7UpFtlQ+0CzYJuq0aEqdLAoYiKcbzM8HYv919YPQp/rYl7YR+nldmZeU5i5CbYgjVsOgA==
+  dependencies:
+    evaluatex "^2.2.0"
+    katex "^0.16.7"
+
 "@alloc/quick-lru@^5.2.0":
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
@@ -1082,10 +1090,20 @@
   resolved "https://registry.yarnpkg.com/@types/cookie/-/cookie-0.6.0.tgz#eac397f28bf1d6ae0ae081363eca2f425bedf0d5"
   integrity sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==
 
+"@types/evaluatex@^2.2.8":
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/@types/evaluatex/-/evaluatex-2.2.8.tgz#58eb5c2f8a503de1dac59e452d862e693e584d18"
+  integrity sha512-jIhtDhJqIR6SbgwDWRejCulKbMXucf3lUVfgMmjUp35GysYscIZOzIz+I/yYCh7KsRfxkNOcvbh/MffOsAeKyg==
+
 "@types/json5@^0.0.29":
   version "0.0.29"
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
+
+"@types/katex@^0.16.7":
+  version "0.16.7"
+  resolved "https://registry.yarnpkg.com/@types/katex/-/katex-0.16.7.tgz#03ab680ab4fa4fbc6cb46ecf987ecad5d8019868"
+  integrity sha512-HMwFiRujE5PjrgwHQ25+bsLJgowjGjm5Z8FVSf0N6PwgJrwxH0QxzHYDcKsTfV3wva0vzrpqMTJS2jXPr5BMEQ==
 
 "@types/mute-stream@^0.0.4":
   version "0.0.4"
@@ -1628,6 +1646,11 @@ commander@^4.0.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
   integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
+
+commander@^8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-8.3.0.tgz#4837ea1b2da67b9c616a67afbb0fafee567bca66"
+  integrity sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==
 
 concat-map@0.0.1:
   version "0.0.1"
@@ -2222,6 +2245,11 @@ esutils@^2.0.2:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.3.tgz#74d2eb4de0b8da1293711910d50775b9b710ef64"
   integrity sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==
+
+evaluatex@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/evaluatex/-/evaluatex-2.2.0.tgz#abe427b64e00f632306913a2471af680d5e47dae"
+  integrity sha512-QVtGvYTf9HvQyDjbBCwoDQPP9KMuVB56H8KalrkLsPPCQfngpVmkiIoxJ4FU/SVmlmhnbr/heOmP5VlbCTEJpg==
 
 execa@^8.0.1:
   version "8.0.1"
@@ -2950,6 +2978,13 @@ json5@^1.0.2:
     array.prototype.flat "^1.3.1"
     object.assign "^4.1.4"
     object.values "^1.1.6"
+
+katex@^0.16.11, katex@^0.16.7:
+  version "0.16.11"
+  resolved "https://registry.yarnpkg.com/katex/-/katex-0.16.11.tgz#4bc84d5584f996abece5f01c6ad11304276a33f5"
+  integrity sha512-RQrI8rlHY92OLf3rho/Ts8i/XvjgguEjOkO1BEXcU3N8BqPpSzBNwV/G0Ukr+P/l3ivvJUE/Fa/CwbS6HesGNQ==
+  dependencies:
+    commander "^8.3.0"
 
 keyv@^4.5.3:
   version "4.5.4"

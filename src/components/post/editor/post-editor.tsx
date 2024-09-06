@@ -8,6 +8,8 @@ import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { SubmitPost } from "@/app/api/post/submit-post";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import MathExtension from "@aarkue/tiptap-math-extension";
+import "katex/dist/katex.min.css";
 
 export default function PostEditor() {
   const { data: session } = useSession();
@@ -17,6 +19,11 @@ export default function PostEditor() {
     extensions: [
       StarterKit,
       Placeholder.configure({ placeholder: "Hey what's happening?" }),
+      MathExtension.configure({
+        evaluation: false,
+        katexOptions: { macros: { "\\B": "\\mathbb{B}" } },
+        delimiters: "dollar",
+      }),
     ],
     immediatelyRender: false,
   });

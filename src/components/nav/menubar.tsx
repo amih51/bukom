@@ -113,7 +113,9 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
             <CreatePostDialog />
           </div>
           <div className="mb-4 hidden w-14 border-y-2 sm:flex lg:w-full">
-            <ProfileButton />
+            <div className="truncate lg:mx-2 lg:border-x-2">
+              <ProfileButton />
+            </div>
           </div>
         </div>
       </div>

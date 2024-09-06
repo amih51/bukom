@@ -1,3 +1,6 @@
+import DisplayPost from "@/components/post/display-post";
+import { prisma } from "@/lib/prisma";
+import { PostDataInclude } from "@/lib/types";
 import { Metadata } from "next";
 
 export async function generateMetadata({
@@ -15,5 +18,23 @@ export default async function Page({
 }: {
   params: { profile: string };
 }) {
-  return <main className="flex items-center justify-center">/{profile}</main>;
+  const user = await prisma.user.findUnique({
+    where: {
+      username: profile,
+    },
+  });
+  const posts = await prisma.post.findMany({
+    where: {
+      userId: user?.id,
+    },
+    include: PostDataInclude,
+  });
+
+  return (
+    <main className="flex w-full flex-col">
+      {posts.map((post) => (
+        <DisplayPost key={post.id} post={post} />
+      ))}
+    </main>
+  );
 }

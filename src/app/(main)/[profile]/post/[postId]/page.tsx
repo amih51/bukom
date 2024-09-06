@@ -1,5 +1,6 @@
 import DisplayPost from "@/components/post/display-post";
 import { prisma } from "@/lib/prisma";
+import { PostDataInclude } from "@/lib/types";
 import { Metadata } from "next";
 
 export async function generateMetadata({
@@ -21,26 +22,7 @@ export default async function Page({
     where: {
       id: postId,
     },
-    include: {
-      user: {
-        select: {
-          id: true,
-          username: true,
-          name: true,
-          image: true,
-        },
-      },
-      parent: {
-        select: {
-          id: true,
-          user: {
-            select: {
-              username: true,
-            },
-          },
-        },
-      },
-    },
+    include: PostDataInclude,
   });
 
   if (!post) return <div>post not found</div>;

@@ -11,7 +11,7 @@ export default function Navbar() {
         </Link>
       </div>
       <div className="hidden size-full items-center border-x-2 sm:flex">
-        <div className="w-full border-y-2 px-2">
+        <div className="w-full border-y-2">
           <SearchField />
         </div>
       </div>

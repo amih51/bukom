@@ -1,3 +1,6 @@
+import DisplayPost from "@/components/post/display-post";
+import { prisma } from "@/lib/prisma";
+import { PostDataInclude } from "@/lib/types";
 import { Metadata } from "next";
 
 export function generateMetadata({
@@ -10,14 +13,24 @@ export function generateMetadata({
   };
 }
 
-export default function Page({
+export default async function Page({
   searchParams: { q },
 }: {
   searchParams: { q: string };
 }) {
+  const posts = await prisma.post.findMany({
+    include: PostDataInclude,
+  });
+
+  const filteredPosts = posts.filter((post) =>
+    post.content.toLowerCase().includes(q.toLowerCase()),
+  );
+
   return (
-    <main className="flex items-center justify-center">
-      Search results for &quot;{q}&quot;
+    <main className="flex w-full flex-col">
+      {filteredPosts.map((post) => (
+        <DisplayPost key={post.id} post={post} />
+      ))}
     </main>
   );
 }

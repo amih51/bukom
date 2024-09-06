@@ -1,22 +1,23 @@
 import { Metadata } from "next";
-import getSession from "@/lib/get-session";
-import { redirect } from "next/navigation";
-import SearchField from "@/components/search-field";
 
-export const metadata: Metadata = {
-  title: "Search",
-};
+export function generateMetadata({
+  searchParams: { q },
+}: {
+  searchParams: { q: string };
+}): Metadata {
+  return {
+    title: `Search results for "${q}"`,
+  };
+}
 
-export default async function Home() {
-  const session = await getSession();
-
-  if (!session?.user) redirect("/");
-
+export default function Page({
+  searchParams: { q },
+}: {
+  searchParams: { q: string };
+}) {
   return (
     <main className="flex items-center justify-center">
-      <div className="flex sm:hidden">
-        <SearchField />
-      </div>
+      Search results for &quot;{q}&quot;
     </main>
   );
 }

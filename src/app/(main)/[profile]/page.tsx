@@ -1,18 +1,19 @@
 import { Metadata } from "next";
-import getSession from "@/lib/get-session";
-import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Profile",
-};
+export async function generateMetadata({
+  params: { profile },
+}: {
+  params: { profile: string };
+}): Promise<Metadata> {
+  return {
+    title: `${profile}`,
+  };
+}
 
-export default async function Home() {
-  const session = await getSession();
-  if (!session?.user) redirect("/");
-
-  const user = session.user;
-
-  return (
-    <main className="flex items-center justify-center">{user.username}</main>
-  );
+export default async function Page({
+  params: { profile },
+}: {
+  params: { profile: string };
+}) {
+  return <main className="flex items-center justify-center">/{profile}</main>;
 }

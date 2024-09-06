@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   title: "Home",
 };
 
-export default async function Home() {
+export default async function Page() {
   const session = await getSession();
   const posts = await prisma.post.findMany({
     include: PostDataInclude,

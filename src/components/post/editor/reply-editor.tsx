@@ -12,14 +12,16 @@ import Superscript from "@tiptap/extension-superscript";
 import { Color } from "@tiptap/extension-color";
 import TextStyle from "@tiptap/extension-text-style";
 import TextAlign from "@tiptap/extension-text-align";
-import { Button } from "@/components/ui/button";
 import MathExtension from "@aarkue/tiptap-math-extension";
 import "katex/dist/katex.min.css";
-import { SubmitReply } from "@/app/api/post/submit-reply";
-
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
 const lowlight = createLowlight(all);
+
+import { SubmitReply } from "@/app/api/post/submit-reply";
+
+import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 
 export default function ReplyEditor({ parentId }: { parentId: string }) {
   const editor = useEditor({
@@ -48,8 +50,13 @@ export default function ReplyEditor({ parentId }: { parentId: string }) {
   });
 
   async function onSubmit() {
-    await SubmitReply(editor?.getHTML() || "", parentId);
-    editor?.commands.clearContent();
+    try {
+      await SubmitReply(editor?.getHTML() || "", parentId);
+      editor?.commands.clearContent();
+      toast.success("Reply submitted successfully!");
+    } catch (error) {
+      toast.error("Failed to submit reply.");
+    }
   }
 
   return (

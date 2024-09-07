@@ -54,6 +54,7 @@ import {
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { toast } from "sonner";
 
 export function CreatePostDialog() {
   const { data: session } = useSession();
@@ -87,9 +88,15 @@ export function CreatePostDialog() {
   if (!editor) return null;
 
   async function onSubmit() {
-    await SubmitPost(editor?.getHTML() || "");
-    editor?.commands.clearContent();
+    try {
+      await SubmitPost(editor?.getHTML() || "");
+      editor?.commands.clearContent();
+      toast.success("Reply submitted successfully!");
+    } catch (error) {
+      toast.error("Failed to submit reply.");
+    }
   }
+
   return (
     <Dialog>
       <DialogTrigger asChild>

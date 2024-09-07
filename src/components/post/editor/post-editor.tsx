@@ -24,6 +24,7 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
 const lowlight = createLowlight(all);
 import { PiCodeSimple } from "react-icons/pi";
+import { toast } from "sonner";
 
 export default function PostEditor() {
   const { data: session } = useSession();
@@ -55,8 +56,13 @@ export default function PostEditor() {
   });
 
   async function onSubmit() {
-    await SubmitPost(editor?.getHTML() || "");
-    editor?.commands.clearContent();
+    try {
+      await SubmitPost(editor?.getHTML() || "");
+      editor?.commands.clearContent();
+      toast.success("Reply submitted successfully!");
+    } catch (error) {
+      toast.error("Failed to submit reply.");
+    }
   }
 
   return (
@@ -68,7 +74,10 @@ export default function PostEditor() {
         </Avatar>
       </div>
       <div className="flex w-full flex-col">
-        <EditorContent editor={editor} className="min-h-16 border-b-2 p-2" />
+        <EditorContent
+          editor={editor}
+          className="min-h-16 overflow-auto border-b-2 p-2 scrollbar scrollbar-thumb-current scrollbar-w-1 hover:scrollbar-thumb-foreground/50"
+        />
         <div className="flex w-full flex-row">
           <Button
             onClick={() => editor?.chain().focus().toggleCodeBlock().run()}

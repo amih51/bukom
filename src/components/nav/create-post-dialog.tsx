@@ -89,11 +89,11 @@ export function CreatePostDialog() {
           <p className="ml-2 hidden truncate lg:inline">Create Post</p>
         </Button>
       </DialogTrigger>
-      <DialogContent className="w-[90%] p-0 lg:max-w-4xl">
+      <DialogContent className="w-[94%] p-0 lg:max-w-4xl">
         <div className="my-12 overflow-auto border-y-2">
           <div className="sm:mx-12 sm:border-x-2">
             <div className="flex w-full flex-row">
-              <div className="flex items-center border-r-2 p-2">
+              <div className="hidden items-center border-r-2 p-2 sm:flex">
                 <Avatar className="size-12 lg:size-20">
                   <AvatarImage src={user?.image || ""} />
                   <AvatarFallback>{user?.username}</AvatarFallback>

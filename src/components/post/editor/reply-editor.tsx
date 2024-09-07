@@ -9,6 +9,9 @@ import Underline from "@tiptap/extension-underline";
 import Highlight from "@tiptap/extension-highlight";
 import Subscript from "@tiptap/extension-subscript";
 import Superscript from "@tiptap/extension-superscript";
+import { Color } from "@tiptap/extension-color";
+import TextStyle from "@tiptap/extension-text-style";
+import TextAlign from "@tiptap/extension-text-align";
 import { Button } from "@/components/ui/button";
 import MathExtension from "@aarkue/tiptap-math-extension";
 import "katex/dist/katex.min.css";
@@ -26,6 +29,11 @@ export default function ReplyEditor({ parentId }: { parentId: string }) {
       Underline,
       Subscript,
       Superscript,
+      TextStyle,
+      Color,
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
       Highlight.configure({ multicolor: true }),
       MathExtension.configure({
         evaluation: false,

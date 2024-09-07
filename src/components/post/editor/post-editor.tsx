@@ -12,6 +12,9 @@ import Underline from "@tiptap/extension-underline";
 import Highlight from "@tiptap/extension-highlight";
 import Subscript from "@tiptap/extension-subscript";
 import Superscript from "@tiptap/extension-superscript";
+import { Color } from "@tiptap/extension-color";
+import TextStyle from "@tiptap/extension-text-style";
+import TextAlign from "@tiptap/extension-text-align";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import MathExtension from "@aarkue/tiptap-math-extension";
@@ -33,6 +36,11 @@ export default function PostEditor() {
       Underline,
       Subscript,
       Superscript,
+      TextStyle,
+      Color,
+      TextAlign.configure({
+        types: ["heading", "paragraph"],
+      }),
       Highlight.configure({ multicolor: true }),
       MathExtension.configure({
         evaluation: false,

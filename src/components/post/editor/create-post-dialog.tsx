@@ -3,7 +3,7 @@
 import { useSession } from "next-auth/react";
 import { SubmitPost } from "@/app/api/post/submit-post";
 
-import "../post/editor/styles.css";
+import "./styles.css";
 
 import StarterKit from "@tiptap/starter-kit";
 import { useEditor, EditorContent } from "@tiptap/react";

@@ -26,7 +26,7 @@ export default async function Page() {
 
   return (
     <main className="flex w-full flex-col">
-      <div className="mt-2 w-full border-2 sm:border-l-0">
+      <div className="my-2 w-full border-2 sm:border-l-0">
         <PostEditor />
       </div>
 

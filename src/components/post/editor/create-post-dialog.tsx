@@ -91,9 +91,9 @@ export function CreatePostDialog() {
     try {
       await SubmitPost(editor?.getHTML() || "");
       editor?.commands.clearContent();
-      toast.success("Reply submitted successfully!");
+      toast.success("Post submitted successfully!");
     } catch (error) {
-      toast.error("Failed to submit reply.");
+      toast.error("Failed to submit post.");
     }
   }
 

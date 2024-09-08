@@ -18,7 +18,7 @@ import {
 } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { CreatePostDialog } from "./create-post-dialog";
+import { CreatePostDialog } from "../post/editor/create-post-dialog";
 
 const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
   ({ className }, ref) => {

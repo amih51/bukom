@@ -46,7 +46,7 @@ export default async function Page({
       parent.push(firstParent);
     }
 
-    while (parent[parent.length - 1]?.parentId) {
+    while (parent[0]?.parentId) {
       const parentPost = await prisma.post.findUnique({
         include: PostDataInclude,
         where: {
@@ -55,7 +55,7 @@ export default async function Page({
       });
 
       if (parentPost) {
-        parent.push(parentPost);
+        parent.unshift(parentPost);
       } else {
         break;
       }
@@ -65,12 +65,9 @@ export default async function Page({
   return (
     <main className="w-full">
       <div className="mx-6 size-full border-x-2">
-        {parent
-          .slice()
-          .reverse()
-          .map((post) => (
-            <DisplayPost key={post.id} post={post} />
-          ))}
+        {parent.map((post) => (
+          <DisplayPost key={post.id} post={post} />
+        ))}
       </div>
       <div className="w-full">
         <DisplayPost post={post} />

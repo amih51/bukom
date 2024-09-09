@@ -18,7 +18,7 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
 const lowlight = createLowlight(all);
 
-import { SubmitReply } from "@/app/api/post/submit-reply";
+import { SubmitReply } from "@/app/api/post/submit/submit-reply";
 
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";

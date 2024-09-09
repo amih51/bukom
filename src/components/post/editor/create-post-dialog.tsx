@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { SubmitPost } from "@/app/api/post/submit-post";
+import { SubmitPost } from "@/app/api/post/submit/submit-post";
 
 import "./styles.css";
 

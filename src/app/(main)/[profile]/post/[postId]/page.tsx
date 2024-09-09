@@ -5,7 +5,6 @@ import {
   PostDataInclude,
   PostWithReplyDataInclude,
 } from "@/lib/types";
-import { Post } from "@prisma/client";
 import { Metadata } from "next";
 
 export async function generateMetadata({

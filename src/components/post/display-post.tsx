@@ -56,7 +56,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
   const user = post.user;
 
   return (
-    <div className="mb-4 flex flex-col sm:border-l-0">
+    <div className="flex flex-col sm:border-l-0">
       <div className="flex flex-row border-x-2 border-y-2 sm:border-l-0">
         <div className="flex w-full flex-row overflow-hidden">
           <Link

@@ -34,7 +34,9 @@ export default async function Page({
   return (
     <main className="flex w-full flex-col">
       {posts.map((post) => (
-        <DisplayPost key={post.id} post={post} />
+        <div key={post.id} className="mb-4 last:mb-0">
+          <DisplayPost post={post} />
+        </div>
       ))}
     </main>
   );

@@ -36,7 +36,9 @@ export default async function Page({
         <SearchField />
       </div>
       {filteredPosts.map((post) => (
-        <DisplayPost key={post.id} post={post} />
+        <div key={post.id} className="mb-4 last:mb-0">
+          <DisplayPost post={post} />
+        </div>
       ))}
     </main>
   );

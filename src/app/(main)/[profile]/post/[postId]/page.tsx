@@ -64,17 +64,21 @@ export default async function Page({
 
   return (
     <main className="w-full">
-      <div className="mx-6 size-full border-x-2">
+      <div className="mx-6 mt-2 border-l-2">
         {parent.map((post) => (
-          <DisplayPost key={post.id} post={post} />
+          <div key={post.id} className="mb-4 last:mb-0">
+            <DisplayPost post={post} />
+          </div>
         ))}
       </div>
       <div className="w-full">
         <DisplayPost post={post} />
       </div>
-      <div className="mx-6 w-full border-x-2">
+      <div className="mx-6 border-l-2">
         {post.replies.map((post) => (
-          <DisplayPost key={post.id} post={post} />
+          <div key={post.id} className="mb-4">
+            <DisplayPost post={post} />
+          </div>
         ))}
       </div>
     </main>

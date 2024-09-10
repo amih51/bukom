@@ -119,7 +119,7 @@ export default function ProfileButton() {
             </AlertDialogTrigger>
           </DropdownMenuContent>
         </DropdownMenu>
-        <AlertDialogContent>
+        <AlertDialogContent className="w-[94%] lg:max-w-4xl">
           <AlertDialogHeader>
             <AlertDialogTitle>Ready to log out?</AlertDialogTitle>
             <AlertDialogDescription>

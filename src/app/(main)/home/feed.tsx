@@ -1,7 +1,6 @@
 "use client";
 
 import DisplayPost from "@/components/post/display-post";
-import kyInstance from "@/lib/ky";
 import { PostData } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
 import { LuLoader } from "react-icons/lu";
@@ -9,7 +8,13 @@ import { LuLoader } from "react-icons/lu";
 export default function Feed() {
   const query = useQuery<PostData[]>({
     queryKey: ["feed"],
-    queryFn: kyInstance.get("api/post/feed").json<PostData[]>,
+    queryFn: async () => {
+      const res = await fetch("api/post/feed");
+      if (!res.ok) {
+        throw Error(`Request failed with status code ${res.status}`);
+      }
+      return res.json();
+    },
   });
 
   if (query.status === "pending") {

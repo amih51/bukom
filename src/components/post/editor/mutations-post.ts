@@ -4,7 +4,7 @@ import {
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
-import { SubmitPost } from "./submit-post";
+import { submitPost } from "./submit-post";
 import { toast } from "sonner";
 import { PostsPage } from "@/lib/types";
 
@@ -12,7 +12,7 @@ export function useSubmitPostMutation() {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: SubmitPost,
+    mutationFn: submitPost,
     onSuccess: async (newPost) => {
       const queryFilter: QueryFilters = { queryKey: ["feed"] };
 

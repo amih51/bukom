@@ -6,14 +6,14 @@ import {
 } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { PostsPage } from "@/lib/types";
-import { SubmitReply } from "./submit-reply";
+import { submitReply } from "./submit-reply";
 
 export function useSubmitReplyMutation() {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: ({ input, parentId }: { input: string; parentId: string }) =>
-      SubmitReply(input, parentId),
+      submitReply(input, parentId),
     onSuccess: async (newPost) => {
       const queryFilter: QueryFilters = { queryKey: ["feed"] };
 

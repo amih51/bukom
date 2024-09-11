@@ -4,7 +4,7 @@ import { currentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { PostDataInclude } from "@/lib/types";
 
-export async function SubmitPost(input: string) {
+export async function submitPost(input: string) {
   const user = await currentUser();
 
   if (!input.trim()) throw Error("Empty input");

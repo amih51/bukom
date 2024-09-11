@@ -65,12 +65,12 @@ export default async function Page({
     <main className="w-full">
       <div className="mx-6 mt-2 border-l-2">
         {parent.map((post) => (
-          <div key={post.id} className="mb-4 last:mb-0">
+          <div key={post.id} className="mb-4 last:mb-0 last:pb-1">
             <DisplayPost post={post} />
           </div>
         ))}
       </div>
-      <div className="w-full">
+      <div className="mb-1 w-full">
         <DisplayPost post={post} />
       </div>
       <div className="mx-6 border-l-2">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { SubmitPost } from "@/app/api/post/submit/submit-post";
+import { SubmitPost } from "@/components/post/editor/submit-post";
 
 import "./styles.css";
 
@@ -24,11 +24,13 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
 const lowlight = createLowlight(all);
 import { PiCodeSimple } from "react-icons/pi";
-import { toast } from "sonner";
+import { useSubmitPostMutation } from "./mutations";
+import LoadingButton from "@/components/loading-button";
 
 export default function PostEditor() {
   const { data: session } = useSession();
   const user = session?.user;
+  const mutation = useSubmitPostMutation();
 
   const editor = useEditor({
     extensions: [
@@ -55,14 +57,19 @@ export default function PostEditor() {
     immediatelyRender: false,
   });
 
-  async function onSubmit() {
-    try {
-      await SubmitPost(editor?.getHTML() || "");
-      editor?.commands.clearContent();
-      toast.success("Post submitted successfully!");
-    } catch (error) {
-      toast.error("Failed to submit post.");
-    }
+  function onSubmit() {
+    mutation.mutate(editor?.getHTML() || "", {
+      onSuccess: () => {
+        editor?.commands.clearContent();
+      },
+    });
+    // try {
+    //   await SubmitPost(editor?.getHTML() || "");
+    //   editor?.commands.clearContent();
+    //   toast.success("Post submitted successfully!");
+    // } catch (error) {
+    //   toast.error("Failed to submit post.");
+    // }
   }
 
   return (
@@ -86,14 +93,15 @@ export default function PostEditor() {
           >
             <PiCodeSimple />
           </Button>
-          <Button
+          <LoadingButton
+            loading={mutation.isPending}
             onClick={onSubmit}
             disabled={!editor?.getText().trim()}
             variant={"ghost"}
             className="w-full"
           >
             Submit
-          </Button>
+          </LoadingButton>
         </div>
       </div>
     </div>

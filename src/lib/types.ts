@@ -45,26 +45,7 @@ export const PostWithReplyDataInclude = {
     },
   },
   replies: {
-    include: {
-      user: {
-        select: {
-          id: true,
-          username: true,
-          name: true,
-          image: true,
-        },
-      },
-      parent: {
-        select: {
-          id: true,
-          user: {
-            select: {
-              username: true,
-            },
-          },
-        },
-      },
-    },
+    include: PostDataInclude,
   },
 } satisfies Prisma.PostInclude;
 

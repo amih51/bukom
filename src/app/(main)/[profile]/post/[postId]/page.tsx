@@ -7,13 +7,25 @@ import {
 } from "@/lib/types";
 import { Metadata } from "next";
 
+const getPost = async (postId: string) => {
+  const post = await prisma.post.findUnique({
+    where: {
+      id: postId,
+    },
+    include: PostWithReplyDataInclude,
+  });
+
+  return post;
+};
+
 export async function generateMetadata({
   params: { postId },
 }: {
   params: { postId: string };
 }): Promise<Metadata> {
+  const post = await getPost(postId);
   return {
-    title: `${postId}`,
+    title: `${post?.user.username}: ${post?.content}`,
   };
 }
 
@@ -22,12 +34,7 @@ export default async function Page({
 }: {
   params: { postId: string };
 }) {
-  const post = await prisma.post.findUnique({
-    include: PostWithReplyDataInclude,
-    where: {
-      id: postId,
-    },
-  });
+  const post = await getPost(postId);
 
   if (!post) return <div>post not found</div>;
 

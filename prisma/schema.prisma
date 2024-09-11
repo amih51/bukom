@@ -17,6 +17,8 @@ model User {
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
+  votes         Vote[]
+  bookmarks     Bookmark[]
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -70,6 +72,33 @@ model Post {
   parentId      String?         
   parent        Post?           @relation("PostReplies", fields: [parentId], references: [id])
   replies       Post[]          @relation("PostReplies")
+  votes         Vote[]
+  bookmarks     Bookmark[]
 
   createdAt     DateTime        @default(now())
+}
+
+model Bookmark {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
+}
+
+model Vote {
+  id     String @id @default(cuid())
+  VoteType Boolean 
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
 }

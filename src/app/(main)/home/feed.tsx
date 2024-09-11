@@ -32,7 +32,9 @@ export default function Feed() {
   return (
     <>
       {query.data.map((post) => (
-        <DisplayPost key={post.id} post={post} />
+        <div key={post.id} className="mt-2">
+          <DisplayPost post={post} />
+        </div>
       ))}
     </>
   );

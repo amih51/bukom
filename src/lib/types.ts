@@ -19,6 +19,11 @@ export const PostDataInclude = {
       },
     },
   },
+  _count: {
+    select: {
+      replies: true,
+    },
+  },
 } satisfies Prisma.PostInclude;
 
 export type PostData = Prisma.PostGetPayload<{
@@ -46,6 +51,11 @@ export const PostWithReplyDataInclude = {
   },
   replies: {
     include: PostDataInclude,
+  },
+  _count: {
+    select: {
+      replies: true,
+    },
   },
 } satisfies Prisma.PostInclude;
 

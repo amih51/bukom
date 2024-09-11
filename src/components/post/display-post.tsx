@@ -128,18 +128,22 @@ export default function DisplayPost({ post }: { post: PostData }) {
         >
           <PiArrowFatDown className="size-5" />
         </Button>
-        <Button
+        {/* <Button
           variant={"ghost"}
           className="size-9 flex-shrink-0 border-b-2 border-r-2 p-1"
         >
           <PiSmiley className="size-5" />
-        </Button>
+        </Button> */}
         <Button
           variant={"ghost"}
-          className="size-9 flex-shrink-0 border-b-2 p-1"
+          className="h-9 w-fit flex-shrink-0 border-b-2 p-2"
         >
-          <Link href={`/${post.user.username}/post/${post.id}`}>
-            <PiChat className="size-5" />
+          <Link
+            href={`/${post.user.username}/post/${post.id}`}
+            className="flex flex-row items-center justify-center"
+          >
+            <PiChat className="mr-1 size-5 flex-shrink-0" />
+            <p className="text-xl">{post._count.replies}</p>
           </Link>
         </Button>
         <div className="h-full w-full">

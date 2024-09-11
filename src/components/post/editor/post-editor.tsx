@@ -24,7 +24,7 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
 const lowlight = createLowlight(all);
 import { PiCodeSimple } from "react-icons/pi";
-import { useSubmitPostMutation } from "./mutations";
+import { useSubmitPostMutation } from "./mutations-post";
 import LoadingButton from "@/components/loading-button";
 
 export default function PostEditor() {
@@ -63,13 +63,6 @@ export default function PostEditor() {
         editor?.commands.clearContent();
       },
     });
-    // try {
-    //   await SubmitPost(editor?.getHTML() || "");
-    //   editor?.commands.clearContent();
-    //   toast.success("Post submitted successfully!");
-    // } catch (error) {
-    //   toast.error("Failed to submit post.");
-    // }
   }
 
   return (

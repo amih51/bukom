@@ -1,7 +1,6 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { SubmitPost } from "@/components/post/editor/submit-post";
 
 import "./styles.css";
 
@@ -54,11 +53,12 @@ import {
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { toast } from "sonner";
+import { useSubmitPostMutation } from "./mutations-post";
 
 export function CreatePostDialog() {
   const { data: session } = useSession();
   const user = session?.user;
+  const mutation = useSubmitPostMutation();
 
   const editor = useEditor({
     extensions: [
@@ -87,14 +87,12 @@ export function CreatePostDialog() {
 
   if (!editor) return null;
 
-  async function onSubmit() {
-    try {
-      await SubmitPost(editor?.getHTML() || "");
-      editor?.commands.clearContent();
-      toast.success("Post submitted successfully!");
-    } catch (error) {
-      toast.error("Failed to submit post.");
-    }
+  function onSubmit() {
+    mutation.mutate(editor?.getHTML() || "", {
+      onSuccess: () => {
+        editor?.commands.clearContent();
+      },
+    });
   }
 
   return (

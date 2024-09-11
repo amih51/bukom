@@ -18,12 +18,11 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
 const lowlight = createLowlight(all);
 
-import { SubmitReply } from "@/components/post/editor/submit-reply";
-
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
+import { useSubmitReplyMutation } from "./mutations-reply";
 
 export default function ReplyEditor({ parentId }: { parentId: string }) {
+  const mutation = useSubmitReplyMutation();
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -49,14 +48,15 @@ export default function ReplyEditor({ parentId }: { parentId: string }) {
     immediatelyRender: false,
   });
 
-  async function onSubmit() {
-    try {
-      await SubmitReply(editor?.getHTML() || "", parentId);
-      editor?.commands.clearContent();
-      toast.success("Reply submitted successfully!");
-    } catch (error) {
-      toast.error("Failed to submit reply.");
-    }
+  function onSubmit() {
+    mutation.mutate(
+      { input: editor?.getHTML() || "", parentId },
+      {
+        onSuccess: () => {
+          editor?.commands.clearContent();
+        },
+      },
+    );
   }
 
   return (

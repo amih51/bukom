@@ -19,7 +19,6 @@ import {
   PiBookmarkSimple,
   PiChat,
   PiDotsThreeVerticalBold,
-  PiSmiley,
 } from "react-icons/pi";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import MathExtension from "@aarkue/tiptap-math-extension";
@@ -28,9 +27,12 @@ import ReplyEditor from "./editor/reply-editor";
 
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
+import DeleteButton from "./delete/delete-btn";
+import { useSession } from "next-auth/react";
 const lowlight = createLowlight(all);
 
 export default function DisplayPost({ post }: { post: PostData }) {
+  const session = useSession();
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -56,7 +58,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
   const user = post.user;
 
   return (
-    <div className="flex flex-col sm:border-l-0">
+    <div className="group/del flex flex-col sm:border-l-0">
       <div className="flex flex-row border-x-2 border-y-2 sm:border-l-0">
         <div className="flex w-full flex-row overflow-hidden">
           <Link
@@ -100,12 +102,9 @@ export default function DisplayPost({ post }: { post: PostData }) {
           >
             <PiBookmarkSimple className="size-8" />
           </Button>
-          <Button
-            variant={"ghost"}
-            className="h-full flex-shrink-0 border-l-2 p-1"
-          >
-            <PiDotsThreeVerticalBold className="size-8" />
-          </Button>
+          {post.userId === session.data?.user.id && (
+            <DeleteButton post={post} />
+          )}
         </div>
       </div>
       <EditorContent
@@ -128,12 +127,6 @@ export default function DisplayPost({ post }: { post: PostData }) {
         >
           <PiArrowFatDown className="size-5" />
         </Button>
-        {/* <Button
-          variant={"ghost"}
-          className="size-9 flex-shrink-0 border-b-2 border-r-2 p-1"
-        >
-          <PiSmiley className="size-5" />
-        </Button> */}
         <Button
           variant={"ghost"}
           className="h-9 w-fit flex-shrink-0 border-b-2 p-2"

@@ -25,7 +25,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const post = await getPost(postId);
   return {
-    title: `${post?.user.username}: ${post?.content}`,
+    title: `${post?.user.username}: ${post?.content ?? "No content"}`,
   };
 }
 

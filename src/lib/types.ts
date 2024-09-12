@@ -1,36 +1,36 @@
 import { Prisma } from "@prisma/client";
 
-export const PostDataInclude = {
+const userSelect = {
+  id: true,
+  username: true,
+  name: true,
+  image: true,
+};
+
+const parentSelect = {
+  id: true,
   user: {
     select: {
-      id: true,
       username: true,
-      name: true,
-      image: true,
     },
   },
-  parent: {
-    select: {
-      id: true,
-      user: {
-        select: {
-          username: true,
-        },
-      },
-    },
-  },
-  votes: {
-    select: {
-      voteType: true,
-      userId: true,
-    },
-  },
-  _count: {
-    select: {
-      replies: true,
-      votes: true,
-    },
-  },
+};
+
+const votesSelect = {
+  voteType: true,
+  userId: true,
+};
+
+const countSelect = {
+  replies: true,
+  votes: true,
+};
+
+export const PostDataInclude = {
+  user: { select: userSelect },
+  parent: { select: parentSelect },
+  votes: { select: votesSelect },
+  _count: { select: countSelect },
 } satisfies Prisma.PostInclude;
 
 export type PostData = Prisma.PostGetPayload<{
@@ -38,36 +38,12 @@ export type PostData = Prisma.PostGetPayload<{
 }>;
 
 export const PostWithReplyDataInclude = {
-  user: {
-    select: {
-      id: true,
-      username: true,
-      name: true,
-      image: true,
-    },
-  },
-  parent: {
-    select: {
-      id: true,
-      user: {
-        select: {
-          username: true,
-        },
-      },
-    },
-  },
-  replies: {
-    include: PostDataInclude,
-  },
-  _count: {
-    select: {
-      replies: true,
-    },
-  },
+  ...PostDataInclude,
+  replies: { include: PostDataInclude },
 } satisfies Prisma.PostInclude;
 
 export type PostDataWithReply = Prisma.PostGetPayload<{
-  include: typeof PostDataInclude;
+  include: typeof PostWithReplyDataInclude;
 }>;
 
 export interface PostsPage {
@@ -76,14 +52,8 @@ export interface PostsPage {
 }
 
 export const UserInclude = {
-  posts: {
-    include: PostDataInclude,
-  },
-  _count: {
-    select: {
-      posts: true,
-    },
-  },
+  posts: { include: PostDataInclude },
+  _count: { select: { posts: true } },
 } satisfies Prisma.UserInclude;
 
 export type UserData = Prisma.UserGetPayload<{

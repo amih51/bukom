@@ -101,8 +101,8 @@ export default function VoteButton({
     <div className="flex flex-row">
       <Button
         onClick={() => upvote()}
-        variant={"ghost"}
-        className="size-9 flex-shrink-0 border-b-2 border-l-2 border-r p-1 sm:border-l-0"
+        variant={"secondary"}
+        className="size-9 flex-shrink-0 rounded-r-none p-2 pr-0"
       >
         {data?.voteType === true ? (
           <PiArrowFatUpFill className="size-5" />
@@ -111,14 +111,14 @@ export default function VoteButton({
         )}
       </Button>
 
-      <p className="flex size-9 items-center justify-center border-b-2 border-r text-xl">
+      <p className="flex size-9 items-center justify-center bg-secondary text-sm text-secondary-foreground">
         {data?.votes}
       </p>
 
       <Button
         onClick={() => downvote()}
-        variant={"ghost"}
-        className="size-9 flex-shrink-0 border-b-2 border-r-2 p-1"
+        variant={"secondary"}
+        className="size-9 flex-shrink-0 rounded-l-none p-2 pl-0"
       >
         {data?.voteType === false ? (
           <PiArrowFatDownFill className="size-5" />

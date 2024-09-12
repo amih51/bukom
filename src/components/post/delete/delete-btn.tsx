@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { PiDotsThreeVerticalBold, PiTrash } from "react-icons/pi";
+import { PiDotsThree, PiDotsThreeVerticalBold, PiTrash } from "react-icons/pi";
 import DeletePostDialog from "./delete-post-dialog";
 
 export default function DeleteButton({ post }: { post: PostData }) {
@@ -17,11 +17,8 @@ export default function DeleteButton({ post }: { post: PostData }) {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant={"ghost"}
-            className="h-full flex-shrink-0 border-l-2 p-1"
-          >
-            <PiDotsThreeVerticalBold className="size-8" />
+          <Button variant={"ghost"} className="h-fit flex-shrink-0 p-2">
+            <PiDotsThree className="size-5" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="p-0">

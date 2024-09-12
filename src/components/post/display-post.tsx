@@ -13,16 +13,10 @@ import { Color } from "@tiptap/extension-color";
 import TextStyle from "@tiptap/extension-text-style";
 import TextAlign from "@tiptap/extension-text-align";
 import { Button } from "../ui/button";
-import {
-  PiArrowFatDown,
-  PiArrowFatUp,
-  PiBookmarkSimple,
-  PiChat,
-} from "react-icons/pi";
+import { PiChat } from "react-icons/pi";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import MathExtension from "@aarkue/tiptap-math-extension";
 import Link from "next/link";
-import ReplyEditor from "./editor/reply-editor";
 
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
@@ -64,13 +58,10 @@ export default function DisplayPost({ post }: { post: PostData }) {
   const voteDifference = trueVotes - falseVotes;
 
   return (
-    <div className="group/del flex flex-col sm:border-l-0">
-      <div className="flex flex-row border-x-2 border-y-2 sm:border-l-0">
+    <div className="group/del flex flex-col border-t py-2 sm:border-l-0">
+      <div className="flex flex-row sm:border-l-0">
         <div className="flex w-full flex-row overflow-hidden">
-          <Link
-            href={`/${user.username}`}
-            className="flex items-center border-r-2 p-2"
-          >
+          <Link href={`/${user.username}`} className="flex items-center p-2">
             <Avatar>
               <AvatarImage src={user?.image || ""} />
               <AvatarFallback>{user.username}</AvatarFallback>
@@ -102,26 +93,13 @@ export default function DisplayPost({ post }: { post: PostData }) {
           </div>
         </div>
         <div className="flex flex-row">
-          <BookmarkButton
-            postId={post.id}
-            initialState={{
-              isBookmarkedByUser: post.bookmarks.find(
-                (bookmark) => bookmark.userId === session.data?.user.id,
-              )
-                ? true
-                : false,
-            }}
-          />
           {post.userId === session.data?.user.id && (
             <DeleteButton post={post} />
           )}
         </div>
       </div>
-      <EditorContent
-        editor={editor}
-        className="min-h-16 border-x-2 border-b-2 p-2 sm:border-l-0"
-      ></EditorContent>
-      <div className="flex flex-row overflow-hidden">
+      <EditorContent editor={editor} className="min-h-16 p-2"></EditorContent>
+      <div className="flex flex-row gap-5 overflow-hidden">
         <VoteButton
           postId={post.id}
           initialState={{
@@ -132,20 +110,27 @@ export default function DisplayPost({ post }: { post: PostData }) {
           }}
         />
         <Button
-          variant={"ghost"}
-          className="h-9 w-fit flex-shrink-0 border-b-2 p-2"
+          variant={"secondary"}
+          className="h-full w-fit flex-shrink-0 p-2"
         >
           <Link
             href={`/${post.user.username}/post/${post.id}`}
             className="flex flex-row items-center justify-center"
           >
             <PiChat className="mr-1 size-5 flex-shrink-0" />
-            <p className="text-xl">{post._count.replies}</p>
+            <p className="text-sm">{post._count.replies}</p>
           </Link>
         </Button>
-        <div className="h-full w-full">
-          <ReplyEditor parentId={post.id} />
-        </div>
+        <BookmarkButton
+          postId={post.id}
+          initialState={{
+            isBookmarkedByUser: post.bookmarks.find(
+              (bookmark) => bookmark.userId === session.data?.user.id,
+            )
+              ? true
+              : false,
+          }}
+        />
       </div>
     </div>
   );

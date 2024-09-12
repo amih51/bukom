@@ -11,7 +11,7 @@ export default async function Layout({
       <Navbar />
       <div className="flex flex-grow flex-row">
         <MenuBar className="sticky left-0 top-12 hidden max-h-[calc(100vh)] w-fit flex-grow sm:flex sm:border-r-2 md:px-6 lg:top-0 lg:w-1/5" />
-        <div className="w-full px-6 sm:pl-0">{children}</div>
+        <div className="w-full px-6">{children}</div>
       </div>
       <MenuBar className="sticky bottom-0 flex w-full border-t-2 bg-background sm:hidden" />
     </div>

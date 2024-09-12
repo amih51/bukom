@@ -44,8 +44,8 @@ import {
   LuAlignCenter,
   LuAlignJustify,
 } from "react-icons/lu";
-import { FaKeyboard } from "react-icons/fa";
 import { MdOutlineBorderColor } from "react-icons/md";
+import { GoPencil } from "react-icons/go";
 
 import {
   Dialog,
@@ -102,7 +102,7 @@ export function CreatePostDialog() {
           variant={"default"}
           className="flex h-fit w-fit items-center justify-start lg:w-full"
         >
-          <FaKeyboard className="size-6 flex-shrink-0" />
+          <GoPencil className="size-6 flex-shrink-0" />
           <p className="ml-2 hidden truncate lg:inline">Create Post</p>
         </Button>
       </DialogTrigger>

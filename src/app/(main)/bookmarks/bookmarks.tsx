@@ -7,7 +7,7 @@ import { PostsPage } from "@/lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { LuLoader } from "react-icons/lu";
 
-export default function ProfileFeed({ userId }: { userId: string }) {
+export default function Bookmarks() {
   const {
     data,
     fetchNextPage,
@@ -16,19 +16,18 @@ export default function ProfileFeed({ userId }: { userId: string }) {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["feed", "profile"],
+    queryKey: ["feed", "bookmarks"],
     queryFn: ({ pageParam }) =>
       kyInstance
-        .get("/api/post/profile-feed", {
-          searchParams: {
-            userId,
-            ...(pageParam && { cursor: pageParam }),
-          },
-        })
+        .get(
+          "/api/post/bookmarked",
+          pageParam ? { searchParams: { cursor: pageParam } } : {},
+        )
         .json<PostsPage>(),
     initialPageParam: null as string | null,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });
+
   const posts = data?.pages.flatMap((page) => page.posts) || [];
 
   return status === "pending" ? (

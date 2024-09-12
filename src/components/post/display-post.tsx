@@ -29,6 +29,7 @@ import { all, createLowlight } from "lowlight";
 import DeleteButton from "./delete/delete-btn";
 import { useSession } from "next-auth/react";
 import VoteButton from "./vote-btn";
+import BookmarkButton from "./bookmark-btn";
 const lowlight = createLowlight(all);
 
 export default function DisplayPost({ post }: { post: PostData }) {
@@ -101,12 +102,16 @@ export default function DisplayPost({ post }: { post: PostData }) {
           </div>
         </div>
         <div className="flex flex-row">
-          <Button
-            variant={"ghost"}
-            className="h-full flex-shrink-0 border-l-2 p-1"
-          >
-            <PiBookmarkSimple className="size-8" />
-          </Button>
+          <BookmarkButton
+            postId={post.id}
+            initialState={{
+              isBookmarkedByUser: post.bookmarks.find(
+                (bookmark) => bookmark.userId === session.data?.user.id,
+              )
+                ? true
+                : false,
+            }}
+          />
           {post.userId === session.data?.user.id && (
             <DeleteButton post={post} />
           )}

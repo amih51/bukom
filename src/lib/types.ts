@@ -21,6 +21,10 @@ const votesSelect = {
   userId: true,
 };
 
+const bookmarkSelect = {
+  userId: true,
+};
+
 const countSelect = {
   replies: true,
   votes: true,
@@ -30,6 +34,7 @@ export const PostDataInclude = {
   user: { select: userSelect },
   parent: { select: parentSelect },
   votes: { select: votesSelect },
+  bookmarks: { select: bookmarkSelect },
   _count: { select: countSelect },
 } satisfies Prisma.PostInclude;
 
@@ -63,4 +68,8 @@ export type UserData = Prisma.UserGetPayload<{
 export interface VoteInfo {
   votes: number;
   voteType: boolean | null;
+}
+
+export interface BookmarkInfo {
+  isBookmarkedByUser: boolean;
 }

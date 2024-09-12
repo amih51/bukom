@@ -53,20 +53,18 @@ export default async function Page({
 
   return (
     <main className="flex w-full flex-col">
-      <div className="my-2 flex w-full flex-row overflow-hidden border-2 sm:border-l-0">
-        <Avatar className="m-2 size-32">
+      <div className="my-2 flex w-full flex-row overflow-hidden">
+        <Avatar className="m-2 size-20">
           <AvatarImage src={user?.image || ""} />
           <AvatarFallback>{user?.username}</AvatarFallback>
         </Avatar>
-        <div className="flex w-full flex-col overflow-hidden border-l-2">
-          <div className="flex w-full flex-row border-b-2">
-            <div className="mx-2 flex w-full flex-row items-center">
+        <div className="ml-2 flex w-full flex-col overflow-hidden">
+          <div className="flex w-full flex-row justify-between">
+            <div className="flex flex-col text-left">
               <p className="truncate text-lg">{user?.name}</p>
-              <p className="truncate pl-2 text-sm opacity-50">
-                @{user?.username}
-              </p>
+              <p className="truncate text-sm opacity-50">@{user?.username}</p>
             </div>
-            <div className="border-l-2">
+            <div className="">
               {session?.user.id === user?.id ? (
                 <EditProfileButton user={user} />
               ) : (
@@ -74,11 +72,11 @@ export default async function Page({
               )}
             </div>
           </div>
-          <div className="size-full">{user.bio}</div>
-          <div className="border-t-2">
-            post: {user._count.posts} follower: {user._count.follower}{" "}
+          <div className="text-sm">
+            menfess: {user._count.posts} follower: {user._count.follower}{" "}
             following: {user._count.following}
           </div>
+          <div className="size-full">{user.bio}</div>
         </div>
       </div>
       {user?.id && <ProfileFeed userId={user.id} />}

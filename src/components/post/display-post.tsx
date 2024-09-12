@@ -78,7 +78,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
               </p>
             </Link>
             {post.parentId && (
-              <div className="flex flex-row overflow-hidden">
+              <div className="flex flex-row overflow-hidden text-sm">
                 <span className="mr-2 opacity-50">replying to</span>
                 <Link
                   href={`/${post.parent?.user.username}/post/${post.parent?.id}`}

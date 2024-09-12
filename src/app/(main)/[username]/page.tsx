@@ -7,6 +7,7 @@ import { auth } from "@/auth";
 import { notFound } from "next/navigation";
 import FollowButton from "./follow-btn";
 import { FollowerInfo, UserInclude } from "@/lib/types";
+import EditProfileButton from "./edit-profile-btn";
 
 const getUser = async (username: string) => {
   const user = await prisma.user.findFirst({
@@ -67,7 +68,7 @@ export default async function Page({
             </div>
             <div className="border-l-2">
               {session?.user.id === user?.id ? (
-                <Button variant={"ghost"}>edit</Button>
+                <EditProfileButton user={user} />
               ) : (
                 <FollowButton userId={user.id} initialState={followerInfo} />
               )}

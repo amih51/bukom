@@ -91,12 +91,12 @@ model Bookmark {
 }
 
 model Vote {
-  id     String @id @default(cuid())
-  VoteType Boolean 
-  userId String
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  postId String
-  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  id       String @id @default(cuid())
+  voteType Boolean 
+  userId   String
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId   String
+  post     Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
 

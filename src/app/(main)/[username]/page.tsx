@@ -3,7 +3,6 @@ import { Metadata } from "next";
 import ProfileFeed from "./profile-feed";
 import { prisma } from "@/lib/prisma";
 import { Button } from "@/components/ui/button";
-import { getSession } from "next-auth/react";
 import { auth } from "@/auth";
 
 const getUser = async (username: string) => {

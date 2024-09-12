@@ -19,9 +19,16 @@ export const PostDataInclude = {
       },
     },
   },
+  votes: {
+    select: {
+      voteType: true,
+      userId: true,
+    },
+  },
   _count: {
     select: {
       replies: true,
+      votes: true,
     },
   },
 } satisfies Prisma.PostInclude;
@@ -82,3 +89,8 @@ export const UserInclude = {
 export type UserData = Prisma.UserGetPayload<{
   include: typeof UserInclude;
 }>;
+
+export interface VoteInfo {
+  votes: number;
+  voteType: boolean | null;
+}

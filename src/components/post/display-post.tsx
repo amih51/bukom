@@ -28,6 +28,7 @@ import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
 import DeleteButton from "./delete/delete-btn";
 import { useSession } from "next-auth/react";
+import VoteButton from "./vote-btn";
 const lowlight = createLowlight(all);
 
 export default function DisplayPost({ post }: { post: PostData }) {
@@ -111,21 +112,17 @@ export default function DisplayPost({ post }: { post: PostData }) {
         className="min-h-16 border-x-2 border-b-2 p-2 sm:border-l-0"
       ></EditorContent>
       <div className="flex flex-row overflow-hidden">
-        <Button
-          variant={"ghost"}
-          className="size-9 flex-shrink-0 border-b-2 border-l-2 border-r p-1 sm:border-l-0"
-        >
-          <PiArrowFatUp className="size-5" />
-        </Button>
-        <p className="flex size-9 items-center justify-center border-b-2 border-r text-xl">
-          0
-        </p>
-        <Button
-          variant={"ghost"}
-          className="size-9 flex-shrink-0 border-b-2 border-r-2 p-1"
-        >
-          <PiArrowFatDown className="size-5" />
-        </Button>
+        <VoteButton
+          postId={post.id}
+          initialState={{
+            votes: post._count.votes,
+            voteType:
+              post.votes.length > 0
+                ? (post.votes.find((vote) => vote.userId === user.id)
+                    ?.voteType ?? null)
+                : null,
+          }}
+        />
         <Button
           variant={"ghost"}
           className="h-9 w-fit flex-shrink-0 border-b-2 p-2"

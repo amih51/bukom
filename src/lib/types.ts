@@ -67,3 +67,18 @@ export interface PostsPage {
   posts: PostData[];
   nextCursor: string | null;
 }
+
+export const UserInclude = {
+  posts: {
+    include: PostDataInclude,
+  },
+  _count: {
+    select: {
+      posts: true,
+    },
+  },
+} satisfies Prisma.UserInclude;
+
+export type UserData = Prisma.UserGetPayload<{
+  include: typeof UserInclude;
+}>;

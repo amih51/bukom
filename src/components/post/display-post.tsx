@@ -18,7 +18,6 @@ import {
   PiArrowFatUp,
   PiBookmarkSimple,
   PiChat,
-  PiDotsThreeVerticalBold,
 } from "react-icons/pi";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import MathExtension from "@aarkue/tiptap-math-extension";

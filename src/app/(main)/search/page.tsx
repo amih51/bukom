@@ -32,7 +32,7 @@ export default async function Page({
 
   return (
     <main className="flex w-full flex-col">
-      <div className="my-2 border-2 sm:hidden sm:border-l-0">
+      <div className="my-2 rounded-xl bg-secondary">
         <SearchField />
       </div>
       {filteredPosts.map((post) => (

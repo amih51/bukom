@@ -29,11 +29,11 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
 
     return (
       <div ref={ref} className={className}>
-        <div className="flex w-full flex-col justify-between sm:w-fit sm:border-x-2 lg:w-full">
+        <div className="flex w-full flex-col justify-between sm:w-fit lg:w-full">
           <div className="flex w-full flex-row justify-between px-6 sm:flex-col sm:px-0">
             <Button
               variant={"ghost"}
-              className="flex h-fit w-fit items-center border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
+              className="flex h-fit w-fit items-center lg:w-full"
             >
               <Link href="/home" className="flex size-full flex-row text-lg">
                 {pathName === "/home" ? (
@@ -47,7 +47,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
             </Button>
             <Button
               variant={"ghost"}
-              className="flex h-fit w-fit items-center border-x-2 sm:hidden sm:border-x-0 sm:border-b-2 lg:w-full"
+              className="flex h-fit w-fit items-center sm:hidden lg:w-full"
             >
               <Link href="/search" className="flex size-full flex-row text-lg">
                 {pathName === "/search" ? (
@@ -61,7 +61,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
             </Button>
             <Button
               variant={"ghost"}
-              className="flex h-fit w-fit items-center overflow-hidden border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
+              className="flex h-fit w-fit items-center overflow-hidden lg:w-full"
             >
               <Link
                 href="/notifications"
@@ -78,7 +78,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
             </Button>
             <Button
               variant={"ghost"}
-              className="flex h-fit w-fit items-center border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
+              className="flex h-fit w-fit items-center lg:w-full"
             >
               <Link
                 href="/bookmarks"
@@ -95,7 +95,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
             </Button>
             <Button
               variant={"ghost"}
-              className="flex h-fit w-fit items-center border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
+              className="flex h-fit w-fit items-center lg:w-full"
             >
               <Link
                 href={`/${user?.username}`}
@@ -112,8 +112,8 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
             </Button>
             <CreatePostDialog />
           </div>
-          <div className="mb-4 hidden w-14 border-y-2 sm:flex lg:w-full">
-            <div className="w-full truncate lg:mx-1 lg:border-x-2">
+          <div className="mb-4 hidden w-14 sm:flex lg:w-full">
+            <div className="w-full truncate lg:mx-1">
               <ProfileButton />
             </div>
           </div>

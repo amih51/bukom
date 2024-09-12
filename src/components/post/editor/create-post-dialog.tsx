@@ -99,18 +99,18 @@ export function CreatePostDialog() {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          variant={"revert"}
-          className="flex h-fit w-fit items-center justify-start border-x-2 sm:border-x-0 sm:border-b-2 lg:w-full"
+          variant={"secondary"}
+          className="flex h-fit w-fit items-center justify-start lg:w-full"
         >
           <FaKeyboard className="size-6 flex-shrink-0" />
           <p className="ml-2 hidden truncate lg:inline">Create Post</p>
         </Button>
       </DialogTrigger>
       <DialogContent className="w-[94%] p-0 lg:max-w-4xl">
-        <div className="my-12 overflow-auto border-y-2">
-          <div className="sm:mx-12 sm:border-x-2">
+        <div className="my-12 overflow-auto">
+          <div className="sm:mx-12">
             <div className="flex w-full flex-row">
-              <div className="hidden items-center border-r-2 p-2 sm:flex">
+              <div className="hidden items-center p-2 sm:flex">
                 <Avatar className="size-12 lg:size-20">
                   <AvatarImage src={user?.image || ""} />
                   <AvatarFallback>{user?.username}</AvatarFallback>
@@ -119,7 +119,7 @@ export function CreatePostDialog() {
               <div className="flex w-full flex-col overflow-auto">
                 <div className="flex h-9 flex-row overflow-auto scrollbar scrollbar-none">
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().undo().run();
                     }}
@@ -128,7 +128,7 @@ export function CreatePostDialog() {
                     <LuUndo className="size-5 flex-shrink-0" />
                   </Button>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().redo().run();
                     }}
@@ -141,12 +141,12 @@ export function CreatePostDialog() {
                       editor.chain().focus().toggleCodeBlock().run()
                     }
                     variant={editor.isActive("codeBlock") ? "revert" : "ghost"}
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                   >
                     <LuCode className="size-5 flex-shrink-0" />
                   </Button>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().toggleBold().run();
                     }}
@@ -155,7 +155,7 @@ export function CreatePostDialog() {
                     <LuBold className="size-5 flex-shrink-0" />
                   </Button>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().toggleItalic().run();
                     }}
@@ -164,7 +164,7 @@ export function CreatePostDialog() {
                     <LuItalic className="size-5 flex-shrink-0" />
                   </Button>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().toggleStrike().run();
                     }}
@@ -173,7 +173,7 @@ export function CreatePostDialog() {
                     <LuStrikethrough className="size-5 flex-shrink-0" />
                   </Button>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().toggleUnderline().run();
                     }}
@@ -182,7 +182,7 @@ export function CreatePostDialog() {
                     <LuUnderline className="size-5 flex-shrink-0" />
                   </Button>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().toggleSubscript().run();
                     }}
@@ -191,7 +191,7 @@ export function CreatePostDialog() {
                     <LuSubscript className="size-5 flex-shrink-0" />
                   </Button>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().toggleSuperscript().run();
                     }}
@@ -201,7 +201,7 @@ export function CreatePostDialog() {
                   >
                     <LuSuperscript className="size-5 flex-shrink-0" />
                   </Button>
-                  <div className="relative flex h-full w-9 items-center justify-center border-r-2 hover:bg-accent hover:text-accent-foreground">
+                  <div className="relative flex h-full w-9 items-center justify-center hover:bg-accent hover:text-accent-foreground">
                     <input
                       type="color"
                       className="absolute size-9 cursor-pointer opacity-0"
@@ -217,7 +217,7 @@ export function CreatePostDialog() {
                     />
                     <MdOutlineBorderColor className="m-auto mx-2 size-5 flex-shrink-0" />
                   </div>
-                  <div className="relative flex h-full w-9 items-center justify-center border-r-2 hover:bg-accent hover:text-accent-foreground">
+                  <div className="relative flex h-full w-9 items-center justify-center hover:bg-accent hover:text-accent-foreground">
                     <input
                       type="color"
                       className="absolute size-9 cursor-pointer opacity-0"
@@ -236,7 +236,7 @@ export function CreatePostDialog() {
                     <LuHighlighter className="m-auto mx-2 size-5 flex-shrink-0" />
                   </div>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().setTextAlign("left").run();
                     }}
@@ -249,7 +249,7 @@ export function CreatePostDialog() {
                     <LuAlignLeft className="size-5 flex-shrink-0" />
                   </Button>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().setTextAlign("center").run();
                     }}
@@ -262,7 +262,7 @@ export function CreatePostDialog() {
                     <LuAlignCenter className="size-5 flex-shrink-0" />
                   </Button>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().setTextAlign("right").run();
                     }}
@@ -275,7 +275,7 @@ export function CreatePostDialog() {
                     <LuAlignLeft className="size-5 flex-shrink-0" />
                   </Button>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().setTextAlign("justify").run();
                     }}
@@ -288,7 +288,7 @@ export function CreatePostDialog() {
                     <LuAlignJustify className="size-5 flex-shrink-0" />
                   </Button>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().toggleHeading({ level: 1 }).run();
                     }}
@@ -301,7 +301,7 @@ export function CreatePostDialog() {
                     <LuHeading1 className="size-5 flex-shrink-0" />
                   </Button>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().toggleHeading({ level: 2 }).run();
                     }}
@@ -314,7 +314,7 @@ export function CreatePostDialog() {
                     <LuHeading2 className="size-5 flex-shrink-0" />
                   </Button>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().toggleHeading({ level: 3 }).run();
                     }}
@@ -327,7 +327,7 @@ export function CreatePostDialog() {
                     <LuHeading3 className="size-5 flex-shrink-0" />
                   </Button>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().toggleBulletList().run();
                     }}
@@ -336,7 +336,7 @@ export function CreatePostDialog() {
                     <LuList className="size-5 flex-shrink-0" />
                   </Button>
                   <Button
-                    className="h-full w-9 border-r-2"
+                    className="h-full w-9"
                     onClick={() => {
                       editor.chain().focus().toggleOrderedList().run();
                     }}

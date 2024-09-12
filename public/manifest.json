@@ -1,6 +1,22 @@
 {
+  "display_override": ["window-controls-overlay"],
+  "shortcuts": [
+    {
+      "name": "BUKOM",
+      "short_name": "BUKOM",
+      "description": "BUKOM REBORN",
+      "url": "/",
+      "icons": [
+        {
+          "src": "/icons/android-chrome-192x192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
   "name": "BUKOM",
   "short_name": "BUKOM",
+  "description": "BUKOM REBORN!!!",
   "icons": [
     {
       "src": "/icons/android-chrome-192x192.png",

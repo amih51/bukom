@@ -1,41 +1,46 @@
 {
-  "display_override": ["window-controls-overlay"],
-  "shortcuts": [
-    {
-      "name": "BUKOM",
-      "short_name": "BUKOM",
-      "description": "BUKOM REBORN",
-      "url": "/",
-      "icons": [
-        {
-          "src": "/icons/android-chrome-192x192.png",
-          "sizes": "192x192"
-        }
-      ]
-    }
-  ],
-  "name": "BUKOM",
-  "short_name": "BUKOM",
-  "description": "BUKOM REBORN!!!",
+  "name": "HMIFess",
+  "short_name": "HMIFess",
+  "start_url": "/",
+  "display": "standalone",
+  "description": "",
+  "lang": "en",
+  "dir": "auto",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "orientation": "any",
   "icons": [
     {
-      "src": "/icons/android-chrome-192x192.png",
+      "src": "public/manifest-icon-192.maskable.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icons/android-chrome-512x512.png",
+      "src": "public/manifest-icon-192.maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "public/manifest-icon-512.maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "public/manifest-icon-512.maskable.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#000000",
-  "background_color": "#000000",
-  "start_url": "/",
-  "display": "standalone",
-  "orientation": "portrait",
-  "dir": "auto",
-  "lang": "en"
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "HMIFess",
+      "url": "/shortcut",
+      "description": "HMIFess App"
+    }
+  ]
 }

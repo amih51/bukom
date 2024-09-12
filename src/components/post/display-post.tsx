@@ -24,6 +24,7 @@ import DeleteButton from "./delete/delete-btn";
 import { useSession } from "next-auth/react";
 import VoteButton from "./vote-btn";
 import BookmarkButton from "./bookmark-btn";
+import { formatRelativeDate } from "@/lib/utils";
 const lowlight = createLowlight(all);
 
 export default function DisplayPost({ post }: { post: PostData }) {
@@ -58,7 +59,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
   const voteDifference = trueVotes - falseVotes;
 
   return (
-    <div className="group/del flex flex-col border-t py-2 sm:border-l-0">
+    <div className="group/del flex flex-col border-t py-4 sm:border-l-0">
       <div className="flex flex-row sm:border-l-0">
         <div className="flex w-full flex-row overflow-hidden">
           <Link href={`/${user.username}`} className="flex items-center p-2">
@@ -88,7 +89,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
               </div>
             )}
             <p className="truncate text-xs opacity-50">
-              {new Date(post.createdAt).toLocaleString()}
+              {formatRelativeDate(post.createdAt)}
             </p>
           </div>
         </div>

@@ -54,6 +54,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useSubmitPostMutation } from "./mutations-post";
+import { BsIncognito } from "react-icons/bs";
+import LoadingButton from "@/components/loading-button";
 
 export function CreatePostDialog() {
   const { data: session } = useSession();
@@ -110,12 +112,6 @@ export function CreatePostDialog() {
         <div className="my-12 overflow-auto">
           <div className="sm:mx-12">
             <div className="flex w-full flex-row">
-              <div className="hidden items-center p-2 sm:flex">
-                <Avatar className="size-12 lg:size-20">
-                  <AvatarImage src={user?.image || ""} />
-                  <AvatarFallback>{user?.username}</AvatarFallback>
-                </Avatar>
-              </div>
               <div className="flex w-full flex-col overflow-auto">
                 <div className="flex h-9 flex-row overflow-auto scrollbar scrollbar-none">
                   <Button
@@ -361,15 +357,28 @@ export function CreatePostDialog() {
                   className="max-h-[75vh] min-h-52 overflow-auto border-y-2 p-2 scrollbar scrollbar-thumb-current scrollbar-w-1 hover:scrollbar-thumb-foreground/50"
                 />
                 <div className="flex flex-row">
-                  <DialogClose className="w-full">
-                    <Button
+                  <Button
+                    // onClick={() =>
+                    //   editor?.chain().focus().toggleCodeBlock().run()
+                    // }
+                    variant={"outline"}
+                    className="rounded-r-none"
+                  >
+                    <BsIncognito className="size-5" />
+                  </Button>
+                  <DialogClose
+                    disabled={!editor?.getText().trim()}
+                    className="flex w-full flex-row"
+                  >
+                    <LoadingButton
+                      loading={mutation.isPending}
                       onClick={onSubmit}
-                      disabled={!editor.getText().trim()}
-                      variant={"ghost"}
-                      className="w-full"
+                      disabled={!editor?.getText().trim()}
+                      variant={"outline"}
+                      className="w-full rounded-l-none"
                     >
                       Submit
-                    </Button>
+                    </LoadingButton>
                   </DialogClose>
                 </div>
               </div>

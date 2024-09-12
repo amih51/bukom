@@ -72,7 +72,7 @@ export default async function Page({
               )}
             </div>
           </div>
-          <div className="text-sm">
+          <div className="text-sm opacity-60">
             menfess: {user._count.posts} follower: {user._count.follower}{" "}
             following: {user._count.following}
           </div>

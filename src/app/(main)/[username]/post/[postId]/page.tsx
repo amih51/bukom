@@ -1,4 +1,5 @@
 import DisplayPost from "@/components/post/display-post";
+import ReplyEditor from "@/components/post/editor/reply-editor";
 import { prisma } from "@/lib/prisma";
 import {
   PostData,
@@ -70,7 +71,7 @@ export default async function Page({
 
   return (
     <main className="w-full">
-      <div className="mx-6 mt-2 border-l-2">
+      <div className="mx-6 mt-2 border-x">
         {parent.map((post) => (
           <div key={post.id} className="mb-4 last:mb-0 last:pb-1">
             <DisplayPost post={post} />
@@ -79,8 +80,12 @@ export default async function Page({
       </div>
       <div className="mb-1 w-full">
         <DisplayPost post={post} />
+        <div className="flex w-full flex-col gap-6 border-t py-6">
+          <p className="text-xl">Comments</p>
+          <ReplyEditor parentId={postId} />
+        </div>
       </div>
-      <div className="mx-6 border-l-2">
+      <div className="border-b">
         {post.replies.map((post) => (
           <div key={post.id} className="mb-4">
             <DisplayPost post={post} />

@@ -37,11 +37,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function ProfileButton() {
   const { data: session } = useSession();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const queryClient = useQueryClient();
 
   if (session) {
     const user = session.user;
@@ -129,7 +131,14 @@ export default function ProfileButton() {
           </AlertDialogHeader>
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction onClick={() => signOut()}>
+            <AlertDialogAction
+              onClick={() => {
+                queryClient.clear();
+                signOut({
+                  callbackUrl: "/",
+                });
+              }}
+            >
               Continue
             </AlertDialogAction>
           </AlertDialogFooter>

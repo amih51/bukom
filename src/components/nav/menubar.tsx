@@ -33,7 +33,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
     return (
       <div ref={ref} className={className}>
         <div className="flex w-full flex-col justify-between sm:w-fit lg:w-full">
-          <div className="flex w-full flex-row justify-between px-6 sm:flex-col sm:gap-5 sm:px-0">
+          <div className="flex w-full flex-row justify-between px-6 sm:flex-col sm:gap-3 sm:px-0">
             <Link href="/" className="my-6 hidden text-2xl font-bold lg:block">
               {theme === "dark" ? (
                 <Image

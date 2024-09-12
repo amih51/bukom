@@ -56,6 +56,11 @@ export default function DisplayPost({ post }: { post: PostData }) {
   });
 
   const user = post.user;
+  const trueVotes = post.votes.filter((vote) => vote.voteType === true).length;
+  const falseVotes = post.votes.filter(
+    (vote) => vote.voteType === false,
+  ).length;
+  const voteDifference = trueVotes - falseVotes;
 
   return (
     <div className="group/del flex flex-col sm:border-l-0">
@@ -115,12 +120,10 @@ export default function DisplayPost({ post }: { post: PostData }) {
         <VoteButton
           postId={post.id}
           initialState={{
-            votes: post._count.votes,
+            votes: voteDifference,
             voteType:
-              post.votes.length > 0
-                ? (post.votes.find((vote) => vote.userId === user.id)
-                    ?.voteType ?? null)
-                : null,
+              post.votes.find((vote) => vote.userId === session.data?.user.id)
+                ?.voteType ?? null,
           }}
         />
         <Button

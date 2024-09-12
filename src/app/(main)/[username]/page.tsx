@@ -5,6 +5,8 @@ import { prisma } from "@/lib/prisma";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/auth";
 import { notFound } from "next/navigation";
+import FollowButton from "./follow-btn";
+import { FollowerInfo, UserInclude } from "@/lib/types";
 
 const getUser = async (username: string) => {
   const user = await prisma.user.findFirst({
@@ -14,6 +16,7 @@ const getUser = async (username: string) => {
         mode: "insensitive",
       },
     },
+    include: UserInclude,
   });
 
   return user;
@@ -40,6 +43,13 @@ export default async function Page({
 
   const session = await auth();
 
+  const followerInfo: FollowerInfo = {
+    followers: user._count.follower,
+    isFollowedByUser: user.follower.some(
+      ({ followerId }) => followerId === session?.user.id,
+    ),
+  };
+
   return (
     <main className="flex w-full flex-col">
       <div className="my-2 flex w-full flex-row overflow-hidden border-2 sm:border-l-0">
@@ -55,13 +65,19 @@ export default async function Page({
                 @{user?.username}
               </p>
             </div>
-            {session?.user.id === user?.id && (
-              <Button variant={"ghost"} className="border-l-2">
-                edit
-              </Button>
-            )}
+            <div className="border-l-2">
+              {session?.user.id === user?.id ? (
+                <Button variant={"ghost"}>edit</Button>
+              ) : (
+                <FollowButton userId={user.id} initialState={followerInfo} />
+              )}
+            </div>
           </div>
-          <div>bio</div>
+          <div className="size-full">{user.bio}</div>
+          <div className="border-t-2">
+            post: {user._count.posts} follower: {user._count.follower}{" "}
+            following: {user._count.following}
+          </div>
         </div>
       </div>
       {user?.id && <ProfileFeed userId={user.id} />}

@@ -25,9 +25,15 @@ const bookmarkSelect = {
   userId: true,
 };
 
-const countSelect = {
+const countPostSelect = {
   replies: true,
   votes: true,
+};
+
+const countUserSelect = {
+  posts: true,
+  follower: true,
+  following: true,
 };
 
 export const PostDataInclude = {
@@ -35,7 +41,7 @@ export const PostDataInclude = {
   parent: { select: parentSelect },
   votes: { select: votesSelect },
   bookmarks: { select: bookmarkSelect },
-  _count: { select: countSelect },
+  _count: { select: countPostSelect },
 } satisfies Prisma.PostInclude;
 
 export type PostData = Prisma.PostGetPayload<{
@@ -58,7 +64,9 @@ export interface PostsPage {
 
 export const UserInclude = {
   posts: { include: PostDataInclude },
-  _count: { select: { posts: true } },
+  follower: true,
+  following: true,
+  _count: { select: countUserSelect },
 } satisfies Prisma.UserInclude;
 
 export type UserData = Prisma.UserGetPayload<{
@@ -72,4 +80,9 @@ export interface VoteInfo {
 
 export interface BookmarkInfo {
   isBookmarkedByUser: boolean;
+}
+
+export interface FollowerInfo {
+  followers: number;
+  isFollowedByUser: boolean;
 }

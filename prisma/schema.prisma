@@ -11,6 +11,7 @@ model User {
   id            String          @id @default(cuid())
   name          String?
   username      String?         @unique
+  bio           String?
   email         String          @unique
   emailVerified DateTime?
   image         String?
@@ -19,10 +20,11 @@ model User {
   posts         Post[]
   votes         Vote[]
   bookmarks     Bookmark[]
+  following     Follow[]        @relation("Following")
+  follower      Follow[]        @relation("Followers")
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
 }
  
 model Account {
@@ -101,4 +103,13 @@ model Vote {
   createdAt DateTime @default(now())
 
   @@unique([userId, postId])
+}
+
+model Follow {
+  followerId  String
+  follower    User   @relation("Following", fields: [followerId], references: [id])
+  followingId String
+  following   User   @relation("Followers", fields: [followingId], references: [id])
+
+  @@unique([followerId, followingId])
 }

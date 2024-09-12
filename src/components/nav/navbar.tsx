@@ -10,7 +10,7 @@ export default function Navbar() {
   const { theme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-30 flex h-12 flex-row items-center justify-between border-b-2 bg-background px-6">
+    <header className="sticky top-0 z-30 flex h-12 flex-row items-center justify-between border-b-2 bg-background px-6 lg:hidden">
       <div className="flex h-full w-28 flex-wrap items-center lg:w-[calc(20%+4rem)]">
         <Link href="/" className="text-2xl font-bold">
           {theme === "dark" ? (

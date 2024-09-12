@@ -19,9 +19,12 @@ import {
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { CreatePostDialog } from "../post/editor/create-post-dialog";
+import { useTheme } from "next-themes";
+import Image from "next/image";
 
 const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
   ({ className }, ref) => {
+    const { theme } = useTheme();
     const { data: session } = useSession();
     const user = session?.user;
 
@@ -31,8 +34,25 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
       <div ref={ref} className={className}>
         <div className="flex w-full flex-col justify-between sm:w-fit lg:w-full">
           <div className="flex w-full flex-row justify-between px-6 sm:flex-col sm:px-0">
+            <Link href="/" className="my-6 hidden text-2xl font-bold lg:block">
+              {theme === "dark" ? (
+                <Image
+                  src={"/HMIFess-white-02.png"}
+                  alt={"HMIFess logo dark"}
+                  width={192}
+                  height={192}
+                />
+              ) : (
+                <Image
+                  src={"/HMIFess-02.png"}
+                  alt={"HMIFess logo"}
+                  width={192}
+                  height={192}
+                />
+              )}
+            </Link>
             <Button
-              variant={"ghost"}
+              variant={pathName === "/home" ? "secondary" : "ghost"}
               className="flex h-fit w-fit items-center lg:w-full"
             >
               <Link href="/home" className="flex size-full flex-row text-lg">
@@ -46,8 +66,8 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               </Link>
             </Button>
             <Button
-              variant={"ghost"}
-              className="flex h-fit w-fit items-center sm:hidden lg:w-full"
+              variant={pathName === "/search" ? "secondary" : "ghost"}
+              className="flex h-fit w-fit items-center lg:w-full"
             >
               <Link href="/search" className="flex size-full flex-row text-lg">
                 {pathName === "/search" ? (
@@ -60,24 +80,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               </Link>
             </Button>
             <Button
-              variant={"ghost"}
-              className="flex h-fit w-fit items-center overflow-hidden lg:w-full"
-            >
-              <Link
-                href="/notifications"
-                className="flex size-full flex-row text-lg"
-              >
-                {pathName === "/notifications" ? (
-                  <RiNotificationFill className="size-6 flex-shrink-0" />
-                ) : (
-                  <RiNotificationLine className="size-6 flex-shrink-0" />
-                )}
-
-                <p className="ml-2 hidden truncate lg:inline">Notifications</p>
-              </Link>
-            </Button>
-            <Button
-              variant={"ghost"}
+              variant={pathName === "/bookmarks" ? "secondary" : "ghost"}
               className="flex h-fit w-fit items-center lg:w-full"
             >
               <Link
@@ -94,7 +97,9 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               </Link>
             </Button>
             <Button
-              variant={"ghost"}
+              variant={
+                pathName === `/${user?.username}` ? "secondary" : "ghost"
+              }
               className="flex h-fit w-fit items-center lg:w-full"
             >
               <Link

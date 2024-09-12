@@ -99,7 +99,7 @@ export function CreatePostDialog() {
     <Dialog>
       <DialogTrigger asChild>
         <Button
-          variant={"secondary"}
+          variant={"default"}
           className="flex h-fit w-fit items-center justify-start lg:w-full"
         >
           <FaKeyboard className="size-6 flex-shrink-0" />

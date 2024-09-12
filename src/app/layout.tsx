@@ -7,15 +7,15 @@ import QueryProvider from "./query-provider";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | BUKOM",
-    default: "BUKOM",
+    template: "%s | HMIFess",
+    default: "HMIFess",
   },
-  description: "BUKOM REBORN!!!",
+  description: "HMIFess",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "BUKOM",
+    title: "HMIFess",
   },
 };
 

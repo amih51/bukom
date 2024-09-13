@@ -17,6 +17,11 @@ const parentSelect = {
   },
 };
 
+const categorySelect = {
+  name: true,
+  id: true,
+};
+
 const votesSelect = {
   voteType: true,
   userId: true,
@@ -40,6 +45,7 @@ const countUserSelect = {
 export const PostDataInclude = {
   user: { select: userSelect },
   parent: { select: parentSelect },
+  category: { select: categorySelect },
   votes: { select: votesSelect },
   bookmarks: { select: bookmarkSelect },
   _count: { select: countPostSelect },

@@ -16,7 +16,7 @@ export default function CategoryFeed({ category }: { category: string }) {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["feed", "profile"],
+    queryKey: ["feed", "category"],
     queryFn: ({ pageParam }) =>
       kyInstance
         .get("/api/post/category", {

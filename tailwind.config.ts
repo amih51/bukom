@@ -50,6 +50,8 @@ const config: Config = {
           "4": "hsl(var(--chart-4))",
           "5": "hsl(var(--chart-5))",
         },
+        kuning: "var(--kuning-jahim)",
+        ijo: "var(--ijo-jahim)",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)"],

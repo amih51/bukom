@@ -132,7 +132,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
           )}
         </div>
       </div>
-      <div className="bg-kuning w-fit rounded-lg p-1 text-xs">
+      <div className="bg-kuning w-fit rounded-sm px-2 py-1 text-xs">
         {post.category.name}
       </div>
       <EditorContent editor={editor} className="min-h-16 p-2"></EditorContent>

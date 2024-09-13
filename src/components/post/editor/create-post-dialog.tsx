@@ -143,7 +143,7 @@ export function CreatePostDialog() {
                         )?.name || "Select a category"}
                       </Button>
                     </PopoverTrigger>
-                    <PopoverContent className="w-[40vw] p-0">
+                    <PopoverContent className="w-[45vw] p-0">
                       <Command>
                         <CommandInput placeholder="Search category..." />
                         <CommandList>

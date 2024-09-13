@@ -10,14 +10,6 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <main className="flex w-full flex-col">
-      <div className="mt-6 w-full">
-        <div className="mb-3 text-3xl">Beranda</div>
-        <div className="rounded-xl bg-secondary">
-          <SearchField />
-        </div>
-        <div></div>
-      </div>
-
       <Feed />
     </main>
   );

@@ -1,7 +1,5 @@
 import getSession from "@/lib/get-session";
 import { prisma } from "@/lib/prisma";
-import { PostDataInclude, PostsPage } from "@/lib/types";
-import { NextRequest } from "next/server";
 
 export async function GET() {
   try {

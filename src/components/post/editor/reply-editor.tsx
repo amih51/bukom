@@ -24,6 +24,7 @@ import { BsIncognito } from "react-icons/bs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import LoadingButton from "@/components/loading-button";
 
 export default function ReplyEditor({
   parentId,
@@ -92,14 +93,15 @@ export default function ReplyEditor({
         >
           <BsIncognito className="size-5" />
         </Button>
-        <Button
+        <LoadingButton
+          loading={mutation.isPending}
           onClick={onSubmit}
-          disabled={!editor?.getText().trim()}
+          disabled={!editor?.getText().trim() || categoryId === ""}
           variant={"outline"}
-          className="rounded-l-none"
+          className="w-full rounded-l-none"
         >
           Submit
-        </Button>
+        </LoadingButton>
       </div>
     </div>
   );

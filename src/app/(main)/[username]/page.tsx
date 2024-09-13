@@ -2,7 +2,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Metadata } from "next";
 import ProfileFeed from "./profile-feed";
 import { prisma } from "@/lib/prisma";
-import { Button } from "@/components/ui/button";
 import { auth } from "@/auth";
 import { notFound } from "next/navigation";
 import FollowButton from "./follow-btn";

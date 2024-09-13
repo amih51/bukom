@@ -60,7 +60,7 @@ export const PostWithReplyDataInclude = {
   replies: { include: PostDataInclude },
 } satisfies Prisma.PostInclude;
 
-export type PostDataWithReply = Prisma.PostGetPayload<{
+export type PostWithReply = Prisma.PostGetPayload<{
   include: typeof PostWithReplyDataInclude;
 }>;
 

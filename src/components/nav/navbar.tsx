@@ -20,9 +20,16 @@ export default function Navbar() {
               width={192}
               height={192}
             />
-          ) : (
+          ) : theme === "light" ? (
             <Image
               src={"/HMIFess-02.png"}
+              alt={"HMIFess logo"}
+              width={192}
+              height={192}
+            />
+          ) : (
+            <Image
+              src={"/HMIFess-01.png"}
               alt={"HMIFess logo"}
               width={192}
               height={192}

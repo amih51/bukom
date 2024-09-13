@@ -35,9 +35,8 @@ export default function RootLayout({
           <SessionProvider>
             <ThemeProvider
               attribute="class"
-              defaultTheme="light"
               enableSystem={false}
-              disableTransitionOnChange
+              defaultTheme="light"
             >
               {children}
               <Toaster />

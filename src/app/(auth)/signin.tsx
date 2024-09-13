@@ -19,7 +19,20 @@ export default function SignIn() {
     }
   }, [searchParams]);
   return (
-    <div className="flex h-2/3 flex-auto flex-col items-center justify-center border-2 md:h-full">
+    <div className="flex h-2/3 flex-auto flex-col items-center justify-center gap-6 md:h-full">
+      <div>
+        <h1 className="mb-4 text-5xl font-bold">Your Space, Your Voice.</h1>
+        <h2 className="mb-8 text-2xl font-semibold">
+          HMIFess: Where HMIF Students Connect & Share
+        </h2>
+        <p className="text-justify text-lg">
+          Welcome to <span className="font-bold">HMIFess</span>, the exclusive
+          online forum for HMIF students at ITB. Whether you want to share
+          insights, ask questions, or just connect with fellow students, HMIFess
+          is the place to be. Join our community, where your thoughts matter,
+          and every post can spark a conversation.
+        </p>
+      </div>
       <Button
         variant={"ghost"}
         onClick={() => signIn("google")}

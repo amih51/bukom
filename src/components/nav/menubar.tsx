@@ -9,8 +9,6 @@ import {
   RiBookmarkLine,
   RiHomeFill,
   RiHomeLine,
-  RiNotificationFill,
-  RiNotificationLine,
   RiSearchFill,
   RiSearchLine,
   RiUserFill,
@@ -35,7 +33,14 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
         <div className="flex w-full flex-col justify-between sm:w-fit lg:w-full">
           <div className="flex w-full flex-row justify-between px-6 sm:flex-col sm:gap-3 sm:px-0">
             <Link href="/" className="my-6 hidden text-2xl font-bold lg:block">
-              {theme === "light" ? (
+              {theme === "dark" ? (
+                <Image
+                  src={"/HMIFess-white-02.png"}
+                  alt={"HMIFess logo dark"}
+                  width={192}
+                  height={192}
+                />
+              ) : theme === "light" ? (
                 <Image
                   src={"/HMIFess-02.png"}
                   alt={"HMIFess logo"}
@@ -44,8 +49,8 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
                 />
               ) : (
                 <Image
-                  src={"/HMIFess-white-02.png"}
-                  alt={"HMIFess logo dark"}
+                  src={"/HMIFess-01.png"}
+                  alt={"HMIFess logo"}
                   width={192}
                   height={192}
                 />

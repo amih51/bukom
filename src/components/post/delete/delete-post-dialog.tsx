@@ -32,7 +32,7 @@ export default function DeletePostDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent>
+      <DialogContent className="w-[94%]">
         <DialogHeader>
           <DialogTitle>Delete post?</DialogTitle>
           <DialogDescription>
@@ -40,21 +40,21 @@ export default function DeletePostDialog({
             undone.
           </DialogDescription>
         </DialogHeader>
-        <DialogFooter>
-          <LoadingButton
+        <DialogFooter className="gap-2">
+          <Button
             variant="destructive"
             onClick={() => mutation.mutate(post.id, { onSuccess: onClose })}
-            loading={mutation.isPending}
           >
             Delete
-          </LoadingButton>
-          <Button
+          </Button>
+          <LoadingButton
             variant="outline"
             onClick={onClose}
             disabled={mutation.isPending}
+            loading={mutation.isPending}
           >
             Cancel
-          </Button>
+          </LoadingButton>
         </DialogFooter>
       </DialogContent>
     </Dialog>

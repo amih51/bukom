@@ -119,7 +119,7 @@ export function CreatePostDialog() {
       </DialogTrigger>
       <DialogContent className="w-[94%] p-0 lg:max-w-4xl">
         <div className="my-6 overflow-auto">
-          <div className="sm:mx-6">
+          <div className="mx-6">
             <DialogTitle className="mb-5 text-xl">Create Menfess</DialogTitle>
             <div className="flex w-full flex-row">
               <Avatar className="mr-5 size-12">

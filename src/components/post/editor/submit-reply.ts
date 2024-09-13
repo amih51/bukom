@@ -7,6 +7,7 @@ import { PostDataInclude } from "@/lib/types";
 export async function submitReply(
   input: string,
   parentId: string,
+  categoryId: string,
   isAnon: boolean,
 ) {
   const user = await currentUser();
@@ -20,6 +21,7 @@ export async function submitReply(
       content: input,
       userId: user.id,
       parentId,
+      categoryId,
       isAnon,
     },
     include: PostDataInclude,

@@ -8,10 +8,10 @@ export default async function Page() {
   const session = await getSession();
   if (session?.user) redirect("/home");
   return (
-    <div className="h-screen bg-background">
-      <div className="h-5/6 px-6 md:h-full">
+    <div className="h-screen bg-background sm:px-32">
+      <div className="px-6 md:h-full">
         <main className="flex h-full flex-col md:flex-row">
-          <div className="flex h-1/6 flex-auto items-center justify-center md:h-full md:w-1/2">
+          <div className="m-6 flex h-1/6 flex-auto items-center justify-center sm:m-0 md:h-full md:w-1/2">
             <Logo />
           </div>
           <div className="md:w-1/2">

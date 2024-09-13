@@ -19,18 +19,19 @@ export async function GET(
       });
     }
 
-    const userId = url.searchParams.get("userId");
-    if (!userId) {
-      return new Response(JSON.stringify({ error: "userId is required" }), {
+    const category = url.searchParams.get("category");
+    if (!category) {
+      return new Response(JSON.stringify({ error: "category is required" }), {
         status: 400,
       });
     }
 
-    const whereCondition =
-      session.user.id === userId ? { userId } : { userId, isAnon: false };
-
     const posts = await prisma.post.findMany({
-      where: whereCondition,
+      where: {
+        category: {
+          name: category,
+        },
+      },
       include: PostDataInclude,
       orderBy: {
         createdAt: "desc",

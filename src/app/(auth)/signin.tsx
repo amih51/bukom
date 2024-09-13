@@ -36,7 +36,7 @@ export default function SignIn() {
       <Button
         variant={"ghost"}
         onClick={() => signIn("google")}
-        className="flex flex-row items-center border p-2"
+        className="flex w-1/2 flex-row items-center border p-2"
       >
         <FaGoogle size={16} className="mr-2" />
         <p>Sign In</p>

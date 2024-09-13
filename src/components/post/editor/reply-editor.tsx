@@ -25,7 +25,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
-export default function ReplyEditor({ parentId }: { parentId: string }) {
+export default function ReplyEditor({
+  parentId,
+  categoryId,
+}: {
+  parentId: string;
+  categoryId: string;
+}) {
   const { data: session } = useSession();
   const user = session?.user;
 
@@ -59,7 +65,7 @@ export default function ReplyEditor({ parentId }: { parentId: string }) {
 
   function onSubmit() {
     mutation.mutate(
-      { input: editor?.getHTML() || "", parentId, isAnon },
+      { input: editor?.getHTML() || "", parentId, categoryId, isAnon },
       {
         onSuccess: () => {
           editor?.commands.clearContent();

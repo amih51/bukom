@@ -70,13 +70,15 @@ model Post {
   id            String          @id @default(cuid())
   content       String
   userId        String
-  isAnon        Boolean?
+  isAnon        Boolean         @default(false)
   user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   parentId      String?         
   parent        Post?           @relation("PostReplies", fields: [parentId], references: [id])
   replies       Post[]          @relation("PostReplies")
   votes         Vote[]
   bookmarks     Bookmark[]
+  categoryId    String
+  category      Category        @relation(fields: [categoryId], references: [id])
 
   createdAt     DateTime        @default(now())
 }
@@ -113,4 +115,10 @@ model Follow {
   following   User   @relation("Followers", fields: [followingId], references: [id])
 
   @@unique([followerId, followingId])
+}
+
+model Category {
+  id          String @id @default(cuid())
+  name        String @unique
+  posts       Post[] 
 }

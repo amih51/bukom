@@ -17,6 +17,8 @@ import {
 import { useTheme } from "next-themes";
 import {
   PiCircleHalfFill,
+  PiMonitor,
+  PiMonitorFill,
   PiMoon,
   PiMoonFill,
   PiSignOut,
@@ -74,6 +76,17 @@ export default function ProfileButton() {
               </DropdownMenuSubTrigger>
               <DropdownMenuPortal>
                 <DropdownMenuSubContent>
+                  <DropdownMenuItem
+                    onClick={() => setTheme("system")}
+                    className="cursor-pointer"
+                  >
+                    {theme === "system" ? (
+                      <PiMonitorFill className="mr-2 size-4" />
+                    ) : (
+                      <PiMonitor className="mr-2 size-4" />
+                    )}
+                    System default
+                  </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={() => setTheme("light")}
                     className="cursor-pointer"

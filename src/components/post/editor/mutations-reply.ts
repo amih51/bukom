@@ -12,8 +12,15 @@ export function useSubmitReplyMutation() {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: ({ input, parentId }: { input: string; parentId: string }) =>
-      submitReply(input, parentId),
+    mutationFn: ({
+      input,
+      parentId,
+      isAnon,
+    }: {
+      input: string;
+      parentId: string;
+      isAnon: boolean;
+    }) => submitReply(input, parentId, isAnon),
     onSuccess: async (newPost) => {
       const queryFilter: QueryFilters = { queryKey: ["feed"] };
 

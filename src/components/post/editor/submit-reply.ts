@@ -4,7 +4,11 @@ import { currentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { PostDataInclude } from "@/lib/types";
 
-export async function submitReply(input: string, parentId: string) {
+export async function submitReply(
+  input: string,
+  parentId: string,
+  isAnon: boolean,
+) {
   const user = await currentUser();
 
   if (!input.trim()) throw Error("Empty input");
@@ -16,6 +20,7 @@ export async function submitReply(input: string, parentId: string) {
       content: input,
       userId: user.id,
       parentId,
+      isAnon,
     },
     include: PostDataInclude,
   });

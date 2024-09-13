@@ -70,6 +70,7 @@ model Post {
   id            String          @id @default(cuid())
   content       String
   userId        String
+  isAnon        Boolean?
   user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   parentId      String?         
   parent        Post?           @relation("PostReplies", fields: [parentId], references: [id])

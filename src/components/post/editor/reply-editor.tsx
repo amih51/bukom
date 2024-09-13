@@ -23,10 +23,13 @@ import { useSubmitReplyMutation } from "./mutations-reply";
 import { BsIncognito } from "react-icons/bs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
 
 export default function ReplyEditor({ parentId }: { parentId: string }) {
   const { data: session } = useSession();
   const user = session?.user;
+
+  const [isAnon, setIsAnon] = useState(false);
 
   const mutation = useSubmitReplyMutation();
   const editor = useEditor({
@@ -56,7 +59,7 @@ export default function ReplyEditor({ parentId }: { parentId: string }) {
 
   function onSubmit() {
     mutation.mutate(
-      { input: editor?.getHTML() || "", parentId },
+      { input: editor?.getHTML() || "", parentId, isAnon },
       {
         onSuccess: () => {
           editor?.commands.clearContent();
@@ -77,10 +80,8 @@ export default function ReplyEditor({ parentId }: { parentId: string }) {
       />
       <div className="flex h-fit flex-row">
         <Button
-          // onClick={() =>
-          //   editor?.chain().focus().toggleCodeBlock().run()
-          // }
-          variant={"outline"}
+          onClick={() => setIsAnon((prev) => !prev)}
+          variant={isAnon ? "revert" : "outline"}
           className="rounded-r-none"
         >
           <BsIncognito className="size-5" />

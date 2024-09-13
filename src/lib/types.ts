@@ -9,6 +9,7 @@ const userSelect = {
 
 const parentSelect = {
   id: true,
+  isAnon: true,
   user: {
     select: {
       username: true,

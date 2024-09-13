@@ -23,7 +23,6 @@ import { useState } from "react";
 export default function CategorySelect() {
   const router = useRouter();
   const [categoryId, setCategoryId] = useState<string>("");
-  const [categoryName, setCategoryName] = useState<string>("");
   const [isOpen, setIsOpen] = useState(false);
 
   const query = useQuery({
@@ -31,12 +30,6 @@ export default function CategorySelect() {
     queryFn: () => kyInstance.get("/api/category").json<Category[]>(),
   });
   const categories = query.data || [];
-
-  const handleCategorySelect = (id: string, name: string) => {
-    setCategoryId(id);
-    setCategoryName(name);
-    setIsOpen(false);
-  };
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -57,8 +50,9 @@ export default function CategorySelect() {
                   <CommandItem
                     key={category.id}
                     onSelect={() => {
-                      handleCategorySelect(category.id, category.name);
-                      router.push(`/home/${categoryName}`);
+                      router.push(`/home/${category.name}`);
+                      setCategoryId(category.id);
+                      setIsOpen(false);
                     }}
                   >
                     {category.name}

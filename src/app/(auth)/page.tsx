@@ -2,7 +2,7 @@ import getSession from "@/lib/get-session";
 import Footer from "./footer";
 import SignIn from "./signin";
 import { redirect } from "next/navigation";
-import Logo from "./logo";
+import Logo from "../../components/logo";
 
 export default async function Page() {
   const session = await getSession();

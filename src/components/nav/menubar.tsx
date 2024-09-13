@@ -16,12 +16,10 @@ import {
 } from "react-icons/ri";
 import { usePathname, useRouter } from "next/navigation";
 import { CreatePostDialog } from "../post/editor/create-post-dialog";
-import { useTheme } from "next-themes";
-import Image from "next/image";
+import Logo from "../logo";
 
 const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
   ({ className }, ref) => {
-    const { theme } = useTheme();
     const { data: session } = useSession();
     const router = useRouter();
     const user = session?.user;
@@ -37,28 +35,9 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               variant={"ghost"}
               className="my-6 hidden h-fit items-start text-2xl font-bold hover:bg-transparent lg:block"
             >
-              {theme === "dark" ? (
-                <Image
-                  src={"/HMIFess-white-02.png"}
-                  alt={"HMIFess logo dark"}
-                  width={192}
-                  height={192}
-                />
-              ) : theme === "light" ? (
-                <Image
-                  src={"/HMIFess-02.png"}
-                  alt={"HMIFess logo"}
-                  width={192}
-                  height={192}
-                />
-              ) : (
-                <Image
-                  src={"/HMIFess-01.png"}
-                  alt={"HMIFess logo"}
-                  width={192}
-                  height={192}
-                />
-              )}
+              <div className="m-0 flex items-center justify-center">
+                <Logo />
+              </div>
             </Button>
             <Button
               onClick={() => router.push("/home")}

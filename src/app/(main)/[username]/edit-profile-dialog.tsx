@@ -26,6 +26,8 @@ import {
 import { useUpdateProfileMutation } from "./mutations";
 import { useQuery } from "@tanstack/react-query";
 import ky from "ky";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface EditProfileDialogProps {
   user: UserData;
@@ -38,6 +40,10 @@ export default function EditProfileDialog({
   open,
   onOpenChange,
 }: EditProfileDialogProps) {
+  const { data: session } = useSession();
+  const loggedInUser = session?.user;
+  const router = useRouter();
+
   const form = useForm<UpdateUserProfileValues>({
     resolver: zodResolver(updateUserProfileSchema),
     defaultValues: {
@@ -67,7 +73,7 @@ export default function EditProfileDialog({
   });
 
   async function onSubmit(values: UpdateUserProfileValues) {
-    if (!isUnique) {
+    if (!isUnique && username !== loggedInUser?.username) {
       form.setError("username", { message: "Username is already taken" });
       return;
     }
@@ -77,6 +83,7 @@ export default function EditProfileDialog({
       {
         onSuccess: () => {
           onOpenChange(false);
+          if (username !== loggedInUser?.username) router.push("/");
         },
       },
     );
@@ -122,12 +129,13 @@ export default function EditProfileDialog({
                   </FormControl>
                   {isCheckingUsername ? (
                     <p className="text-xs">Checking username...</p>
-                  ) : isUnique === false ? (
+                  ) : isUnique === false &&
+                    username != loggedInUser?.username ? (
                     <p className="text-xs text-destructive">
                       Username is already taken
                     </p>
                   ) : null}
-                  <FormMessage />
+                  {/* <FormMessage /> */}
                 </FormItem>
               )}
             />

@@ -177,13 +177,15 @@ export function CreatePostDialog() {
                       <BsIncognito className="size-5" />
                     </Button>
                     <DialogClose
-                      disabled={!editor?.getText().trim()}
+                      disabled={!editor?.getText().trim() || categoryId === ""}
                       className="flex w-full flex-row"
                     >
                       <LoadingButton
                         loading={mutation.isPending}
                         onClick={onSubmit}
-                        disabled={!editor?.getText().trim()}
+                        disabled={
+                          !editor?.getText().trim() || categoryId === ""
+                        }
                         variant={"outline"}
                         className="w-full rounded-l-none"
                       >

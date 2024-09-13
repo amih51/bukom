@@ -16,7 +16,7 @@ export default function ProfileFeed({ userId }: { userId: string }) {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["feed", "profile"],
+    queryKey: ["feed", userId],
     queryFn: ({ pageParam }) =>
       kyInstance
         .get("/api/post/profile-feed", {

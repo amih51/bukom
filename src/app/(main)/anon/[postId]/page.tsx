@@ -82,7 +82,7 @@ export default async function Page({
         <DisplayPost post={post} />
         <div className="flex w-full flex-col gap-6 border-t py-6">
           <p className="text-xl">Comments</p>
-          <ReplyEditor parentId={postId} />
+          <ReplyEditor parentId={postId} categoryId={post.categoryId} />
         </div>
       </div>
       <div className="border-b">

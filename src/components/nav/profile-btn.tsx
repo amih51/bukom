@@ -38,6 +38,7 @@ import {
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
 import { useQueryClient } from "@tanstack/react-query";
+import Rules from "../rules";
 
 export default function ProfileButton() {
   const { data: session } = useSession();
@@ -69,6 +70,7 @@ export default function ProfileButton() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
+            <Rules button={true} />
             <DropdownMenuSub>
               <DropdownMenuSubTrigger className="cursor-pointer">
                 <PiCircleHalfFill className="mr-2 size-4" />

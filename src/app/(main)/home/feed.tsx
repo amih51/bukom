@@ -6,8 +6,13 @@ import kyInstance from "@/lib/ky";
 import { PostsPage } from "@/lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { LuLoader } from "react-icons/lu";
+import Rules from "../../../components/rules";
+import { useSearchParams } from "next/navigation";
 
 export default function Feed() {
+  const searchParams = useSearchParams();
+  const justLoggedIn = searchParams.get("justLoggedIn") === "true";
+
   const {
     data,
     fetchNextPage,
@@ -44,6 +49,7 @@ export default function Feed() {
           <DisplayPost post={post} />
         </div>
       ))}
+      <Rules defaultOpen={justLoggedIn} />
       {isFetchingNextPage && <LuLoader className="mx-auto my-3 animate-spin" />}
     </InfiniteScrollContainer>
   );

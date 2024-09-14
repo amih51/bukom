@@ -41,20 +41,21 @@ export default function DeletePostDialog({
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="gap-2">
-          <Button
+          <LoadingButton
             variant="destructive"
             onClick={() => mutation.mutate(post.id, { onSuccess: onClose })}
-          >
-            Delete
-          </Button>
-          <LoadingButton
-            variant="outline"
-            onClick={onClose}
             disabled={mutation.isPending}
             loading={mutation.isPending}
           >
-            Cancel
+            Delete
           </LoadingButton>
+          <Button
+            variant="outline"
+            onClick={onClose}
+            disabled={mutation.isPending}
+          >
+            Cancel
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

@@ -20,12 +20,13 @@ import Link from "next/link";
 
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
-import DeleteButton from "./delete/delete-btn";
+import DeleteButton from "./option/option-btn";
 import { useSession } from "next-auth/react";
 import VoteButton from "./vote-btn";
 import BookmarkButton from "./bookmark-btn";
 import { formatRelativeDate } from "@/lib/utils";
 import { BsIncognito } from "react-icons/bs";
+import OptionButton from "./option/option-btn";
 const lowlight = createLowlight(all);
 
 export default function DisplayPost({ post }: { post: PostData }) {
@@ -58,6 +59,8 @@ export default function DisplayPost({ post }: { post: PostData }) {
     (vote) => vote.voteType === false,
   ).length;
   const voteDifference = trueVotes - falseVotes;
+
+  if (post._count.reports > 30) return <></>;
 
   return (
     <div className="group/del flex flex-col border-t py-4 sm:border-l-0">
@@ -127,9 +130,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
           </div>
         )}
         <div className="flex flex-row">
-          {post.userId === session.data?.user.id && (
-            <DeleteButton post={post} />
-          )}
+          <OptionButton post={post} />
         </div>
       </div>
       <div className="ml-2 w-fit rounded-sm bg-kuning px-2 py-1 text-xs text-black">

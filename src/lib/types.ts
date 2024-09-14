@@ -31,9 +31,14 @@ const bookmarkSelect = {
   userId: true,
 };
 
+const ReportSelect = {
+  userId: true,
+};
+
 const countPostSelect = {
   replies: true,
   votes: true,
+  reports: true,
 };
 
 const countUserSelect = {
@@ -48,6 +53,7 @@ export const PostDataInclude = {
   category: { select: categorySelect },
   votes: { select: votesSelect },
   bookmarks: { select: bookmarkSelect },
+  reports: { select: ReportSelect },
   _count: { select: countPostSelect },
 } satisfies Prisma.PostInclude;
 
@@ -87,6 +93,10 @@ export interface VoteInfo {
 
 export interface BookmarkInfo {
   isBookmarkedByUser: boolean;
+}
+
+export interface ReportInfo {
+  isReportedByUser: boolean;
 }
 
 export interface FollowerInfo {

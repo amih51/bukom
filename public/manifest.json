@@ -3,12 +3,12 @@
   "short_name": "HMIFess",
   "start_url": "/",
   "display": "standalone",
-  "description": "",
+  "description": "HMIFess App",
   "lang": "en",
   "dir": "auto",
   "theme_color": "#000000",
   "background_color": "#000000",
-  "orientation": "any",
+  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

@@ -7,7 +7,7 @@ export async function GET(req: NextRequest) {
   try {
     const url = new URL(req.url);
     const cursor = url.searchParams.get("cursor") || undefined;
-    const pageSize = 10;
+    const pageSize = 5;
     const session = await getSession();
 
     if (!session) {
@@ -16,18 +16,16 @@ export async function GET(req: NextRequest) {
       });
     }
 
-    const category = url.searchParams.get("category");
-    if (!category) {
-      return new Response(JSON.stringify({ error: "category is required" }), {
+    const parentId = url.searchParams.get("parentId");
+    if (!parentId) {
+      return new Response(JSON.stringify({ error: "parentId is required" }), {
         status: 400,
       });
     }
 
     const posts = await prisma.post.findMany({
       where: {
-        category: {
-          name: category,
-        },
+        parentId,
       },
       include: PostDataInclude,
       orderBy: {

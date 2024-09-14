@@ -7,7 +7,7 @@ import { PostsPage } from "@/lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { LuLoader } from "react-icons/lu";
 
-export default function CategoryFeed({ category }: { category: string }) {
+export default function Replies({ postId }: { postId: string }) {
   const {
     data,
     fetchNextPage,
@@ -16,12 +16,12 @@ export default function CategoryFeed({ category }: { category: string }) {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["feed", category],
+    queryKey: ["feed", "replies", postId],
     queryFn: ({ pageParam }) =>
       kyInstance
-        .get("/api/post/category", {
+        .get("/api/post/replies", {
           searchParams: {
-            category,
+            parentId: postId,
             ...(pageParam && { cursor: pageParam }),
           },
         })
@@ -29,6 +29,7 @@ export default function CategoryFeed({ category }: { category: string }) {
     initialPageParam: null as string | null,
     getNextPageParam: (lastPage) => lastPage.nextCursor,
   });
+
   const posts = data?.pages.flatMap((page) => page.posts) || [];
 
   return status === "pending" ? (

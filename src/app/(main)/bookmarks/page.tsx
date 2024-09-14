@@ -14,6 +14,9 @@ export default async function Page() {
 
   return (
     <main className="flex w-full flex-col">
+      <div className="mb-2">
+        <h1 className="mt-6 text-xl font-bold">Bookmarks</h1>
+      </div>
       <Bookmarks />
     </main>
   );

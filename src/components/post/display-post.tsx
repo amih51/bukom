@@ -71,7 +71,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
               <BsIncognito className="size-8" />
             </div>
             <div className="flex w-full flex-col overflow-hidden pl-2">
-              <p className="truncate text-lg">Warga Biasa</p>
+              <p className="truncate text-lg font-semibold">Warga Biasa</p>
               {post.parentId && (
                 <div className="flex flex-row overflow-hidden text-sm">
                   <span className="mr-2 opacity-50">replying to</span>
@@ -104,7 +104,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
                 href={`/${user.username}`}
                 className="flex w-fit flex-row items-center overflow-hidden"
               >
-                <p className="truncate text-lg">{user?.name}</p>
+                <p className="truncate text-lg font-semibold">{user?.name}</p>
                 <p className="truncate pl-2 text-sm opacity-50">
                   @{user?.username}
                 </p>

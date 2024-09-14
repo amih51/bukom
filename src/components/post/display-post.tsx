@@ -132,14 +132,14 @@ export default function DisplayPost({ post }: { post: PostData }) {
           )}
         </div>
       </div>
-      <div className="w-fit rounded-sm bg-kuning px-2 py-1 text-xs">
+      <div className="ml-2 w-fit rounded-sm bg-kuning px-2 py-1 text-xs text-black">
         {post.category.name}
       </div>
       <EditorContent
         editor={editor}
         className="max-h-[50vh] min-h-16 overflow-scroll p-2 scrollbar scrollbar-thumb-current scrollbar-w-1 hover:scrollbar-thumb-foreground/50"
       ></EditorContent>
-      <div className="flex flex-row gap-5 overflow-hidden">
+      <div className="flex flex-row gap-5 overflow-hidden pl-2">
         <VoteButton
           postId={post.id}
           initialState={{

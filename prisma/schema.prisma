@@ -70,8 +70,8 @@ model VerificationToken {
 model Post {
   id            String          @id @default(cuid())
   content       String
-  userId        String
   isAnon        Boolean         @default(false)
+  userId        String
   user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   parentId      String?         
   parent        Post?           @relation("PostReplies", fields: [parentId], references: [id])

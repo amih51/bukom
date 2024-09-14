@@ -7,8 +7,11 @@ import { notFound } from "next/navigation";
 import FollowButton from "./follow-btn";
 import { FollowerInfo, UserInclude } from "@/lib/types";
 import EditProfileButton from "./edit-profile-btn";
+import { formatNumber } from "@/lib/utils";
+import { cache } from "react";
+import FollowerCount from "@/components/followers-count";
 
-const getUser = async (username: string) => {
+const getUser = cache(async (username: string) => {
   const user = await prisma.user.findFirst({
     where: {
       username: {
@@ -20,7 +23,7 @@ const getUser = async (username: string) => {
   });
 
   return user;
-};
+});
 
 export function generateMetadata({
   params: { username },
@@ -72,8 +75,11 @@ export default async function Page({
             </div>
           </div>
           <div className="text-sm opacity-60">
-            menfess: {user._count.posts} follower: {user._count.follower}{" "}
-            following: {user._count.following}
+            menfess: <span className="font-semibold">{user._count.posts}</span>{" "}
+            follower:{" "}
+            <FollowerCount userId={user.id} initialState={followerInfo} />{" "}
+            following:{" "}
+            <span className="font-semibold">{user._count.following}</span>
           </div>
           <div className="size-full">{user.bio}</div>
         </div>

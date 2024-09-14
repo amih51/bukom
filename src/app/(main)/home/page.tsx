@@ -1,7 +1,7 @@
 import { Metadata } from "next";
-import Feed from "./feed";
 import { Suspense } from "react";
 import { LuLoader } from "react-icons/lu";
+import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
   title: {
@@ -9,6 +9,10 @@ export const metadata: Metadata = {
     default: "Home",
   },
 };
+
+const Feed = dynamic(() => import("./feed"), {
+  ssr: false,
+});
 
 export default function Page() {
   return (

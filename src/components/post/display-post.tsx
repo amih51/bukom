@@ -133,7 +133,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
           <OptionButton post={post} />
         </div>
       </div>
-      <div className="ml-2 w-fit rounded-sm bg-kuning px-2 py-1 text-xs text-black">
+      <div className="ml-2 w-fit rounded-sm bg-kuning px-2 py-1 text-xs font-bold text-black">
         {post.category.name}
       </div>
       <EditorContent

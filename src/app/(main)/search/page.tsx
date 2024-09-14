@@ -35,11 +35,15 @@ export default async function Page({
       <div className="my-2 rounded-xl bg-secondary">
         <SearchField />
       </div>
-      {filteredPosts.map((post) => (
-        <div key={post.id} className="mb-4 last:mb-0">
-          <DisplayPost post={post} />
-        </div>
-      ))}
+      {filteredPosts.length > 0 ? (
+        filteredPosts.map((post) => (
+          <div key={post.id} className="mb-4 last:mb-0">
+            <DisplayPost post={post} />
+          </div>
+        ))
+      ) : (
+        <div className="font-bold">No results for &quot;{q}&quot;</div>
+      )}
     </main>
   );
 }

@@ -42,6 +42,11 @@ export default function ProfileFeed({ userId }: { userId: string }) {
     <p className="text-center text-destructive">
       An error occured while loading page
     </p>
+  ) : posts.length === 0 ? (
+    <p className="text-center font-semibold">
+      Share your thoughts with a post to spark conversations and connect with
+      others in the community.
+    </p>
   ) : (
     <InfiniteScrollContainer
       onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}

@@ -41,6 +41,10 @@ export default function Bookmarks() {
     <p className="text-center text-destructive">
       An error occured while loading page
     </p>
+  ) : posts.length === 0 ? (
+    <p className="text-center font-semibold">
+      Bookmark posts to easily find them again in the future.
+    </p>
   ) : (
     <InfiniteScrollContainer
       onBottomReached={() => hasNextPage && !isFetching && fetchNextPage()}

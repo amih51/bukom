@@ -62,7 +62,7 @@ export default async function Page({
         </Avatar>
         <div className="ml-2 flex w-full flex-col overflow-hidden">
           <div className="flex w-full flex-row justify-between">
-            <div className="flex flex-col text-left">
+            <div className="flex flex-col truncate text-left">
               <p className="truncate text-lg">{user?.name}</p>
               <p className="truncate text-sm opacity-50">@{user?.username}</p>
             </div>

@@ -33,8 +33,25 @@ export async function GET(req: NextRequest) {
     const nextCursor =
       bookmarks.length > pageSize ? bookmarks[pageSize].id : null;
 
+    const posts = bookmarks.map((bookmark) => bookmark.post).slice(0, pageSize);
+
+    const sanitizedPosts = posts.slice(0, pageSize).map((post) => ({
+      ...post,
+      userId:
+        post.isAnon && post.userId !== session.user.id ? "anon" : post.userId,
+      user:
+        post.isAnon && post.userId !== session.user.id
+          ? {
+              id: "anon",
+              username: "anon",
+              name: "anon",
+              image: null,
+            }
+          : post.user,
+    }));
+
     const data: PostsPage = {
-      posts: bookmarks.map((bookmark) => bookmark.post).slice(0, pageSize),
+      posts: sanitizedPosts,
       nextCursor,
     };
 

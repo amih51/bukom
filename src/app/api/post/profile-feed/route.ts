@@ -41,8 +41,23 @@ export async function GET(
 
     const nextCursor = posts.length > pageSize ? posts[pageSize].id : null;
 
+    const sanitizedPosts = posts.slice(0, pageSize).map((post) => ({
+      ...post,
+      userId:
+        post.isAnon && post.userId !== session.user.id ? "anon" : post.userId,
+      user:
+        post.isAnon && post.userId !== session.user.id
+          ? {
+              id: "anon",
+              username: "anon",
+              name: "anon",
+              image: null,
+            }
+          : post.user,
+    }));
+
     const data: PostsPage = {
-      posts: posts.slice(0, pageSize),
+      posts: sanitizedPosts,
       nextCursor,
     };
 

@@ -25,9 +25,9 @@ export async function GET(req: NextRequest) {
     const sanitizedPosts = posts.slice(0, pageSize).map((post) => ({
       ...post,
       userId:
-        post.isAnon && post.userId === session.user.id ? "anon" : post.userId,
+        post.isAnon && post.userId !== session.user.id ? "anon" : post.userId,
       user:
-        post.isAnon && post.userId === session.user.id
+        post.isAnon && post.userId !== session.user.id
           ? {
               id: "anon",
               username: "anon",

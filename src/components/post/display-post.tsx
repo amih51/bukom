@@ -68,7 +68,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
         {post.isAnon ? (
           <div className="flex w-full flex-row overflow-hidden">
             <div className="flex items-center p-2">
-              <BsIncognito className="size-8" />
+              <BsIncognito className="size-12" />
             </div>
             <div className="flex w-full flex-col overflow-hidden pl-2">
               <p className="truncate text-lg font-semibold">Warga Biasa</p>
@@ -94,7 +94,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
         ) : (
           <div className="flex w-full flex-row overflow-hidden">
             <Link href={`/${user.username}`} className="flex items-center p-2">
-              <Avatar>
+              <Avatar className="size-12">
                 <AvatarImage src={user?.image || ""} />
                 <AvatarFallback>{user.username}</AvatarFallback>
               </Avatar>

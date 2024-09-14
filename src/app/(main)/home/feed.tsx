@@ -8,6 +8,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { LuLoader } from "react-icons/lu";
 import Rules from "../../../components/rules";
 import { useSearchParams } from "next/navigation";
+import PostSkeleton from "@/components/post/post-skeleton";
 
 export default function Feed() {
   const searchParams = useSearchParams();
@@ -35,7 +36,11 @@ export default function Feed() {
   const posts = data?.pages.flatMap((page) => page.posts) || [];
 
   return status === "pending" ? (
-    <LuLoader className="mx-auto my-3 animate-spin" />
+    <div className="mt-2">
+      <PostSkeleton />
+      <PostSkeleton />
+      <PostSkeleton />
+    </div>
   ) : status === "error" ? (
     <p className="text-center text-destructive">
       An error occured while loading page

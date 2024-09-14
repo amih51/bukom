@@ -47,7 +47,7 @@ export default function Rules({
       </Button>
 
       <AlertDialog open={open} onOpenChange={setOpen}>
-        <AlertDialogContent>
+        <AlertDialogContent className="w-[94%]">
           <AlertDialogHeader>
             <AlertDialogTitle>Community Rules</AlertDialogTitle>
             <AlertDialogDescription>

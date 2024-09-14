@@ -1,19 +1,16 @@
 import DisplayPost from "@/components/post/display-post";
 import ReplyEditor from "@/components/post/editor/reply-editor";
 import { prisma } from "@/lib/prisma";
-import {
-  PostData,
-  PostDataInclude,
-  PostWithReplyDataInclude,
-} from "@/lib/types";
+import { PostData, PostDataInclude } from "@/lib/types";
 import { Metadata } from "next";
+import Replies from "../../[username]/post/[postId]/replies";
 
 const getPost = async (postId: string) => {
   const post = await prisma.post.findUnique({
     where: {
       id: postId,
     },
-    include: PostWithReplyDataInclude,
+    include: PostDataInclude,
   });
 
   return post;
@@ -26,7 +23,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const post = await getPost(postId);
   return {
-    title: `${post?.user.username}: ${post?.content ?? "No content"}`,
+    title: `Warga: ${post?.content ?? "No content"}`,
   };
 }
 
@@ -86,11 +83,7 @@ export default async function Page({
         </div>
       </div>
       <div className="border-b">
-        {post.replies.map((post) => (
-          <div key={post.id} className="mb-4">
-            <DisplayPost post={post} />
-          </div>
-        ))}
+        <Replies postId={postId} />
       </div>
     </main>
   );

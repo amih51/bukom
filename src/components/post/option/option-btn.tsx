@@ -30,7 +30,7 @@ export default function OptionButton({ post }: { post: PostData }) {
               onClick={() => setShowDeleteDialog(true)}
               className="cursor-pointer"
             >
-              <span className="flex items-center gap-3 text-destructive">
+              <span className="flex items-center gap-1">
                 <PiTrash className="size-4" />
                 Delete
               </span>

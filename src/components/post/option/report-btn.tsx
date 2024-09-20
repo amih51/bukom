@@ -58,15 +58,15 @@ export default function ReportButton({
     <Button
       onClick={() => mutate()}
       variant={"ghost"}
-      className="size-full flex-shrink-0 p-2 text-destructive hover:text-destructive"
+      className="size-full flex-shrink-0 p-2"
     >
       {data?.isReportedByUser === true ? (
-        <div className="flex flex-row gap-3">
+        <div className="flex flex-row items-center gap-1">
           <MdReport className="size-4" />
           Unreport menfess
         </div>
       ) : (
-        <div className="flex flex-row gap-3">
+        <div className="flex flex-row items-center gap-1">
           <MdOutlineReport className="size-4" />
           Report menfess
         </div>

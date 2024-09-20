@@ -21,7 +21,6 @@ import { Button } from "@/components/ui/button";
 import { GoPencil } from "react-icons/go";
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogTitle,
   DialogTrigger,
@@ -56,6 +55,7 @@ export function CreatePostDialog() {
   const [isAnon, setIsAnon] = useState(false);
   const [categoryId, setCategoryId] = useState<string>("");
   const [isOpen, setIsOpen] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const query = useQuery({
     queryKey: ["category"],
@@ -101,13 +101,14 @@ export function CreatePostDialog() {
       {
         onSuccess: () => {
           editor?.commands.clearContent();
+          setIsDialogOpen(false);
         },
       },
     );
   }
 
   return (
-    <Dialog>
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
         <Button
           variant={"default"}
@@ -122,7 +123,7 @@ export function CreatePostDialog() {
           <div className="mx-6">
             <DialogTitle className="mb-5 text-xl">Create Menfess</DialogTitle>
             <div className="flex w-full flex-row">
-              <Avatar className="mr-5 size-12">
+              <Avatar className="mr-5 hidden size-12 sm:block">
                 <AvatarImage src={user?.image || ""} />
                 <AvatarFallback>{user?.username}</AvatarFallback>
               </Avatar>
@@ -176,22 +177,15 @@ export function CreatePostDialog() {
                     >
                       <BsIncognito className="size-5" />
                     </Button>
-                    <DialogClose
+                    <LoadingButton
+                      loading={mutation.isPending}
+                      onClick={onSubmit}
                       disabled={!editor?.getText().trim() || categoryId === ""}
-                      className="flex w-full flex-row"
+                      variant={"outline"}
+                      className="ml-0 w-full rounded-l-none"
                     >
-                      <LoadingButton
-                        loading={mutation.isPending}
-                        onClick={onSubmit}
-                        disabled={
-                          !editor?.getText().trim() || categoryId === ""
-                        }
-                        variant={"outline"}
-                        className="w-full rounded-l-none"
-                      >
-                        Submit
-                      </LoadingButton>
-                    </DialogClose>
+                      Submit
+                    </LoadingButton>
                   </div>
                 </div>
               </div>

@@ -11,17 +11,15 @@ import {
 } from "@/components/ui/dialog";
 import { useDeletePostMutation } from "./mutations";
 
-interface DeletePostDialogProps {
-  post: PostData;
-  open: boolean;
-  onClose: () => void;
-}
-
 export default function DeletePostDialog({
   post,
   open,
   onClose,
-}: DeletePostDialogProps) {
+}: {
+  post: PostData;
+  open: boolean;
+  onClose: () => void;
+}) {
   const mutation = useDeletePostMutation();
 
   function handleOpenChange(open: boolean) {

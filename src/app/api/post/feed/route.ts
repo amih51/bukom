@@ -12,6 +12,9 @@ export async function GET(req: NextRequest) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
 
     const posts = await prisma.post.findMany({
+      where: {
+        parentId: null,
+      },
       include: PostDataInclude,
       orderBy: {
         createdAt: "desc",

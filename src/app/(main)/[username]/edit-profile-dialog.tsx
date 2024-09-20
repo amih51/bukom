@@ -91,7 +91,7 @@ export default function EditProfileDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[96%]">
+      <DialogContent className="max-w-[96%] sm:w-4/5 lg:w-1/2">
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
         </DialogHeader>

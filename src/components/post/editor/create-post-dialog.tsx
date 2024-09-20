@@ -136,7 +136,7 @@ export function CreatePostDialog() {
                     <PopoverTrigger asChild>
                       <Button
                         variant="outline"
-                        className="w-full justify-start"
+                        className="w-full justify-start truncate"
                       >
                         {categories.find(
                           (category) => category.id === categoryId,

@@ -61,15 +61,6 @@ export type PostData = Prisma.PostGetPayload<{
   include: typeof PostDataInclude;
 }>;
 
-export const PostWithReplyDataInclude = {
-  ...PostDataInclude,
-  replies: { include: PostDataInclude },
-} satisfies Prisma.PostInclude;
-
-export type PostWithReply = Prisma.PostGetPayload<{
-  include: typeof PostWithReplyDataInclude;
-}>;
-
 export interface PostsPage {
   posts: PostData[];
   nextCursor: string | null;

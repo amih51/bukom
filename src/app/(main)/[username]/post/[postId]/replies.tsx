@@ -20,7 +20,7 @@ export default function Replies({ postId }: { postId: string }) {
     queryKey: ["feed", "replies", postId],
     queryFn: ({ pageParam }) =>
       kyInstance
-        .get("/api/post/replies", {
+        .get(`/api/post/${postId}/reply`, {
           searchParams: {
             parentId: postId,
             ...(pageParam && { cursor: pageParam }),

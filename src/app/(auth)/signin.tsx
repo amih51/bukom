@@ -33,21 +33,23 @@ export default function SignIn() {
           and every post can spark a conversation.
         </p>
       </div>
-      <Button
-        variant={"ghost"}
-        onClick={() =>
-          signIn("google", {
-            callbackUrl: "/home?justLoggedIn=true",
-          })
-        }
-        className="flex w-1/2 flex-row items-center border p-2"
-      >
-        <FaGoogle size={16} className="mr-2" />
-        <p>Sign In</p>
-      </Button>
-      {error && (
-        <p className="text-center font-bold text-destructive">{error}</p>
-      )}
+      <div className="flex w-full flex-col items-center">
+        <Button
+          variant={"ghost"}
+          onClick={() =>
+            signIn("google", {
+              callbackUrl: "/home?justLoggedIn=true",
+            })
+          }
+          className="flex w-1/2 flex-row items-center border p-2"
+        >
+          <FaGoogle size={16} className="mr-2" />
+          <p>Sign In</p>
+        </Button>
+        {error && (
+          <p className="text-center font-bold text-destructive">{error}</p>
+        )}
+      </div>
     </div>
   );
 }

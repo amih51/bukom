@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma";
 import { PostDataInclude, PostsPage } from "@/lib/types";
 import { NextRequest } from "next/server";
 
+export const runtime = "edge";
+
 export async function GET(
   req: NextRequest,
   { params }: { params: { userId: string } },
@@ -30,6 +32,10 @@ export async function GET(
       session.user.id === userId ? { userId } : { userId, isAnon: false };
 
     const posts = await prisma.post.findMany({
+      cacheStrategy: {
+        ttl: 60,
+        swr: 10,
+      },
       where: whereCondition,
       include: PostDataInclude,
       orderBy: {

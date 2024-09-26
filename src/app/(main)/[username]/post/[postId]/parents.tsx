@@ -21,13 +21,7 @@ export default function Parents({ postId }: { postId: string }) {
 
   const posts = data?.posts || [];
 
-  return status === "pending" ? (
-    <div className="mx-6 mt-2 border-x">
-      <div className="mb-4 last:mb-0 last:pb-1">
-        <PostSkeleton />
-      </div>
-    </div>
-  ) : status === "error" ? (
+  return status === "error" ? (
     <p className="text-center text-destructive">
       An error occurred while loading page
     </p>

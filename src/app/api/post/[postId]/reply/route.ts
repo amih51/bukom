@@ -31,7 +31,9 @@ export async function GET(req: NextRequest) {
       },
       include: PostDataInclude,
       orderBy: {
-        createdAt: "desc",
+        votes: {
+          _count: "desc",
+        },
       },
       take: pageSize + 1,
       cursor: cursor ? { id: cursor } : undefined,

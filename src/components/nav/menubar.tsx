@@ -14,14 +14,14 @@ import {
   RiUserFill,
   RiUserLine,
 } from "react-icons/ri";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { CreatePostDialog } from "../post/editor/create-post-dialog";
 import Logo from "../logo";
+import Link from "next/link";
 
 const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
   ({ className }, ref) => {
     const { data: session } = useSession();
-    const router = useRouter();
     const user = session?.user;
 
     const pathName = usePathname();
@@ -31,67 +31,88 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
         <div className="flex w-full flex-col justify-between sm:w-fit lg:w-full">
           <div className="flex w-full flex-row justify-between px-6 sm:flex-col sm:gap-3 sm:px-0">
             <Button
-              onClick={() => router.push("/")}
               variant={"ghost"}
               className="my-6 hidden h-fit items-start text-2xl font-bold hover:bg-transparent lg:block"
             >
-              <div className="m-0 flex items-center justify-center">
+              <Link className="m-0 flex items-center justify-center" href={"/"}>
                 <Logo />
-              </div>
+              </Link>
             </Button>
             <Button
-              onClick={() => router.push("/home")}
-              variant={pathName === "/home" ? "secondary" : "ghost"}
+              variant={"ghost"}
               className="flex h-fit w-fit items-center justify-start text-lg lg:w-full"
             >
-              {pathName === "/home" ? (
-                <RiHomeFill className="size-6 flex-shrink-0" />
-              ) : (
-                <RiHomeLine className="size-6 flex-shrink-0" />
-              )}
+              <Link
+                className={`flex size-full ${
+                  pathName === "/home" ? "font-bold" : ""
+                }`}
+                href={"/home"}
+              >
+                {pathName === "/home" ? (
+                  <RiHomeFill className="size-6 flex-shrink-0" />
+                ) : (
+                  <RiHomeLine className="size-6 flex-shrink-0" />
+                )}
 
-              <p className="ml-2 hidden truncate lg:inline">Home</p>
+                <p className="ml-2 hidden truncate lg:inline">Home</p>
+              </Link>
             </Button>
             <Button
-              onClick={() => router.push("/search")}
-              variant={pathName === "/search" ? "secondary" : "ghost"}
+              variant={"ghost"}
               className="flex h-fit w-fit items-center justify-start text-lg lg:w-full"
             >
-              {pathName === "/search" ? (
-                <RiSearchFill className="size-6 flex-shrink-0" />
-              ) : (
-                <RiSearchLine className="size-6 flex-shrink-0" />
-              )}
+              <Link
+                className={`flex size-full ${
+                  pathName === "/search" ? "font-bold" : ""
+                }`}
+                href={"/search"}
+              >
+                {pathName === "/search" ? (
+                  <RiSearchFill className="size-6 flex-shrink-0" />
+                ) : (
+                  <RiSearchLine className="size-6 flex-shrink-0" />
+                )}
 
-              <p className="ml-2 hidden truncate lg:inline">Search</p>
+                <p className="ml-2 hidden truncate lg:inline">Search</p>
+              </Link>
             </Button>
             <Button
-              onClick={() => router.push("/bookmarks")}
-              variant={pathName === "/bookmarks" ? "secondary" : "ghost"}
+              variant={"ghost"}
               className="flex h-fit w-fit items-center justify-start text-lg lg:w-full"
             >
-              {pathName === "/bookmarks" ? (
-                <RiBookmarkFill className="size-6 flex-shrink-0" />
-              ) : (
-                <RiBookmarkLine className="size-6 flex-shrink-0" />
-              )}
+              <Link
+                className={`flex size-full ${
+                  pathName === "/bookmarks" ? "font-bold" : ""
+                }`}
+                href={"/bookmarks"}
+              >
+                {pathName === "/bookmarks" ? (
+                  <RiBookmarkFill className="size-6 flex-shrink-0" />
+                ) : (
+                  <RiBookmarkLine className="size-6 flex-shrink-0" />
+                )}
 
-              <p className="ml-2 hidden truncate lg:inline">Bookmarks</p>
+                <p className="ml-2 hidden truncate lg:inline">Bookmarks</p>
+              </Link>
             </Button>
             <Button
-              onClick={() => router.push(`/${user?.username}`)}
-              variant={
-                pathName === `/${user?.username}` ? "secondary" : "ghost"
-              }
+              variant={"ghost"}
               className="flex h-fit w-fit items-center justify-start text-lg lg:w-full"
             >
-              {pathName === `/${user?.username}` ? (
-                <RiUserFill className="size-6 flex-shrink-0" />
-              ) : (
-                <RiUserLine className="size-6 flex-shrink-0" />
-              )}
+              <Link
+                className={`flex size-full ${
+                  pathName === `/${user?.username}` ? "font-bold" : ""
+                }`}
+                href={`/${user?.username}`}
+              >
+                {pathName === `/${user?.username}` ? (
+                  <RiUserFill className="size-6 flex-shrink-0" />
+                ) : (
+                  <RiUserLine className="size-6 flex-shrink-0" />
+                )}
 
-              <p className="ml-2 hidden truncate lg:inline">Profile</p>
+                <p className="ml-2 hidden truncate lg:inline">Profile</p>
+              </Link>
             </Button>
             <CreatePostDialog />
           </div>

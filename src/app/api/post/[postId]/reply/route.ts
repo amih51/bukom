@@ -39,22 +39,37 @@ export async function GET(req: NextRequest) {
       cursor: cursor ? { id: cursor } : undefined,
     });
 
-    const nextCursor = posts.length > pageSize ? posts[pageSize].id : null;
+    const processedPosts = posts.map((post) => {
+      const trueVotes = post.votes.filter(
+        (vote) => vote.voteType === true,
+      ).length;
+      const falseVotes = post.votes.filter(
+        (vote) => vote.voteType === false,
+      ).length;
+      const voteDifference = trueVotes - falseVotes;
 
-    const sanitizedPosts = posts.slice(0, pageSize).map((post) => ({
-      ...post,
-      userId:
-        post.isAnon && post.userId !== session.user.id ? "anon" : post.userId,
-      user:
-        post.isAnon && post.userId !== session.user.id
-          ? {
-              id: "anon",
-              username: "anon",
-              name: "anon",
-              image: null,
-            }
-          : post.user,
-    }));
+      return {
+        ...post,
+        voteDifference,
+        userId:
+          post.isAnon && post.userId !== session.user.id ? "anon" : post.userId,
+        user:
+          post.isAnon && post.userId !== session.user.id
+            ? {
+                id: "anon",
+                username: "anon",
+                name: "anon",
+                image: null,
+              }
+            : post.user,
+      };
+    });
+
+    processedPosts.sort((a, b) => b.voteDifference - a.voteDifference);
+
+    const nextCursor =
+      processedPosts.length > pageSize ? processedPosts[pageSize].id : null;
+    const sanitizedPosts = processedPosts.slice(0, pageSize);
 
     const data: PostsPage = {
       posts: sanitizedPosts,

@@ -12,7 +12,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-30 flex h-14 flex-row items-center justify-between border-b-2 bg-background px-6 lg:hidden">
       <div className="flex h-full w-28 flex-wrap items-center lg:w-[calc(20%+4rem)]">
-        <Link href="/" className="text-2xl font-bold">
+        <Link aria-label="Logo" href="/" className="text-2xl font-bold">
           <div className="w-full">
             <Logo />
           </div>

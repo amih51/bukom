@@ -111,6 +111,7 @@ export function CreatePostDialog() {
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
         <Button
+          aria-label="Create Post"
           variant={"default"}
           className="flex h-fit w-fit items-center justify-start lg:w-full"
         >

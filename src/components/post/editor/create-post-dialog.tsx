@@ -124,11 +124,38 @@ export function CreatePostDialog() {
           <div className="mx-6">
             <DialogTitle className="mb-5 text-xl">Create Menfess</DialogTitle>
             <div className="flex w-full flex-row">
-              <Avatar className="mr-5 hidden size-12 sm:block">
-                <AvatarImage src={user?.image || ""} />
-                <AvatarFallback>{user?.username}</AvatarFallback>
-              </Avatar>
+              {isAnon ? (
+                <BsIncognito className="mr-6 hidden size-12 sm:block" />
+              ) : (
+                <Avatar className="mr-5 hidden size-12 sm:block">
+                  <AvatarImage src={user?.image || ""} />
+                  <AvatarFallback>{user?.username}</AvatarFallback>
+                </Avatar>
+              )}
               <div className="flex w-full flex-col gap-5 overflow-auto">
+                <p className="sm:hidden">
+                  {isAnon ? (
+                    <div className="flex flex-row items-center">
+                      <BsIncognito className="mr-3 size-8" />
+                      <p className="truncate text-lg font-semibold">
+                        Warga Biasa
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="flex flex-row items-center">
+                      <Avatar className="mr-3 size-8">
+                        <AvatarImage src={user?.image || ""} />
+                        <AvatarFallback>{user?.username}</AvatarFallback>
+                      </Avatar>
+                      <p className="truncate text-lg font-semibold">
+                        {user?.name}
+                      </p>
+                      <p className="truncate pl-2 text-sm opacity-50">
+                        @{user?.username}
+                      </p>
+                    </div>
+                  )}
+                </p>
                 <EditorContent
                   editor={editor}
                   className="max-h-[75vh] min-h-52 overflow-auto rounded-lg border border-border p-2 scrollbar scrollbar-thumb-current scrollbar-w-1 hover:scrollbar-thumb-foreground/50"

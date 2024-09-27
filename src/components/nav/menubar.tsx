@@ -23,7 +23,6 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
   ({ className }, ref) => {
     const { data: session } = useSession();
     const user = session?.user;
-
     const pathName = usePathname();
 
     return (
@@ -37,90 +36,78 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
             >
               <Link
                 aria-label="Home"
-                className="m-0 flex items-center justify-center"
-                href={"/"}
+                className="flex items-center justify-center"
+                href="/"
               >
                 <Logo />
               </Link>
             </Button>
             <Button
+              asChild
               aria-label="Home"
               variant={"ghost"}
-              className="flex h-fit w-fit items-center justify-start text-lg lg:w-full"
+              className={`flex h-12 w-full items-center justify-start text-lg ${
+                pathName === "/home" ? "font-bold" : ""
+              }`}
             >
-              <Link
-                className={`flex size-full ${
-                  pathName === "/home" ? "font-bold" : ""
-                }`}
-                href={"/home"}
-              >
+              <Link href="/home">
                 {pathName === "/home" ? (
-                  <RiHomeFill className="size-6 flex-shrink-0" />
+                  <RiHomeFill className="mr-2 h-6 w-6" />
                 ) : (
-                  <RiHomeLine className="size-6 flex-shrink-0" />
+                  <RiHomeLine className="mr-2 h-6 w-6" />
                 )}
-
-                <p className="ml-2 hidden truncate lg:inline">Home</p>
+                <span className="hidden lg:inline">Home</span>
               </Link>
             </Button>
             <Button
+              asChild
               aria-label="Search"
               variant={"ghost"}
-              className="flex h-fit w-fit items-center justify-start text-lg lg:w-full"
+              className={`flex h-12 w-full items-center justify-start text-lg ${
+                pathName === "/search" ? "font-bold" : ""
+              }`}
             >
-              <Link
-                className={`flex size-full ${
-                  pathName === "/search" ? "font-bold" : ""
-                }`}
-                href={"/search"}
-              >
+              <Link href="/search">
                 {pathName === "/search" ? (
-                  <RiSearchFill className="size-6 flex-shrink-0" />
+                  <RiSearchFill className="mr-2 h-6 w-6" />
                 ) : (
-                  <RiSearchLine className="size-6 flex-shrink-0" />
+                  <RiSearchLine className="mr-2 h-6 w-6" />
                 )}
-
-                <p className="ml-2 hidden truncate lg:inline">Search</p>
+                <span className="hidden lg:inline">Search</span>
               </Link>
             </Button>
             <Button
+              asChild
               aria-label="Bookmarks"
               variant={"ghost"}
-              className="flex h-fit w-fit items-center justify-start text-lg lg:w-full"
+              className={`flex h-12 w-full items-center justify-start text-lg ${
+                pathName === "/bookmarks" ? "font-bold" : ""
+              }`}
             >
-              <Link
-                className={`flex size-full ${
-                  pathName === "/bookmarks" ? "font-bold" : ""
-                }`}
-                href={"/bookmarks"}
-              >
+              <Link href="/bookmarks">
                 {pathName === "/bookmarks" ? (
-                  <RiBookmarkFill className="size-6 flex-shrink-0" />
+                  <RiBookmarkFill className="mr-2 h-6 w-6" />
                 ) : (
-                  <RiBookmarkLine className="size-6 flex-shrink-0" />
+                  <RiBookmarkLine className="mr-2 h-6 w-6" />
                 )}
-
-                <p className="ml-2 hidden truncate lg:inline">Bookmarks</p>
+                <span className="hidden lg:inline">Bookmarks</span>
               </Link>
             </Button>
             <Button
+              asChild
               aria-label="Profile"
               variant={"ghost"}
-              className="flex h-fit w-fit items-center justify-start text-lg lg:w-full"
+              className={`flex h-12 w-full items-center justify-start text-lg ${
+                pathName === `/${user?.username}` ? "font-bold" : ""
+              }`}
             >
-              <Link
-                className={`flex size-full ${
-                  pathName === `/${user?.username}` ? "font-bold" : ""
-                }`}
-                href={`/${user?.username}`}
-              >
+              <Link href={`/${user?.username}`}>
                 {pathName === `/${user?.username}` ? (
-                  <RiUserFill className="size-6 flex-shrink-0" />
+                  <RiUserFill className="mr-2 h-6 w-6" />
                 ) : (
-                  <RiUserLine className="size-6 flex-shrink-0" />
+                  <RiUserLine className="mr-2 h-6 w-6" />
                 )}
-
-                <p className="ml-2 hidden truncate lg:inline">Profile</p>
+                <span className="hidden lg:inline">Profile</span>
               </Link>
             </Button>
             <CreatePostDialog />

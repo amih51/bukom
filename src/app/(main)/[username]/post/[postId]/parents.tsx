@@ -1,10 +1,10 @@
 "use client";
 
 import DisplayPost from "@/components/post/display-post";
-import PostSkeleton from "@/components/post/post-skeleton";
 import kyInstance from "@/lib/ky";
 import { PostsPage } from "@/lib/types";
 import { useQuery } from "@tanstack/react-query";
+import { LuLoader } from "react-icons/lu";
 
 export default function Parents({ postId }: { postId: string }) {
   const { data, status } = useQuery({
@@ -21,7 +21,9 @@ export default function Parents({ postId }: { postId: string }) {
 
   const posts = data?.posts || [];
 
-  return status === "error" ? (
+  return status === "pending" ? (
+    <LuLoader className="mx-auto my-3 animate-spin" />
+  ) : status === "error" ? (
     <p className="text-center text-destructive">
       An error occurred while loading page
     </p>

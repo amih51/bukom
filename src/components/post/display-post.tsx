@@ -151,6 +151,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
           }}
         />
         <Button
+          aria-label="Comments"
           variant={"secondary"}
           className="h-full w-fit flex-shrink-0 p-2"
         >

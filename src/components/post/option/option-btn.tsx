@@ -20,7 +20,11 @@ export default function OptionButton({ post }: { post: PostData }) {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant={"ghost"} className="h-fit flex-shrink-0 p-2">
+          <Button
+            aria-label="Options"
+            variant={"ghost"}
+            className="h-fit flex-shrink-0 p-2"
+          >
             <PiDotsThree className="size-5" />
           </Button>
         </DropdownMenuTrigger>

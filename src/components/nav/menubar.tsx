@@ -31,14 +31,20 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
         <div className="flex w-full flex-col justify-between sm:w-fit lg:w-full">
           <div className="flex w-full flex-row justify-between px-6 sm:flex-col sm:gap-3 sm:px-0">
             <Button
+              aria-label="HMIFess"
               variant={"ghost"}
               className="my-6 hidden h-fit items-start text-2xl font-bold hover:bg-transparent lg:block"
             >
-              <Link className="m-0 flex items-center justify-center" href={"/"}>
+              <Link
+                aria-label="Home"
+                className="m-0 flex items-center justify-center"
+                href={"/"}
+              >
                 <Logo />
               </Link>
             </Button>
             <Button
+              aria-label="Home"
               variant={"ghost"}
               className="flex h-fit w-fit items-center justify-start text-lg lg:w-full"
             >
@@ -58,6 +64,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               </Link>
             </Button>
             <Button
+              aria-label="Search"
               variant={"ghost"}
               className="flex h-fit w-fit items-center justify-start text-lg lg:w-full"
             >
@@ -77,6 +84,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               </Link>
             </Button>
             <Button
+              aria-label="Bookmarks"
               variant={"ghost"}
               className="flex h-fit w-fit items-center justify-start text-lg lg:w-full"
             >
@@ -96,6 +104,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               </Link>
             </Button>
             <Button
+              aria-label="Profile"
               variant={"ghost"}
               className="flex h-fit w-fit items-center justify-start text-lg lg:w-full"
             >

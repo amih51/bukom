@@ -20,7 +20,7 @@ export default function SearchField() {
   return (
     <form onSubmit={handleSubmit} method="GET" action="/search">
       <div className="flex flex-row items-center">
-        <Link href="/search" className="ml-3 flex size-fit">
+        <Link aria-label="Search" href="/search" className="ml-3 flex size-fit">
           <RiSearchLine className="size-6 flex-shrink-0" />
         </Link>
         <Input name="q" placeholder="Search" className="pl-2" />

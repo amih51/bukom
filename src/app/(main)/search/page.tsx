@@ -1,8 +1,6 @@
-import DisplayPost from "@/components/post/display-post";
 import SearchField from "@/components/search-field";
-import { prisma } from "@/lib/prisma";
-import { PostDataInclude } from "@/lib/types";
 import { Metadata } from "next";
+import SearchResults from "./search-result";
 
 export function generateMetadata({
   searchParams: { q },
@@ -19,31 +17,17 @@ export default async function Page({
 }: {
   searchParams: { q: string };
 }) {
-  const posts = await prisma.post.findMany({
-    include: PostDataInclude,
-    orderBy: { createdAt: "desc" },
-  });
-
-  const filteredPosts = q
-    ? posts.filter((post) =>
-        post.content?.toLowerCase().includes(q.toLowerCase()),
-      )
-    : posts;
-
   return (
     <main className="flex w-full flex-col">
       <div className="my-2 rounded-xl bg-secondary">
         <SearchField />
       </div>
-      {filteredPosts.length > 0 ? (
-        filteredPosts.map((post) => (
-          <div key={post.id} className="mb-4 last:mb-0">
-            <DisplayPost post={post} />
-          </div>
-        ))
-      ) : (
-        <div className="font-bold">No results for &quot;{q}&quot;</div>
-      )}
+      <div className="rounded-2xl">
+        <h1 className="line-clamp-2 break-all text-xl font-bold">
+          Search results for &quot;{q}&quot;
+        </h1>
+      </div>
+      <SearchResults query={q} />
     </main>
   );
 }

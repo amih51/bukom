@@ -54,13 +54,14 @@ export default function ProfileButton() {
         <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
           <DropdownMenuTrigger asChild>
             <Button
+              aria-label={`${user.username}`}
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               variant={"ghost"}
               className="size-full justify-start overflow-hidden p-2 lg:px-4"
               size={"icon"}
             >
               <Avatar>
-                <AvatarImage src={user?.image || ""} />
+                <AvatarImage src={user?.image || ""} alt={user.username} />
                 <AvatarFallback>{user?.username}</AvatarFallback>
               </Avatar>
               <div className="ml-4 hidden flex-col overflow-hidden text-left lg:flex">

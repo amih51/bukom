@@ -93,9 +93,16 @@ export default function DisplayPost({ post }: { post: PostData }) {
           </div>
         ) : (
           <div className="flex w-full flex-row overflow-hidden">
-            <Link href={`/${user.username}`} className="flex items-center p-2">
+            <Link
+              aria-label={`${user.username}`}
+              href={`/${user.username}`}
+              className="flex items-center p-2"
+            >
               <Avatar className="size-12">
-                <AvatarImage src={user?.image || ""} />
+                <AvatarImage
+                  src={user?.image || ""}
+                  alt={user.username || ""}
+                />
                 <AvatarFallback>{user.username}</AvatarFallback>
               </Avatar>
             </Link>

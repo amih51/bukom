@@ -41,10 +41,10 @@ export default function SignIn() {
               callbackUrl: "/home?justLoggedIn=true",
             })
           }
-          className="flex w-1/2 flex-row items-center border p-2"
+          className="flex w-fit flex-row items-center border p-2 px-12"
         >
           <FaGoogle size={16} className="mr-2" />
-          <p>Sign In</p>
+          <p>Log In with std email</p>
         </Button>
         {error && (
           <p className="text-center font-bold text-destructive">{error}</p>

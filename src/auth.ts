@@ -24,6 +24,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [Google],
   callbacks: {
     async signIn({ user }) {
+      const email = user.email;
+      if (
+        !(
+          (email?.startsWith("135") ||
+            email?.startsWith("182") ||
+            email?.startsWith("196")) &&
+          email.endsWith("@std.stei.itb.ac.id")
+        )
+      ) {
+        return false;
+      }
+
       if (!user.username) {
         let baseUsername = user.name
           ? user.name.toLowerCase().replace(/\s/g, "_")

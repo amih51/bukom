@@ -5,8 +5,13 @@ import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/app/theme-provider";
 import QueryProvider from "./query-provider";
 import { Inter } from "next/font/google";
+import localfont from "next/font/local";
 
 const inter = Inter({ subsets: ["latin"] });
+const stretchPro = localfont({
+  src: "../../public/fonts/stretch-pro.regular.ttf",
+  variable: "--stretch-pro",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -33,7 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} ${stretchPro.variable}`}>
         <QueryProvider>
           <SessionProvider>
             <ThemeProvider

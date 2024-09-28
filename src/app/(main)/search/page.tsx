@@ -19,7 +19,7 @@ export default async function Page({
 }) {
   return (
     <main className="flex w-full flex-col">
-      <div className="my-2 rounded-xl bg-secondary">
+      <div className="mb-2 mt-6 rounded-xl bg-secondary">
         <SearchField />
       </div>
       <div className="rounded-2xl">

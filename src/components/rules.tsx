@@ -9,6 +9,8 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { GoLaw } from "react-icons/go";
+import { useQueryClient } from "@tanstack/react-query";
+import { signOut } from "next-auth/react";
 
 export default function Rules({
   defaultOpen = false,
@@ -18,6 +20,7 @@ export default function Rules({
   button?: boolean;
 }) {
   const [open, setOpen] = useState(defaultOpen);
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     if (defaultOpen) {
@@ -70,7 +73,18 @@ export default function Rules({
               individual.
             </li>
           </ul>
-          <AlertDialogFooter>
+          <AlertDialogFooter className="gap-3">
+            <Button
+              onClick={() => {
+                queryClient.clear();
+                signOut({
+                  callbackUrl: "/",
+                });
+              }}
+              variant={"destructive"}
+            >
+              Sign Out
+            </Button>
             <Button onClick={closeDialog}>Accept</Button>
           </AlertDialogFooter>
         </AlertDialogContent>

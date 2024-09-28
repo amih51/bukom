@@ -19,21 +19,14 @@ export default function SignIn() {
     }
   }, [searchParams]);
   return (
-    <div className="flex h-2/3 flex-auto flex-col items-center justify-center gap-6 md:h-full">
-      <div>
-        <h1 className="mb-4 text-5xl font-bold">Your Space, Your Voice.</h1>
-        <h2 className="mb-8 text-2xl font-semibold">
-          HMIFess: Where HMIF Students Connect & Share
-        </h2>
-        <p className="text-justify text-lg">
-          Welcome to <span className="font-bold">HMIFess</span>, the exclusive
-          online forum for HMIF students at ITB. Whether you want to share
-          insights, ask questions, or just connect with fellow students, HMIFess
-          is the place to be. Join our community, where your thoughts matter,
-          and every post can spark a conversation.
-        </p>
+    <div className="sm: flex h-5/6 flex-auto flex-col items-center justify-between sm:items-start sm:justify-center sm:gap-12 md:h-full">
+      <div className="font-stretchPro">
+        <h1 className="mb-4 text-2xl">Hey,</h1>
+        <h1 className="mb-4 text-5xl font-bold sm:text-6xl lg:text-7xl">
+          PIPPPS!
+        </h1>
       </div>
-      <div className="flex w-full flex-col items-center">
+      <div className="flex w-full flex-col items-center sm:items-start">
         <Button
           variant={"ghost"}
           onClick={() =>
@@ -41,10 +34,10 @@ export default function SignIn() {
               callbackUrl: "/home?justLoggedIn=true",
             })
           }
-          className="flex w-fit flex-row items-center border p-2 px-12"
+          className="flex w-fit flex-row border p-2 px-12"
         >
           <FaGoogle size={16} className="mr-2" />
-          <p>Log In with std email</p>
+          <p>Sign In with Std Email</p>
         </Button>
         {error && (
           <p className="text-center font-bold text-destructive">{error}</p>

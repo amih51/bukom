@@ -63,6 +63,9 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
     },
+    fontFamily: {
+      stretchPro: "var(--stretch-pro)",
+    },
   },
   plugins: [
     require("tailwindcss-animate"),

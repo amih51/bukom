@@ -1,17 +1,9 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { auth } from "./auth";
-
-export const runtime = "nodejs";
+import getSession from "./lib/get-session";
 
 export async function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
-
-  const session = await auth();
-
-  if (pathname === "/") {
-    return NextResponse.next();
-  }
+  const session = await getSession();
 
   if (!session) {
     return NextResponse.redirect(new URL("/", req.url));

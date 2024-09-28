@@ -37,15 +37,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
 
       if (!user.username) {
-        let baseUsername = user.name
-          ? user.name.toLowerCase().replace(/\s/g, "_")
-          : user.email?.split("@")[0] || "user";
+        let baseUsername = user.email?.substring(0, 8) || "user";
 
         let username = baseUsername;
         let count = 1;
 
         while (await prisma.user.findUnique({ where: { username } })) {
-          username = `${baseUsername}${count}`;
+          username = `${baseUsername}_${count}`;
           count++;
         }
 

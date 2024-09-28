@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import getSession from "./lib/get-session";
+import { currentUser } from "./lib/auth";
 
 export async function middleware(req: NextRequest) {
-  const session = await getSession();
+  const user = await currentUser();
 
-  if (!session) {
+  if (!user) {
     return NextResponse.redirect(new URL("/", req.url));
   }
 

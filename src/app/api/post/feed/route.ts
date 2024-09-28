@@ -3,12 +3,10 @@ import { prisma } from "@/lib/prisma";
 import { PostDataInclude, PostsPage } from "@/lib/types";
 import { NextRequest } from "next/server";
 
-export const runtime = "edge";
-
 export async function GET(req: NextRequest) {
   try {
     const cursor = req.nextUrl.searchParams.get("cursor") || undefined;
-    const pageSize = 7;
+    const pageSize = 10;
     const session = await getSession();
     if (!session)
       return Response.json({ error: "Unauthorized" }, { status: 401 });

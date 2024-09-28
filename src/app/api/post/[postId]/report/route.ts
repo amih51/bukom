@@ -2,8 +2,6 @@ import { currentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { ReportInfo } from "@/lib/types";
 
-export const runtime = "edge";
-
 export async function GET(
   req: Request,
   { params: { postId } }: { params: { postId: string } },

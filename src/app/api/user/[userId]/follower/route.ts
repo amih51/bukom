@@ -15,10 +15,6 @@ export async function GET(
     const loggedInUser = session.user;
 
     const user = await prisma.user.findUnique({
-      cacheStrategy: {
-        ttl: 60,
-        swr: 10,
-      },
       where: { id: userId },
       select: {
         follower: {

@@ -1,11 +1,16 @@
 import Navbar from "@/components/nav/navbar";
 import MenuBar from "@/components/nav/menubar";
+import getSession from "@/lib/get-session";
+import { redirect } from "next/navigation";
 
 export default async function Layout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getSession();
+  if (!session) redirect("/");
+
   return (
     <div className="flex min-h-screen flex-shrink-0 flex-col bg-background">
       <Navbar />

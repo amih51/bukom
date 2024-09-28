@@ -1,8 +1,6 @@
 import getSession from "@/lib/get-session";
 import { prisma } from "@/lib/prisma";
 
-export const runtime = "edge";
-
 export async function GET() {
   try {
     const session = await getSession();

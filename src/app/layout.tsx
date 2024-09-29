@@ -7,15 +7,15 @@ import QueryProvider from "./query-provider";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | HMIFess",
-    default: "HMIFess",
+    template: "%s / ITBFess",
+    default: "ITBFess",
   },
-  description: "HMIFess",
+  description: "ITBFess",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "HMIFess",
+    title: "ITBFess",
   },
 };
 

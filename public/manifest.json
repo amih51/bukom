@@ -1,6 +1,6 @@
 {
-  "name": "HMIFess",
-  "short_name": "HMIFess",
+  "name": "ITBFess",
+  "short_name": "itbfess",
   "start_url": "/",
   "display": "standalone",
   "description": "HMIFess App",
@@ -38,9 +38,9 @@
   "prefer_related_applications": false,
   "shortcuts": [
     {
-      "name": "HMIFess",
+      "name": "ITBFess",
       "url": "/shortcut",
-      "description": "HMIFess App"
+      "description": "ITBFess App"
     }
   ]
 }

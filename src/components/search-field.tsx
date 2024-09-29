@@ -2,9 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Input } from "./ui/input";
-import { RiSearchFill, RiSearchLine } from "react-icons/ri";
-import { Button } from "./ui/button";
-import Link from "next/link";
+import { RiSearchLine } from "react-icons/ri";
 
 export default function SearchField() {
   const router = useRouter();
@@ -13,7 +11,11 @@ export default function SearchField() {
     e.preventDefault();
     const form = e.currentTarget;
     const q = (form.q as HTMLInputElement).value.trim();
-    if (!q) return;
+    if (!q) {
+      router.push("/home");
+      return;
+    }
+
     router.push(`/home/search?q=${encodeURIComponent(q)}`);
   }
 

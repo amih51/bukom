@@ -18,7 +18,6 @@ import { all, createLowlight } from "lowlight";
 const lowlight = createLowlight(all);
 
 import { Button } from "@/components/ui/button";
-import { GoPencil } from "react-icons/go";
 import {
   Dialog,
   DialogContent,
@@ -47,6 +46,7 @@ import kyInstance from "@/lib/ky";
 import { Category } from "@prisma/client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSession } from "next-auth/react";
+import { FaKeyboard } from "react-icons/fa";
 
 export function CreatePostDialog() {
   const { data: session } = useSession();
@@ -115,7 +115,7 @@ export function CreatePostDialog() {
           variant={"default"}
           className="flex h-fit w-fit items-center justify-start lg:w-full"
         >
-          <GoPencil className="size-6 flex-shrink-0" />
+          <FaKeyboard className="size-6 flex-shrink-0" />
           <p className="ml-2 hidden truncate lg:inline">Create Post</p>
         </Button>
       </DialogTrigger>

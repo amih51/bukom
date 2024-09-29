@@ -57,7 +57,7 @@ export default function BookmarkButton({
   return (
     <Button
       onClick={() => mutate()}
-      variant={"secondary"}
+      variant={"ghost"}
       className="h-full flex-shrink-0 p-2"
       aria-label="Bookmark"
     >

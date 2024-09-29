@@ -102,8 +102,8 @@ export default function VoteButton({
       <Button
         aria-label="Upvote"
         onClick={() => upvote()}
-        variant={"secondary"}
-        className="h-9 w-10 flex-shrink-0 rounded-r-none p-2 pr-1"
+        variant={"ghost"}
+        className="h-9 w-10 flex-shrink-0 rounded-r-none px-1 py-2"
       >
         {data?.voteType === true ? (
           <PiArrowFatUpFill className="size-5" />
@@ -112,15 +112,15 @@ export default function VoteButton({
         )}
       </Button>
 
-      <p className="flex h-9 w-7 items-center justify-center bg-secondary text-sm text-secondary-foreground">
+      <p className="flex h-9 w-fit items-center justify-center text-sm">
         {data?.votes}
       </p>
 
       <Button
         aria-label="Downvote"
         onClick={() => downvote()}
-        variant={"secondary"}
-        className="h-9 w-10 flex-shrink-0 rounded-l-none p-2 pl-1"
+        variant={"ghost"}
+        className="h-9 w-10 flex-shrink-0 rounded-l-none px-1 py-2"
       >
         {data?.voteType === false ? (
           <PiArrowFatDownFill className="size-5" />

@@ -140,14 +140,14 @@ export default function DisplayPost({ post }: { post: PostData }) {
           <OptionButton post={post} />
         </div>
       </div>
-      <div className="ml-2 w-fit rounded-sm bg-kuning px-2 py-1 text-xs font-bold text-black">
+      <div className="ml-2 w-fit bg-foreground px-1 py-0.5 text-xs font-bold text-background">
         {post.category.name}
       </div>
       <EditorContent
         editor={editor}
         className="max-h-[50vh] min-h-16 overflow-scroll p-2 scrollbar scrollbar-thumb-current scrollbar-w-1 hover:scrollbar-thumb-foreground/50"
       ></EditorContent>
-      <div className="flex flex-row gap-5 overflow-hidden pl-2">
+      <div className="flex flex-row gap-5 overflow-hidden">
         <VoteButton
           postId={post.id}
           initialState={{
@@ -160,7 +160,7 @@ export default function DisplayPost({ post }: { post: PostData }) {
         <Button
           asChild
           aria-label="Comments"
-          variant={"secondary"}
+          variant={"ghost"}
           className="h-full w-fit flex-shrink-0 p-2"
         >
           <Link

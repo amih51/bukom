@@ -33,21 +33,21 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               asChild
               aria-label="HMIFess"
               variant={"ghost"}
-              className="my-6 hidden h-fit items-start text-2xl font-bold hover:bg-transparent lg:block"
+              className="hidden h-fit items-start text-2xl font-bold hover:bg-transparent lg:block"
             >
               <Link
                 aria-label="Home"
                 className="flex items-center justify-center"
                 href="/"
               >
-                <Logo />
+                <Logo className="size-36" />
               </Link>
             </Button>
             <Button
               asChild
               aria-label="Home"
               variant={"ghost"}
-              className={`flex h-12 w-fit items-center justify-start rounded-full text-lg ${
+              className={`flex h-12 w-fit items-center justify-start text-lg ${
                 pathName === "/home" ? "font-bold" : ""
               }`}
             >
@@ -64,7 +64,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               asChild
               aria-label="Search"
               variant={"ghost"}
-              className={`flex h-12 w-fit items-center justify-start rounded-full text-lg ${
+              className={`flex h-12 w-fit items-center justify-start text-lg ${
                 pathName === "/notifications" ? "font-bold" : ""
               }`}
             >
@@ -81,7 +81,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               asChild
               aria-label="Bookmarks"
               variant={"ghost"}
-              className={`flex h-12 w-fit items-center justify-start rounded-full text-lg ${
+              className={`flex h-12 w-fit items-center justify-start text-lg ${
                 pathName === "/bookmarks" ? "font-bold" : ""
               }`}
             >
@@ -98,7 +98,7 @@ const MenuBar = forwardRef<HTMLDivElement, { className: string }>(
               asChild
               aria-label="Profile"
               variant={"ghost"}
-              className={`flex h-12 w-fit items-center justify-start rounded-full text-lg ${
+              className={`flex h-12 w-fit items-center justify-start text-lg ${
                 pathName === `/${user?.username}` ? "font-bold" : ""
               }`}
             >

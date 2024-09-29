@@ -26,14 +26,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async signIn({ user }) {
       if (user.username) return true;
 
-      // const email = user.email;
-      // if (
-      //   !
-      //     email?.endsWith("@mahasiswa.itb.ac.id")
-
-      // ) {
-      //   return false;
-      // }
+      const email = user.email;
+      if (!email?.endsWith("itb.ac.id")) {
+        return false;
+      }
 
       let baseUsername = user.email?.substring(0, 8) || "user";
 

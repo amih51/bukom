@@ -5,8 +5,11 @@ import { PostData, PostDataInclude } from "@/lib/types";
 import { Metadata } from "next";
 import Replies from "../../[username]/post/[postId]/replies";
 import Parents from "../../[username]/post/[postId]/parents";
+import { cache } from "react";
+import { currentUser } from "@/lib/auth";
 
-const getPost = async (postId: string) => {
+const getPost = cache(async (postId: string) => {
+  const user = await currentUser();
   const post = await prisma.post.findUnique({
     where: {
       id: postId,
@@ -14,8 +17,24 @@ const getPost = async (postId: string) => {
     include: PostDataInclude,
   });
 
-  return post;
-};
+  const sanitizedPost = post
+    ? ((p: PostData) => ({
+        ...p,
+        userId: p.isAnon && p.userId !== user?.id ? "anon" : p.userId,
+        user:
+          p.isAnon && p.userId !== user?.id
+            ? {
+                id: "anon",
+                username: "anon",
+                name: "anon",
+                image: null,
+              }
+            : p.user,
+      }))(post)
+    : null;
+
+  return sanitizedPost;
+});
 
 export async function generateMetadata({
   params: { postId },

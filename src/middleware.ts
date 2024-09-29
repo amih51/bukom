@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { auth } from "./auth";
+import getSession from "./lib/get-session";
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  const session = await auth();
+  const session = await getSession();
 
   if (pathname === "/") {
     return NextResponse.next();

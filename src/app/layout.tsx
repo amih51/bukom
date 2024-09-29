@@ -7,15 +7,15 @@ import QueryProvider from "./query-provider";
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | BUKOM",
-    default: "BUKOM",
+    template: "%s / ITBFess",
+    default: "ITBFess",
   },
-  description: "BUKOM REBORN!!!",
+  description: "ITBFess",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "BUKOM",
+    title: "ITBFess",
   },
 };
 
@@ -35,7 +35,7 @@ export default function RootLayout({
           <SessionProvider>
             <ThemeProvider
               attribute="class"
-              defaultTheme="dark"
+              defaultTheme="system"
               enableSystem
               disableTransitionOnChange
             >

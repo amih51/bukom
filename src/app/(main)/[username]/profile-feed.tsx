@@ -2,6 +2,7 @@
 
 import InfiniteScrollContainer from "@/components/infinite-scroll-container";
 import DisplayPost from "@/components/post/display-post";
+import PostSkeleton from "@/components/post/post-skeleton";
 import kyInstance from "@/lib/ky";
 import { PostsPage } from "@/lib/types";
 import { useInfiniteQuery } from "@tanstack/react-query";
@@ -16,7 +17,7 @@ export default function ProfileFeed({ userId }: { userId: string }) {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["feed", "profile"],
+    queryKey: ["feed", userId],
     queryFn: ({ pageParam }) =>
       kyInstance
         .get("/api/post/profile-feed", {
@@ -32,10 +33,19 @@ export default function ProfileFeed({ userId }: { userId: string }) {
   const posts = data?.pages.flatMap((page) => page.posts) || [];
 
   return status === "pending" ? (
-    <LuLoader className="mx-auto my-3 animate-spin" />
+    <div className="mt-2">
+      <PostSkeleton />
+      <PostSkeleton />
+      <PostSkeleton />
+    </div>
   ) : status === "error" ? (
     <p className="text-center text-destructive">
       An error occured while loading page
+    </p>
+  ) : posts.length === 0 ? (
+    <p className="text-center font-semibold">
+      Share your thoughts with a post to spark conversations and connect with
+      others in the community.
     </p>
   ) : (
     <InfiniteScrollContainer

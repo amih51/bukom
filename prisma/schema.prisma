@@ -1,10 +1,12 @@
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
  
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
  
 model User {
@@ -22,6 +24,7 @@ model User {
   bookmarks     Bookmark[]
   following     Follow[]        @relation("Following")
   follower      Follow[]        @relation("Followers")
+  reports       Report[]
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -69,6 +72,7 @@ model VerificationToken {
 model Post {
   id            String          @id @default(cuid())
   content       String
+  isAnon        Boolean         @default(false)
   userId        String
   user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   parentId      String?         
@@ -76,12 +80,26 @@ model Post {
   replies       Post[]          @relation("PostReplies")
   votes         Vote[]
   bookmarks     Bookmark[]
+  categoryId    String
+  category      Category        @relation(fields: [categoryId], references: [id])
+  reports       Report[]
 
   createdAt     DateTime        @default(now())
 }
 
 model Bookmark {
   id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  postId String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId])
+}
+
+model Report {
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   postId String
@@ -112,4 +130,10 @@ model Follow {
   following   User   @relation("Followers", fields: [followingId], references: [id])
 
   @@unique([followerId, followingId])
+}
+
+model Category {
+  id          String @id @default(cuid())
+  name        String @unique
+  posts       Post[] 
 }

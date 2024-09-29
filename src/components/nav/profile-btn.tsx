@@ -38,6 +38,7 @@ import {
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
 import { useQueryClient } from "@tanstack/react-query";
+import Rules from "../rules";
 
 export default function ProfileButton() {
   const { data: session } = useSession();
@@ -53,13 +54,14 @@ export default function ProfileButton() {
         <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
           <DropdownMenuTrigger asChild>
             <Button
+              aria-label={`${user.username}`}
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               variant={"ghost"}
               className="size-full justify-start overflow-hidden p-2 lg:px-4"
               size={"icon"}
             >
               <Avatar>
-                <AvatarImage src={user?.image || ""} />
+                <AvatarImage src={user?.image || ""} alt={user.username} />
                 <AvatarFallback>{user?.username}</AvatarFallback>
               </Avatar>
               <div className="ml-4 hidden flex-col overflow-hidden text-left lg:flex">
@@ -69,6 +71,7 @@ export default function ProfileButton() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
+            <Rules button={true} />
             <DropdownMenuSub>
               <DropdownMenuSubTrigger className="cursor-pointer">
                 <PiCircleHalfFill className="mr-2 size-4" />

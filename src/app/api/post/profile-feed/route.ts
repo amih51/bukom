@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma";
 import { PostDataInclude, PostsPage } from "@/lib/types";
 import { NextRequest } from "next/server";
 
+export const runtime = "edge";
+
 export async function GET(
   req: NextRequest,
   { params }: { params: { userId: string } },
@@ -12,6 +14,7 @@ export async function GET(
     const cursor = url.searchParams.get("cursor") || undefined;
     const pageSize = 10;
     const session = await getSession();
+
     if (!session) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), {
         status: 401,
@@ -25,10 +28,15 @@ export async function GET(
       });
     }
 
+    const whereCondition =
+      session.user.id === userId ? { userId } : { userId, isAnon: false };
+
     const posts = await prisma.post.findMany({
-      where: {
-        userId,
+      cacheStrategy: {
+        ttl: 60,
+        swr: 10,
       },
+      where: whereCondition,
       include: PostDataInclude,
       orderBy: {
         createdAt: "desc",
@@ -39,8 +47,23 @@ export async function GET(
 
     const nextCursor = posts.length > pageSize ? posts[pageSize].id : null;
 
+    const sanitizedPosts = posts.slice(0, pageSize).map((post) => ({
+      ...post,
+      userId:
+        post.isAnon && post.userId !== session.user.id ? "anon" : post.userId,
+      user:
+        post.isAnon && post.userId !== session.user.id
+          ? {
+              id: "anon",
+              username: "anon",
+              name: "anon",
+              image: null,
+            }
+          : post.user,
+    }));
+
     const data: PostsPage = {
-      posts: posts.slice(0, pageSize),
+      posts: sanitizedPosts,
       nextCursor,
     };
 

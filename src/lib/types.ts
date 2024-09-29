@@ -9,11 +9,17 @@ const userSelect = {
 
 const parentSelect = {
   id: true,
+  isAnon: true,
   user: {
     select: {
       username: true,
     },
   },
+};
+
+const categorySelect = {
+  name: true,
+  id: true,
 };
 
 const votesSelect = {
@@ -25,9 +31,14 @@ const bookmarkSelect = {
   userId: true,
 };
 
+const ReportSelect = {
+  userId: true,
+};
+
 const countPostSelect = {
   replies: true,
   votes: true,
+  reports: true,
 };
 
 const countUserSelect = {
@@ -39,22 +50,15 @@ const countUserSelect = {
 export const PostDataInclude = {
   user: { select: userSelect },
   parent: { select: parentSelect },
+  category: { select: categorySelect },
   votes: { select: votesSelect },
   bookmarks: { select: bookmarkSelect },
+  reports: { select: ReportSelect },
   _count: { select: countPostSelect },
 } satisfies Prisma.PostInclude;
 
 export type PostData = Prisma.PostGetPayload<{
   include: typeof PostDataInclude;
-}>;
-
-export const PostWithReplyDataInclude = {
-  ...PostDataInclude,
-  replies: { include: PostDataInclude },
-} satisfies Prisma.PostInclude;
-
-export type PostDataWithReply = Prisma.PostGetPayload<{
-  include: typeof PostWithReplyDataInclude;
 }>;
 
 export interface PostsPage {
@@ -80,6 +84,10 @@ export interface VoteInfo {
 
 export interface BookmarkInfo {
   isBookmarkedByUser: boolean;
+}
+
+export interface ReportInfo {
+  isReportedByUser: boolean;
 }
 
 export interface FollowerInfo {

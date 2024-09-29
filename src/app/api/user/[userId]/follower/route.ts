@@ -2,6 +2,8 @@ import getSession from "@/lib/get-session";
 import { prisma } from "@/lib/prisma";
 import { FollowerInfo } from "@/lib/types";
 
+export const runtime = "edge";
+
 export async function GET(
   req: Request,
   { params: { userId } }: { params: { userId: string } },
@@ -13,6 +15,10 @@ export async function GET(
     const loggedInUser = session.user;
 
     const user = await prisma.user.findUnique({
+      cacheStrategy: {
+        ttl: 60,
+        swr: 10,
+      },
       where: { id: userId },
       select: {
         follower: {

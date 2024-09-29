@@ -13,23 +13,20 @@ import { Color } from "@tiptap/extension-color";
 import TextStyle from "@tiptap/extension-text-style";
 import TextAlign from "@tiptap/extension-text-align";
 import { Button } from "../ui/button";
-import {
-  PiArrowFatDown,
-  PiArrowFatUp,
-  PiBookmarkSimple,
-  PiChat,
-} from "react-icons/pi";
+import { PiChat } from "react-icons/pi";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import MathExtension from "@aarkue/tiptap-math-extension";
 import Link from "next/link";
-import ReplyEditor from "./editor/reply-editor";
 
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import { all, createLowlight } from "lowlight";
-import DeleteButton from "./delete/delete-btn";
+import DeleteButton from "./option/option-btn";
 import { useSession } from "next-auth/react";
 import VoteButton from "./vote-btn";
 import BookmarkButton from "./bookmark-btn";
+import { formatRelativeDate } from "@/lib/utils";
+import { BsIncognito } from "react-icons/bs";
+import OptionButton from "./option/option-btn";
 const lowlight = createLowlight(all);
 
 export default function DisplayPost({ post }: { post: PostData }) {
@@ -63,65 +60,94 @@ export default function DisplayPost({ post }: { post: PostData }) {
   ).length;
   const voteDifference = trueVotes - falseVotes;
 
+  if (post._count.reports > 30) return <></>;
+
   return (
-    <div className="group/del flex flex-col sm:border-l-0">
-      <div className="flex flex-row border-x-2 border-y-2 sm:border-l-0">
-        <div className="flex w-full flex-row overflow-hidden">
-          <Link
-            href={`/${user.username}`}
-            className="flex items-center border-r-2 p-2"
-          >
-            <Avatar>
-              <AvatarImage src={user?.image || ""} />
-              <AvatarFallback>{user.username}</AvatarFallback>
-            </Avatar>
-          </Link>
-          <div className="flex w-full flex-col overflow-hidden pl-2">
-            <Link
-              href={`/${user.username}`}
-              className="flex w-fit flex-row items-center overflow-hidden"
-            >
-              <p className="truncate text-lg">{user?.name}</p>
-              <p className="truncate pl-2 text-sm opacity-50">
-                @{user?.username}
+    <div className="group/del flex flex-col border-t py-4 sm:border-l-0">
+      <div className="flex flex-row sm:border-l-0">
+        {post.isAnon ? (
+          <div className="flex w-full flex-row overflow-hidden">
+            <div className="flex items-center p-2">
+              <BsIncognito className="size-12" />
+            </div>
+            <div className="flex w-full flex-col overflow-hidden pl-2">
+              <p className="truncate text-lg font-semibold">Warga Biasa</p>
+              {post.parentId && (
+                <div className="flex flex-row overflow-hidden text-sm">
+                  <span className="mr-2 opacity-50">replying to</span>
+                  {post.parent?.isAnon ? (
+                    <Link href={`/anon/${post.parent?.id}`}>Warga Biasa</Link>
+                  ) : (
+                    <Link
+                      href={`/${post.parent?.user.username}/post/${post.parent?.id}`}
+                    >
+                      @{post.parent?.user.username}
+                    </Link>
+                  )}
+                </div>
+              )}
+              <p className="truncate text-xs opacity-50">
+                {formatRelativeDate(post.createdAt)}
               </p>
-            </Link>
-            {post.parentId && (
-              <div className="flex flex-row overflow-hidden">
-                <span className="mr-2 opacity-50">replying to</span>
-                <Link
-                  href={`/${post.parent?.user.username}/post/${post.parent?.id}`}
-                >
-                  @{post.parent?.user.username}
-                </Link>
-              </div>
-            )}
-            <p className="truncate text-xs opacity-50">
-              {new Date(post.createdAt).toLocaleString()}
-            </p>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="flex w-full flex-row overflow-hidden">
+            <Link
+              aria-label={`${user.username}`}
+              href={`/${user.username}`}
+              className="flex items-center p-2"
+            >
+              <Avatar className="size-12">
+                <AvatarImage
+                  src={user?.image || ""}
+                  alt={user.username || ""}
+                />
+                <AvatarFallback>{user.username}</AvatarFallback>
+              </Avatar>
+            </Link>
+            <div className="flex w-full flex-col overflow-hidden pl-2">
+              <Link
+                href={`/${user.username}`}
+                className="flex w-fit flex-row items-center overflow-hidden"
+              >
+                <p className="truncate text-lg font-semibold">{user?.name}</p>
+                <p className="truncate pl-2 text-sm opacity-50">
+                  @{user?.username}
+                </p>
+              </Link>
+              {post.parentId && (
+                <div className="flex flex-row overflow-hidden text-sm">
+                  <span className="mr-2 opacity-50">replying to</span>
+                  {post.parent?.isAnon ? (
+                    <Link href={`/anon/${post.parent?.id}`}>Warga Biasa</Link>
+                  ) : (
+                    <Link
+                      href={`/${post.parent?.user.username}/post/${post.parent?.id}`}
+                    >
+                      @{post.parent?.user.username}
+                    </Link>
+                  )}
+                </div>
+              )}
+              <p className="truncate text-xs opacity-50">
+                {formatRelativeDate(post.createdAt)}
+              </p>
+            </div>
+          </div>
+        )}
         <div className="flex flex-row">
-          <BookmarkButton
-            postId={post.id}
-            initialState={{
-              isBookmarkedByUser: post.bookmarks.find(
-                (bookmark) => bookmark.userId === session.data?.user.id,
-              )
-                ? true
-                : false,
-            }}
-          />
-          {post.userId === session.data?.user.id && (
-            <DeleteButton post={post} />
-          )}
+          <OptionButton post={post} />
         </div>
+      </div>
+      <div className="ml-2 w-fit bg-foreground px-1 py-0.5 text-xs font-bold text-background">
+        {post.category.name}
       </div>
       <EditorContent
         editor={editor}
-        className="min-h-16 border-x-2 border-b-2 p-2 sm:border-l-0"
+        className="max-h-[50vh] min-h-16 overflow-scroll p-2 scrollbar scrollbar-thumb-current scrollbar-w-1 hover:scrollbar-thumb-foreground/50"
       ></EditorContent>
-      <div className="flex flex-row overflow-hidden">
+      <div className="flex flex-row gap-5 overflow-hidden">
         <VoteButton
           postId={post.id}
           initialState={{
@@ -132,20 +158,33 @@ export default function DisplayPost({ post }: { post: PostData }) {
           }}
         />
         <Button
+          asChild
+          aria-label="Comments"
           variant={"ghost"}
-          className="h-9 w-fit flex-shrink-0 border-b-2 p-2"
+          className="h-full w-fit flex-shrink-0 p-2"
         >
           <Link
-            href={`/${post.user.username}/post/${post.id}`}
+            href={
+              post.isAnon
+                ? `/anon/${post.id}`
+                : `/${post.user.username}/post/${post.id}`
+            }
             className="flex flex-row items-center justify-center"
           >
             <PiChat className="mr-1 size-5 flex-shrink-0" />
-            <p className="text-xl">{post._count.replies}</p>
+            <p className="text-sm">{post._count.replies}</p>
           </Link>
         </Button>
-        <div className="h-full w-full">
-          <ReplyEditor parentId={post.id} />
-        </div>
+        <BookmarkButton
+          postId={post.id}
+          initialState={{
+            isBookmarkedByUser: post.bookmarks.find(
+              (bookmark) => bookmark.userId === session.data?.user.id,
+            )
+              ? true
+              : false,
+          }}
+        />
       </div>
     </div>
   );

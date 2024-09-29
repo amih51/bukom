@@ -21,7 +21,7 @@ export function useUpdateProfileMutation() {
     },
     onSuccess: async ([updatedUser]) => {
       const queryFilter: QueryFilters = {
-        queryKey: ["post-feed"],
+        queryKey: ["feed"],
       };
 
       await queryClient.cancelQueries(queryFilter);

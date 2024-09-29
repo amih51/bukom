@@ -20,8 +20,24 @@ const lowlight = createLowlight(all);
 
 import { Button } from "@/components/ui/button";
 import { useSubmitReplyMutation } from "./mutations-reply";
+import { BsIncognito } from "react-icons/bs";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
+import LoadingButton from "@/components/loading-button";
 
-export default function ReplyEditor({ parentId }: { parentId: string }) {
+export default function ReplyEditor({
+  parentId,
+  categoryId,
+}: {
+  parentId: string;
+  categoryId: string;
+}) {
+  const { data: session } = useSession();
+  const user = session?.user;
+
+  const [isAnon, setIsAnon] = useState(false);
+
   const mutation = useSubmitReplyMutation();
   const editor = useEditor({
     extensions: [
@@ -50,7 +66,7 @@ export default function ReplyEditor({ parentId }: { parentId: string }) {
 
   function onSubmit() {
     mutation.mutate(
-      { input: editor?.getHTML() || "", parentId },
+      { input: editor?.getHTML() || "", parentId, categoryId, isAnon },
       {
         onSuccess: () => {
           editor?.commands.clearContent();
@@ -60,19 +76,32 @@ export default function ReplyEditor({ parentId }: { parentId: string }) {
   }
 
   return (
-    <div className="flex w-full">
+    <div className="flex w-full items-center">
+      <Avatar className="size-8">
+        <AvatarImage src={user?.image || ""} />
+        <AvatarFallback>{user?.username}</AvatarFallback>
+      </Avatar>
       <EditorContent
         editor={editor}
-        className="w-full border-b-2 border-l-2 border-r-2 p-2"
+        className="mx-2 w-full rounded-2xl bg-secondary p-2"
       />
-      <div className="h-fit border-b-2 border-r-2">
+      <div className="flex h-fit flex-row">
         <Button
+          onClick={() => setIsAnon((prev) => !prev)}
+          variant={isAnon ? "revert" : "outline"}
+          className="rounded-r-none"
+        >
+          <BsIncognito className="size-5" />
+        </Button>
+        <LoadingButton
+          loading={mutation.isPending}
           onClick={onSubmit}
-          disabled={!editor?.getText().trim()}
-          variant={"ghost"}
+          disabled={!editor?.getText().trim() || categoryId === ""}
+          variant={"outline"}
+          className="w-full rounded-l-none"
         >
           Submit
-        </Button>
+        </LoadingButton>
       </div>
     </div>
   );

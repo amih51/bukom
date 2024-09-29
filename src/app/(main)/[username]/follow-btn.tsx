@@ -7,15 +7,13 @@ import { FollowerInfo } from "@/lib/types";
 import { QueryKey, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
-interface FollowButtonProps {
-  userId: string;
-  initialState: FollowerInfo;
-}
-
 export default function FollowButton({
   userId,
   initialState,
-}: FollowButtonProps) {
+}: {
+  userId: string;
+  initialState: FollowerInfo;
+}) {
   const queryClient = useQueryClient();
 
   const { data } = useFollowerInfo(userId, initialState);

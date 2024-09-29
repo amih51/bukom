@@ -58,12 +58,13 @@ export default function BookmarkButton({
     <Button
       onClick={() => mutate()}
       variant={"ghost"}
-      className="h-full flex-shrink-0 border-l-2 p-1"
+      className="h-full flex-shrink-0 p-2"
+      aria-label="Bookmark"
     >
       {data?.isBookmarkedByUser === true ? (
-        <PiBookmarkSimpleFill className="size-8" />
+        <PiBookmarkSimpleFill className="size-5" />
       ) : (
-        <PiBookmarkSimple className="size-8" />
+        <PiBookmarkSimple className="size-5" />
       )}
     </Button>
   );

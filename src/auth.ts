@@ -24,21 +24,25 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [Google],
   callbacks: {
     async signIn({ user }) {
-      if (!user.username) {
-        let baseUsername = user.name
-          ? user.name.toLowerCase().replace(/\s/g, "_")
-          : user.email?.split("@")[0] || "user";
+      if (user.username) return true;
 
-        let username = baseUsername;
-        let count = 1;
-
-        while (await prisma.user.findUnique({ where: { username } })) {
-          username = `${baseUsername}${count}`;
-          count++;
-        }
-
-        user.username = username;
+      const email = user.email;
+      if (!email?.endsWith("itb.ac.id")) {
+        return false;
       }
+
+      let baseUsername = user.email?.substring(0, 8) || "user";
+
+      let username = baseUsername;
+      let count = 1;
+
+      while (await prisma.user.findUnique({ where: { username } })) {
+        username = `${baseUsername}_${count}`;
+        count++;
+      }
+
+      user.username = username;
+
       return true;
     },
     async session({ session, user }) {

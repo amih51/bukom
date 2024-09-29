@@ -1,29 +1,23 @@
 import getSession from "@/lib/get-session";
-import Footer from "./footer";
 import SignIn from "./signin";
 import { redirect } from "next/navigation";
-import Image from "next/image";
+import Logo from "../../components/logo";
 
 export default async function Page() {
   const session = await getSession();
-
   if (session?.user) redirect("/home");
   return (
-    <div className="h-screen bg-background">
-      <div className="h-5/6 md:h-full">
-        <main className="flex h-full flex-col md:flex-row">
-          <div className="flex h-1/6 flex-auto items-center justify-center border-2 md:h-full">
-            <Image
-              src={"/icons/android-chrome-512x512.png"}
-              alt="BUKOM Icon"
-              height={512}
-              width={512}
-            />
+    <div className="h-screen bg-background sm:px-32">
+      <div className="h-full px-6">
+        <main className="flex h-full flex-col items-center justify-center md:flex-row">
+          <div className="m-6 flex h-1/6 items-center justify-center sm:m-0 md:h-full md:w-1/2">
+            <Logo />
           </div>
-          <SignIn />
+          <div className="h-full sm:h-fit md:w-1/2">
+            <SignIn />
+          </div>
         </main>
       </div>
-      <Footer />
     </div>
   );
 }

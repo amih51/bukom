@@ -1,24 +1,25 @@
 import { Metadata } from "next";
+import { Suspense } from "react";
+import { LuLoader } from "react-icons/lu";
 import dynamic from "next/dynamic";
-import Feed from "./feed";
-
-const PostEditor = dynamic(
-  () => import("@/components/post/editor/post-editor"),
-  { ssr: false },
-);
 
 export const metadata: Metadata = {
-  title: "Home",
+  title: {
+    template: "%s",
+    default: "Home",
+  },
 };
+
+const Feed = dynamic(() => import("./feed"), {
+  ssr: false,
+});
 
 export default function Page() {
   return (
     <main className="flex w-full flex-col">
-      <div className="mt-2 w-full border-2 sm:border-l-0">
-        <PostEditor />
-      </div>
-
-      <Feed />
+      <Suspense fallback={<LuLoader className="mx-auto my-3 animate-spin" />}>
+        <Feed />
+      </Suspense>
     </main>
   );
 }

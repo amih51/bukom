@@ -19,18 +19,27 @@ export default function SignIn() {
     }
   }, [searchParams]);
   return (
-    <div className="flex h-2/3 flex-auto flex-col items-center justify-center border-2 md:h-full">
-      <Button
-        variant={"ghost"}
-        onClick={() => signIn("google")}
-        className="flex flex-row items-center border p-2"
-      >
-        <FaGoogle size={16} className="mr-2" />
-        <p>Sign In</p>
-      </Button>
-      {error && (
-        <p className="text-center font-bold text-destructive">{error}</p>
-      )}
+    <div className="flex h-5/6 flex-auto flex-col items-center justify-between gap-6 sm:items-start md:h-full">
+      <div>
+        <h1 className="mb-4 text-5xl font-bold">Your Space, Your Voice.</h1>
+      </div>
+      <div className="flex w-full flex-col items-center sm:items-start">
+        <Button
+          variant={"ghost"}
+          onClick={() =>
+            signIn("google", {
+              callbackUrl: "/home?justLoggedIn=true",
+            })
+          }
+          className="flex w-1/2 flex-row items-center border p-2"
+        >
+          <FaGoogle size={16} className="mr-2" />
+          <p>Sign In</p>
+        </Button>
+        {error && (
+          <p className="text-center font-bold text-destructive">{error}</p>
+        )}
+      </div>
     </div>
   );
 }

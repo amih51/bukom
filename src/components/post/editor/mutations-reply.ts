@@ -12,10 +12,29 @@ export function useSubmitReplyMutation() {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: ({ input, parentId }: { input: string; parentId: string }) =>
-      submitReply(input, parentId),
-    onSuccess: async (newPost) => {
-      const queryFilter: QueryFilters = { queryKey: ["feed"] };
+    mutationFn: ({
+      input,
+      parentId,
+      categoryId,
+      isAnon,
+    }: {
+      input: string;
+      parentId: string;
+      categoryId: string;
+      isAnon: boolean;
+    }) => submitReply(input, parentId, categoryId, isAnon),
+
+    onMutate: async (variables) => {
+      const { parentId } = variables;
+      return { parentId };
+    },
+
+    onSuccess: async (newPost, _, context) => {
+      const parentId = context?.parentId;
+
+      const queryFilter: QueryFilters = {
+        queryKey: ["feed", "replies", parentId],
+      };
 
       await queryClient.cancelQueries(queryFilter);
 
@@ -40,10 +59,12 @@ export function useSubmitReplyMutation() {
       );
       toast.success("Reply submitted successfully!");
     },
+
     onError(error) {
       console.error(error);
       toast.error("Failed to submit post.");
     },
   });
+
   return mutation;
 }

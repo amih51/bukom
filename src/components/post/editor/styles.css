@@ -33,6 +33,7 @@
     margin-inline-end: 0px;
     padding-inline-start: 18px;
   }
+
   ol {
     display: block;
     list-style-type: decimal;
@@ -42,16 +43,19 @@
     margin-inline-end: 0px;
     padding-inline-start: 18px;
   }
+
   ul ul,
   ol ul {
     list-style-type: circle;
     margin-left: 15px;
   }
+
   ol ol,
   ul ol {
     list-style-type: lower-latin;
     margin-left: 15px;
   }
+
   blockquote {
     margin: 1em 12px;
     padding: 0 18px;
@@ -64,14 +68,16 @@
   }
 
   pre {
-    background: var(--card);
-    color: var(--card-foreground);
+    background: #171717;
+    color: #fafafa;
     font-family: "JetBrainsMono", monospace;
-    margin: 1rem;
+    margin: 1.5rem 0;
+    padding: 0.75rem 1rem;
 
     code {
       background: none;
       color: inherit;
+      font-size: 0.8rem;
       padding: 0;
     }
 

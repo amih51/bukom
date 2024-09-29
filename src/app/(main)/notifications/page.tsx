@@ -1,17 +1,20 @@
 import { Metadata } from "next";
-import getSession from "@/lib/get-session";
-import { redirect } from "next/navigation";
+import { Suspense } from "react";
+import { LuLoader } from "react-icons/lu";
 
 export const metadata: Metadata = {
-  title: "Notifications",
+  title: {
+    template: "%s",
+    default: "Notifications",
+  },
 };
 
-export default async function Home() {
-  const session = await getSession();
-
-  if (!session?.user) redirect("/");
-
+export default function Page() {
   return (
-    <main className="flex items-center justify-center">Notifications</main>
+    <main className="flex w-full flex-col">
+      <Suspense fallback={<LuLoader className="mx-auto my-3 animate-spin" />}>
+        Notif
+      </Suspense>
+    </main>
   );
 }

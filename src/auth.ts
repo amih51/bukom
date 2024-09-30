@@ -2,6 +2,7 @@ import NextAuth, { DefaultSession } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
 import Google from "next-auth/providers/google";
+import Resend from "next-auth/providers/resend";
 
 declare module "next-auth" {
   interface User {
@@ -21,7 +22,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     signOut: "/",
     error: "/",
   },
-  providers: [Google],
+  providers: [
+    Google,
+    Resend({
+      from: "no-reply@itbfess.com",
+    }),
+  ],
   callbacks: {
     async signIn({ user }) {
       if (user.username) return true;

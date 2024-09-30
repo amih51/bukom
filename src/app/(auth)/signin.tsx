@@ -10,12 +10,19 @@ import { FaGoogle } from "react-icons/fa";
 export default function SignIn() {
   const searchParams = useSearchParams();
   const [error, setError] = useState<string | null>(null);
+  const [verifyReq, setVerifyReq] = useState<string | null>(null);
 
   useEffect(() => {
     if (searchParams) {
       const errorParam = searchParams.get("error");
       if (errorParam) {
         setError(errorParam);
+      }
+      const verifyReqParam = searchParams.get("verifyReq");
+      if (verifyReqParam) {
+        setVerifyReq(
+          "Please check your inbox, and if you don't see the email, check your spam or junk folder as well.",
+        );
       }
     }
   }, [searchParams]);

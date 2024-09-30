@@ -26,12 +26,14 @@ export default function SignIn() {
       }
     }
   }, [searchParams]);
+
   return (
     <div className="flex h-5/6 flex-auto flex-col items-center justify-between gap-6 sm:items-start md:h-full">
       <div>
         <h1 className="mb-4 text-5xl font-bold">Your Space, Your Voice.</h1>
       </div>
-      <div className="flex w-fit flex-col items-center justify-center">
+      <div className="flex w-1/2 flex-col items-center justify-center">
+        {verifyReq && <p className="mb-3 text-center font-bold">{verifyReq}</p>}
         {error && (
           <p className="text-center font-bold text-destructive">{error}</p>
         )}
@@ -41,8 +43,8 @@ export default function SignIn() {
             const formData = new FormData(e.currentTarget);
             const email = formData.get("email") as string;
 
-            if (!email) {
-              console.error("Email is required.");
+            if (!email || !email.endsWith("itb.ac.id")) {
+              setError("Email must end with itb.ac.id.");
               return;
             }
 
@@ -50,7 +52,7 @@ export default function SignIn() {
               email,
             });
           }}
-          className="flex flex-col gap-1"
+          className="flex w-full flex-col gap-1"
         >
           <Input
             className="border"
@@ -68,7 +70,7 @@ export default function SignIn() {
           variant={"ghost"}
           onClick={() =>
             signIn("google", {
-              callbackUr: "/home?justLoggedIn=true",
+              callbackUrl: "/home?justLoggedIn=true",
             })
           }
           className="flex w-full flex-row items-center border p-2"

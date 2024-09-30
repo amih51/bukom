@@ -28,11 +28,11 @@ export default function SignIn() {
   }, [searchParams]);
 
   return (
-    <div className="flex h-5/6 flex-auto flex-col items-center justify-between gap-6 sm:items-start md:h-full">
+    <div className="flex h-5/6 flex-auto flex-col items-center justify-between gap-6 md:h-full md:items-start">
       <div>
         <h1 className="mb-4 text-5xl font-bold">Your Space, Your Voice.</h1>
       </div>
-      <div className="flex w-1/2 flex-col items-center justify-center">
+      <div className="flex w-1/2 min-w-[180px] flex-col items-center justify-center">
         {verifyReq && <p className="mb-3 text-center font-bold">{verifyReq}</p>}
         {error && (
           <p className="text-center font-bold text-destructive">{error}</p>

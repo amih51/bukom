@@ -1,4 +1,9 @@
-import { auth } from "@/auth";
 import { cache } from "react";
 
-export default cache(auth);
+async function loadAuthAndGetSession() {
+	const mod = await import("@/auth");
+	const auth = mod.auth as unknown as (() => Promise<any>);
+	return auth();
+}
+
+export default cache(loadAuthAndGetSession);

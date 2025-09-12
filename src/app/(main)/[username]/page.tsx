@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Metadata } from "next";
 import ProfileFeed from "./profile-feed";
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/auth";
+import getSession from "@/lib/get-session";
 import { notFound } from "next/navigation";
 import FollowButton from "./follow-btn";
 import { FollowerInfo, UserInclude } from "@/lib/types";
@@ -38,7 +38,7 @@ export default async function Page({ params }: any) {
 
   if (!user) return notFound();
 
-  const session = await auth();
+  const session = await getSession();
 
   const followerInfo: FollowerInfo = {
     followers: user._count.follower,

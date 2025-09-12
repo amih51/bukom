@@ -14,10 +14,6 @@ export async function GET(req: NextRequest) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
 
     const posts = await prisma.post.findMany({
-      cacheStrategy: {
-        ttl: 60,
-        swr: 10,
-      },
       where: {
         parentId: null,
       },

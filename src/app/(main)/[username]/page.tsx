@@ -25,21 +25,15 @@ const getUser = cache(async (username: string) => {
   return user;
 });
 
-export function generateMetadata({
-  params: { username },
-}: {
-  params: { username: string };
-}): Metadata {
+export function generateMetadata({ params }: any): Metadata {
+  const { username } = params as { username: string };
   return {
     title: `${username}`,
   };
 }
 
-export default async function Page({
-  params: { username },
-}: {
-  params: { username: string };
-}) {
+export default async function Page({ params }: any) {
+  const { username } = params as { username: string };
   const user = await getUser(username);
 
   if (!user) return notFound();

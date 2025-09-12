@@ -36,22 +36,16 @@ const getPost = cache(async (postId: string) => {
   return sanitizedPost;
 });
 
-export async function generateMetadata({
-  params: { postId },
-}: {
-  params: { postId: string };
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: any): Promise<Metadata> {
+  const { postId } = params as { postId: string };
   const post = await getPost(postId);
   return {
     title: `Warga: ${post?.content ?? "No content"}`,
   };
 }
 
-export default async function Page({
-  params: { postId },
-}: {
-  params: { postId: string };
-}) {
+export default async function Page({ params }: any) {
+  const { postId } = params as { postId: string };
   const post = await getPost(postId);
 
   if (!post) return <div>post not found</div>;

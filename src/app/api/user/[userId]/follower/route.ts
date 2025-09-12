@@ -4,11 +4,10 @@ import { FollowerInfo } from "@/lib/types";
 
 export const runtime = "edge";
 
-export async function GET(
-  req: Request,
-  { params: { userId } }: { params: { userId: string } },
-) {
+export async function GET(req: Request, ctx: any) {
+  const { params: { userId } = {} } = ctx as { params?: { userId: string } };
   try {
+  if (!userId) return Response.json({ error: "Missing userId" }, { status: 400 });
     const session = await getSession();
     if (!session)
       return Response.json({ error: "Unauthorized" }, { status: 401 });
@@ -53,11 +52,10 @@ export async function GET(
   }
 }
 
-export async function POST(
-  req: Request,
-  { params: { userId } }: { params: { userId: string } },
-) {
+export async function POST(req: Request, ctx: any) {
+  const { params: { userId } = {} } = ctx as { params?: { userId: string } };
   try {
+  if (!userId) return Response.json({ error: "Missing userId" }, { status: 400 });
     const session = await getSession();
     const loggedInUser = session?.user;
 
@@ -86,11 +84,10 @@ export async function POST(
   }
 }
 
-export async function DELETE(
-  req: Request,
-  { params: { userId } }: { params: { userId: string } },
-) {
+export async function DELETE(req: Request, ctx: any) {
+  const { params: { userId } = {} } = ctx as { params?: { userId: string } };
   try {
+  if (!userId) return Response.json({ error: "Missing userId" }, { status: 400 });
     const session = await getSession();
     if (!session)
       return Response.json({ error: "Unauthorized" }, { status: 401 });

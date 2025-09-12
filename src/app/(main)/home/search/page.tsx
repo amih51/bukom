@@ -2,21 +2,15 @@ import SearchField from "@/components/search-field";
 import { Metadata } from "next";
 import SearchResults from "./search-result";
 
-export function generateMetadata({
-  searchParams: { q },
-}: {
-  searchParams: { q: string };
-}): Metadata {
+export function generateMetadata({ searchParams }: any): Metadata {
+  const { q } = searchParams as { q: string };
   return {
     title: `Search results for "${q}"`,
   };
 }
 
-export default async function Page({
-  searchParams: { q },
-}: {
-  searchParams: { q: string };
-}) {
+export default async function Page({ searchParams }: any) {
+  const { q } = searchParams as { q: string };
   return (
     <main className="flex w-full flex-col">
       <div className="rounded-2xl">
@@ -24,7 +18,7 @@ export default async function Page({
           Search results for &quot;{q}&quot;
         </h1>
       </div>
-      <SearchResults query={q} />
+  <SearchResults query={q} />
     </main>
   );
 }

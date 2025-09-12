@@ -5,10 +5,7 @@ import { NextRequest } from "next/server";
 
 export const runtime = "edge";
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { userId: string } },
-) {
+export async function GET(req: NextRequest, ctx: any) {
   try {
     const url = new URL(req.url);
     const cursor = url.searchParams.get("cursor") || undefined;

@@ -4,11 +4,10 @@ import { BookmarkInfo } from "@/lib/types";
 
 export const runtime = "edge";
 
-export async function GET(
-  req: Request,
-  { params: { postId } }: { params: { postId: string } },
-) {
+export async function GET(req: Request, ctx: any) {
+  const { params: { postId } = {} } = ctx as { params?: { postId: string } };
   try {
+    if (!postId) return Response.json({ error: "Missing postId" }, { status: 400 });
     const user = await currentUser();
     if (!user?.id) throw Error("Unauthorized");
 
@@ -32,11 +31,10 @@ export async function GET(
   }
 }
 
-export async function POST(
-  req: Request,
-  { params: { postId } }: { params: { postId: string } },
-) {
+export async function POST(req: Request, ctx: any) {
+  const { params: { postId } = {} } = ctx as { params?: { postId: string } };
   try {
+    if (!postId) return Response.json({ error: "Missing postId" }, { status: 400 });
     const user = await currentUser();
     if (!user?.id) throw Error("Unauthorized");
 
@@ -61,11 +59,10 @@ export async function POST(
   }
 }
 
-export async function DELETE(
-  req: Request,
-  { params: { postId } }: { params: { postId: string } },
-) {
+export async function DELETE(req: Request, ctx: any) {
+  const { params: { postId } = {} } = ctx as { params?: { postId: string } };
   try {
+    if (!postId) return Response.json({ error: "Missing postId" }, { status: 400 });
     const user = await currentUser();
     if (!user?.id) throw Error("Unauthorized");
 

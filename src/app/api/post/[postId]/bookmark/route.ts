@@ -2,7 +2,6 @@ import { currentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { BookmarkInfo } from "@/lib/types";
 
-export const runtime = "edge";
 
 export async function GET(req: Request, ctx: any) {
   const { params: { postId } = {} } = ctx as { params?: { postId: string } };

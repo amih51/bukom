@@ -2,7 +2,6 @@ import getSession from "@/lib/get-session";
 import { prisma } from "@/lib/prisma";
 import { FollowerInfo } from "@/lib/types";
 
-export const runtime = "edge";
 
 export async function GET(req: Request, ctx: any) {
   const { params: { userId } = {} } = ctx as { params?: { userId: string } };

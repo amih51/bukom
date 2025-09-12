@@ -3,7 +3,6 @@ import { prisma } from "@/lib/prisma";
 import { VoteInfo } from "@/lib/types";
 import { NextRequest, NextResponse } from "next/server";
 
-export const runtime = "edge";
 
 export async function GET(req: NextRequest, ctx: any) {
   const { params: { postId } = {} } = ctx as { params?: { postId: string } };

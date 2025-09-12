@@ -43,8 +43,8 @@ export default function SignIn() {
             const formData = new FormData(e.currentTarget);
             const email = formData.get("email") as string;
 
-            if (!email || !email.endsWith("itb.ac.id")) {
-              setError("Email must end with itb.ac.id.");
+            if (!email) {
+              setError("email invalid");
               return;
             }
 
